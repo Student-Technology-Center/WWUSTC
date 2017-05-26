@@ -4,9 +4,7 @@ If you're new to django, please check out [this link](https://developer.mozilla.
 
 ### Info:
 
-* Make sure all apps handle their own url dispatching. Check out "/hour_manager/urls.py" for details on how to do this.
-
-* All static files belong in "/static/", as denoted in "/settings.py".
+* Dispatching should be done per app. IE hour manager's static files and urls.py are seperate from other apps. There *should not* be a general static folder unless it is used for request "/"
 
 * This uses military time, as that is the easiest way for the database models to *handle* the time. This should not be changed, or attempted to be changed. 
 
