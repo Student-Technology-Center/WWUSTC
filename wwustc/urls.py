@@ -19,12 +19,19 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from cas.views import login, logout
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
 urlpatterns += [
     url(r'^hourmanager/', include('hour_manager.urls'))
+]
+
+urlpatterns += [
+    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$', logout, name='logout'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
