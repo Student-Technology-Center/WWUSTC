@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CAS_SERVER_URL = "https://websso.wwu.edu/cas/"
+USE_CAS = False
 
 # Application definition
 
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hour_manager.apps.HourManagerConfig',
-    'cas.apps.CASConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,8 +50,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'cas.middleware.CASMiddleware',
 ]
+
+if USE_CAS:
+    MIDDLEWARE += [
+        'cas.middleware.CASMiddleware',
+    ]
+    INSTALLED_APPS += [
+        'cas.apps.CASConfig',
+    ]
 
 ROOT_URLCONF = 'wwustc.urls'
 
