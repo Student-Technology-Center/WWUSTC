@@ -3,3 +3,4 @@
 */*.pyc
 cas/*
 hour_manager/*
+lfp_scheduler/*

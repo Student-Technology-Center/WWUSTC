@@ -19,3 +19,14 @@ else
   git pull
   cd ..
 fi
+
+if [ ! -d lfp_scheduler/ ]
+then
+  echo "Cloning LFP Scheduler"
+  git clone https://github.com/Student-Technology-Center/lfp_scheduler.git
+else
+  echo "Updating LFP Scheduler"
+  cd lfp_scheduler/
+  git pull
+  cd ..
+fi
