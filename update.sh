@@ -58,8 +58,12 @@ fi
 echo "Checking main project"
 update-repo
 
-# if ["$restartServer" = true]
-# then
-#   #TODO: restartServer?
-# fi
+if $restartServer
+then
+  tmux send-keys -t stc:2 C-c && (
+    echo "Tmux wasn't found, this is no problemo"
+  ) || (
+    echo "Sending the restart command to the dev django server"
+  )
+fi
   
