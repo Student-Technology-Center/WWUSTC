@@ -40,6 +40,7 @@ then
 else
   cd hour_manager/
   echo "Checking Hour Manager"
+  update-repo
   cd ..
 fi
 
