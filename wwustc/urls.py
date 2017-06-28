@@ -33,7 +33,7 @@ urlpatterns += [
 
 #LFP redirects
 urlpatterns += [
-    url(r'lfp/', include('lfp_scheduler.urls'))
+    url(r'^lfp/', include('lfp_scheduler.urls'))
 ]
 
 if settings.USE_CAS:
