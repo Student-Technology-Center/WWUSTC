@@ -26,8 +26,14 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
+#Hour manager redirects
 urlpatterns += [
     url(r'^hourmanager/', include('hour_manager.urls'))
+]
+
+#LFP redirects
+urlpatterns += [
+    url(r'lfp/', include('lfp_scheduler.urls'))
 ]
 
 if settings.USE_CAS:

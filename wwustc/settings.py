@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hour_manager.apps.HourManagerConfig',
+    'lfp_scheduler.apps.LfpConfig'
 ]
 
 MIDDLEWARE = [
