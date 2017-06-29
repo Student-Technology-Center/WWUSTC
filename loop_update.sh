@@ -1,2 +1,3 @@
 #!/bin/bash
-while true; do ./update.sh; sleep 10; done;
+sleepTime=$1
+while true; do ./update.sh; sleep $1; done;
