@@ -59,7 +59,7 @@ else
 fi
 
 echo "Checking main project"
-update-repo
+runuser -l stc -c 'update-repo'
 
 if $restartServer
 then
