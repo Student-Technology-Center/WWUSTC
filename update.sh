@@ -62,9 +62,9 @@ update-repo
 if $restartServer
 then
   tmux send-keys -t stc:2 C-c && (
-    echo "Tmux wasn't found, this is no problemo"
-  ) || (
     echo "Sending the restart command to the dev django server"
+  ) || (
+    echo "Tmux wasn't found, this is no problemo"
   )
 fi
   
