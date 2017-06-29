@@ -4,6 +4,8 @@ restartServer=false
 
 update-repo ()
 {
+  git remote update
+  
   UPSTREAM=${1:-'@{u}'}
   LOCAL=$(git rev-parse @)
   REMOTE=$(git rev-parse "$UPSTREAM")
@@ -66,3 +68,4 @@ then
     echo "Sending the restart command to the dev django server"
   )
 fi
+  
