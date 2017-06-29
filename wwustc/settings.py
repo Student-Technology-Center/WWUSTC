@@ -25,10 +25,10 @@ SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "wwustc.com" ]
+ALLOWED_HOSTS = ["wwustc.com"]
 
 CAS_SERVER_URL = "https://websso.wwu.edu/cas/"
-USE_CAS = False
+USE_CAS = True
 
 # Application definition
 
