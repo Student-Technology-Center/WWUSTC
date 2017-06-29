@@ -19,8 +19,6 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
-import wwustc.views
-
 if settings.USE_CAS:
     from cas.views import login, logout
 
@@ -30,7 +28,7 @@ urlpatterns = [
 
 #Index redirect
 urlpatterns += [
-    url(r'^$', wwustc.views.index)
+    url(r'^$', include('index.urls'))
 ]
 
 #Hour manager redirects
