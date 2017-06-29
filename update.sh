@@ -1,5 +1,4 @@
 #!/bin/bash
-
 restartServer=false
 
 update-repo ()
@@ -25,10 +24,12 @@ update-repo ()
   fi
 }
 
+export -f update-repo
+
 if [ ! -d cas/ ]
 then
   echo "Cloning Django-Cas"
-  git clone https://github.com/kstateome/django-cas.git
+  runuser -l stc -c 'git clone https://github.com/kstateome/django-cas.git'
   mv django-cas/cas/ cas/
   rm -rf django-cas/
   restartServer=true
@@ -37,23 +38,23 @@ fi
 if [ ! -d hour_manager/ ]
 then
   echo "Cloning Hour Manager"
-  git clone https://github.com/Student-Technology-Center/Hour-Manager.git
+  runuser -l stc -c 'git clone https://github.com/Student-Technology-Center/Hour-Manager.git'
   mv Hour-Manager/ hour_manager/
 else
   cd hour_manager/
   echo "Checking Hour Manager"
-  update-repo
+  runuser -l stc -c 'update-repo'
   cd ..
 fi
 
 if [ ! -d lfp_scheduler/ ]
 then
   echo "Cloning LFP Scheduler"
-  git clone https://github.com/Student-Technology-Center/lfp_scheduler.git
+  runuser -l stc -c 'git clone https://github.com/Student-Technology-Center/lfp_scheduler.git'
 else
   cd lfp_scheduler/
   echo "Checking LFP Scheduler"
-  update-repo
+  runuser -l stc -c 'update-repo'
   cd ..
 fi
 
