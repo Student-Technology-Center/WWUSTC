@@ -1,0 +1,8 @@
+[submodule "hour_manager"]
+	path = hour_manager
+	url = https://github.com/Student-Technology-Center/Hour-Manager.git
+	branch = master
+[submodule "lfp_scheduler"]
+	path = lfp_scheduler
+	url = https://github.com/Student-Technology-Center/lfp_scheduler.git
+  branch = master
