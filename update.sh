@@ -1,7 +1,22 @@
 #!/bin/bash
-restartServer=false
+update=false
 
-update-repo ()
+apps=(
+  hour_manager 
+  lfp_scheduler 
+)
+
+## The cas check is temporary code, if CAS is to be removed, this check will be removed.
+## If cas was to be used, we would need to implement CAS as a git submodule
+if [ ! -d cas/ ]
+then
+  echo "Cloning Django-Cas"
+  git clone https://github.com/kstateome/django-cas.git
+  mv django-cas/cas/ cas/
+  rm -rf django-cas/
+fi
+
+check-repo ()
 {
   git remote update
   
@@ -13,10 +28,13 @@ update-repo ()
   if [ $LOCAL = $REMOTE ]; then
       echo "Up-to-date"
   elif [ $LOCAL = $BASE ]; then
-      echo "Update found, pulling..."
-      git pull
-      restartServer=true
-      cd ..
+      echo "Update found, staging to update"
+      if $1
+      then
+        git pull
+      else
+        update=true
+      fi
   elif [ $REMOTE = $BASE ]; then
       echo "Local files have been edited."
   else
@@ -24,47 +42,39 @@ update-repo ()
   fi
 }
 
-if [ ! -d cas/ ]
-then
-  echo "Cloning Django-Cas"
-  git clone https://github.com/kstateome/django-cas.git
-  mv django-cas/cas/ cas/
-  rm -rf django-cas/
-  restartServer=true
-fi
 
-if [ ! -d hour_manager/ ]
-then
-  echo "Cloning Hour Manager"
-  git clone https://github.com/Student-Technology-Center/Hour-Manager.git
-  mv Hour-Manager/ hour_manager/
-else
-  cd hour_manager/
-  echo "Checking Hour Manager"
-  update-repo
-  cd ..
-fi
 
-if [ ! -d lfp_scheduler/ ]
-then
-  echo "Cloning LFP Scheduler"
-  git clone https://github.com/Student-Technology-Center/lfp_scheduler.git
-else
-  cd lfp_scheduler/
-  echo "Checking LFP Scheduler"
-  update-repo
-  cd ..
-fi
+for item in ${apps[*]}
+do
+  printf "Cheking %s\n" $item
+  if [ "$(ls -A $item)" ]; then
+    # Not Empty
+    cd $item/
+    check-repo
+    cd ..
+    
+    if $update; then break; fi
+  else
+    # Empty Folder
+    # If there's an empty folder, we initialize the submodules and update regardless of the state of the other items.
+    git submodule init
+    git submodule update
+    exit 
+  fi
+done
 
-echo "Checking main project"
-update-repo
+# Checks the main directory
+check-repo true
 
-if $restartServer
+if $update
 then
+  echo "Updating Repos"
+  git submodule update
+  
+  echo "Attempting to send tmux command"
   tmux send-keys -t stc:2 C-c && (
-    echo "Sending the restart command to the dev django server"
+    echo "Succesfully told django to restart"
   ) || (
     echo "Tmux wasn't found, this is no problemo"
   )
 fi
-  
