@@ -28,16 +28,6 @@ check-repo ()
   fi
 }
 
-## The cas check is temporary code, if CAS is to be removed, this check will be removed.
-## If cas was to be used, we would need to implement CAS as a git submodule
-if [ ! -d cas/ ]
-then
-  echo "Cloning Django-Cas"
-  git clone https://github.com/kstateome/django-cas.git
-  mv django-cas/cas/ cas/
-  rm -rf django-cas/
-fi
-
 for item in ${apps[*]}
 do
   printf "Cheking %s\n" $item
