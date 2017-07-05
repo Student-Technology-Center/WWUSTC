@@ -43,6 +43,7 @@ do
   printf "Cheking %s\n" $item
   if ! [[ "$(ls -A $item)" ]]; then
     git submodule init
+    break
   fi
 done
 
