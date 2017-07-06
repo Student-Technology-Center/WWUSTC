@@ -62,6 +62,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_URL = '/admin/login/'
+
+AUTHENTICATED_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
+
 ROOT_URLCONF = 'wwustc.urls'
 
 TEMPLATES = [

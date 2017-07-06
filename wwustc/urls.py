@@ -27,7 +27,7 @@ urlpatterns = [
 
 #Index redirect
 urlpatterns += [
-    url(r'^$', include('index.urls'))
+    url(r'^', include('index.urls'))
 ]
 
 #Hour manager redirects
