@@ -21,9 +21,6 @@ from django.conf.urls.static import static
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_nyt.urls import get_pattern as get_nyt_pattern
 
-if settings.USE_CAS:
-    from cas.views import login, logout
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
@@ -47,11 +44,5 @@ urlpatterns += [
     url(r'^notifications/', get_nyt_pattern()),
     url(r'^wiki/', get_wiki_pattern())
 ]
-
-if settings.USE_CAS:
-    urlpatterns += [
-        url(r'^accounts/login/$', login, name='login'),
-        url(r'^accounts/logout/$', logout, name='logout'),
-    ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

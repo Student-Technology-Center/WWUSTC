@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["wwustc.com", "localhost"]
 
-CAS_SERVER_URL = "https://websso.wwu.edu/cas/"
-USE_CAS = True
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -64,14 +61,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-if USE_CAS:
-    MIDDLEWARE += [
-        'cas.middleware.CASMiddleware',
-    ]
-    INSTALLED_APPS += [
-        'cas.apps.CASConfig',
-    ]
 
 ROOT_URLCONF = 'wwustc.urls'
 
