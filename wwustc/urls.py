@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_nyt.urls import get_pattern as get_nyt_pattern
 
 if settings.USE_CAS:
     from cas.views import login, logout
@@ -42,7 +44,8 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'^admin/', include('admin.sites.urls)')
+    url(r'^notifications/', get_nyt_pattern()),
+    url(r'^wiki/', get_wiki_pattern())
 ]
 
 if settings.USE_CAS:

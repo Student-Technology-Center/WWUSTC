@@ -33,8 +33,9 @@ USE_CAS = True
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin'
+    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.humanize',
     'django_nyt',
@@ -85,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai',
             ],
         },
     },
@@ -145,3 +147,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/hour_manager/static',
 ]
+
+SITE_ID = 1
+
+WIKI_ACCOUNT_HANDLING = True
+WIKI_ACCOUNT_SIGNUP_ALLOWED = True
