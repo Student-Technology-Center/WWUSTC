@@ -2,7 +2,8 @@
 
 apps=(
   hour_manager 
-  lfp_scheduler 
+  lfp_scheduler
+  django-wiki
 )
 
 check-repo ()
