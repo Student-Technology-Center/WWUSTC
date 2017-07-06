@@ -33,9 +33,19 @@ USE_CAS = True
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin'
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
+    'django_nyt',
+    'mptt',
+    'sekizai',
+    'sorl.thumbnail',
+    'wiki',
+    'wiki.plugins.attachments',
+    'wiki.plugins.notifications',
+    'wiki.plugins.images',
+    'wiki.plugins.macros',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
