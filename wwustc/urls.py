@@ -41,6 +41,10 @@ urlpatterns += [
     url(r'^lfp/', include('lfp_scheduler.urls'))
 ]
 
+urlpatterns += [
+    url(r'^admin/', include('admin.sites.urls)')
+]
+
 if settings.USE_CAS:
     urlpatterns += [
         url(r'^accounts/login/$', login, name='login'),
