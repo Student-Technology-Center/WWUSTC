@@ -7,7 +7,7 @@ lfp_scheduler/*
 
 __pycache__/
 
-lfp_password/
+lfp_password.py
 
 *.sqlite3
 
