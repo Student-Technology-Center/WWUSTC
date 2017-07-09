@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
-# Create your views here.
 def register(request):
     if request.method == 'POST':
         form = StcUserCreationForm(request.POST)
@@ -17,7 +16,7 @@ def register(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/user/login/')
     else:
         form = StcUserCreationForm()
         
@@ -31,7 +30,6 @@ def register(request):
         context
     )
 
-@csrf_protect
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
