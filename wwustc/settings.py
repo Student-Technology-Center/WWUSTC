@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/user/login/'
 
 AUTHENTICATED_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
