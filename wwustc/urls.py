@@ -21,13 +21,13 @@ from django.conf.urls.static import static
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_nyt.urls import get_pattern as get_nyt_pattern
 
+#Index redirect
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^', include('index.urls'))
 ]
 
-#Index redirect
 urlpatterns += [
-    url(r'^', include('index.urls'))
+    url(r'^user/', include('login.urls'))
 ]
 
 #Hour manager redirects

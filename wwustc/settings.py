@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
-    'index.apps.IndexConfig'
+    'index.apps.IndexConfig',
+    'login.apps.LoginConfig'
 ]
 
 MIDDLEWARE = [

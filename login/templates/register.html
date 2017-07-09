@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>
+            Register
+        </title>
+    </head>
+    <body>
+        <h2>Registration</h2>
+        <form action="/login/register/" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+        <input type="submit" value="Register" />
+        </form>
+    </body>
+</html>
