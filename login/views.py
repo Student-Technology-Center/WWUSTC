@@ -3,9 +3,10 @@ from django.http import HttpResponseRedirect
 from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         form = StcUserCreationForm(request.POST)
@@ -21,6 +22,7 @@ def register(request):
             return redirect('/')
     else:
         form = StcUserCreationForm()
+        
     context = {
         'form':form
     }
@@ -31,6 +33,7 @@ def register(request):
         context
     )
 
+@csrf_protect
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
