@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponseRedirect
 from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
-@csrf_protect
 def register(request):
     if request.method == 'POST':
         form = StcUserCreationForm(request.POST)
@@ -18,8 +17,7 @@ def register(request):
 
             if user is not None:
                 login(request, user)
-
-            return redirect('/')
+                return HttpResponseRedirect('/')
     else:
         form = StcUserCreationForm()
         
@@ -41,7 +39,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return HttpResponseRedirect('/')
      
     return render(
         request,
