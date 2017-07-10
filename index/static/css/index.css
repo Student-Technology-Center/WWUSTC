@@ -38,11 +38,15 @@ body ul li {
 }
 
 #header a {
-    vertical-align: bottom;
     text-decoration: none;
     color: #ecf0f1;
 
     transition: .5s;
+
+    font-size: 20px;
+    float: right;
+
+    margin: 12px;
 }
 
 #header a:hover {
@@ -52,8 +56,5 @@ body ul li {
 }
 
 #header a {
-    font-size: 20px;
-    float: right;
-
-    margin: 12px;
+    
 }
