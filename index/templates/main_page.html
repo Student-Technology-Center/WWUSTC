@@ -7,7 +7,6 @@
         </title>
 
         <!-- JS links -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
         <!-- CSS links -->
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
@@ -15,19 +14,15 @@
 
     </head>
     <body>
-        {% csrf_token %}
-
         <div id="header">
             <h2>
                 Welcome {{ user.first_name }}
             </h2>
-            <div id="links">
-                {% if user.is_authenticated %}
-                    <a href="/user/logout/">Logout</a>
-                {% else %}
-                    <a href="/user/login/">Login</a> | <a href="/user/register/">Signup</a>
-                {% endif %}
-            </div>
+            {% if user.is_authenticated %}
+                <a href="/user/logout/">Logout</a>
+            {% else %}
+                <a href="/user/login/">Login</a> | <a href="/user/register/">Signup</a>
+            {% endif %}
         </div>
         
         <ul>
