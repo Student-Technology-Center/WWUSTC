@@ -62,6 +62,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATED_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
