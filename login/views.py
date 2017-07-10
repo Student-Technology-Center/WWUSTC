@@ -4,7 +4,6 @@ from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-from django.core.context_processors import csrf
 
 def register(request):
     if request.method == 'POST':
