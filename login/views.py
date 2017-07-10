@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from django.core.context_processors import csrf
 
 def register(request):
     if request.method == 'POST':
@@ -16,7 +17,7 @@ def register(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/user/login/')
+                return redirect('index')
     else:
         form = StcUserCreationForm()
         
@@ -37,7 +38,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/')
+            return redirect('index')
      
     return render(
         request,

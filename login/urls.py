@@ -4,6 +4,6 @@ import login.views
 
 urlpatterns = [
     url(r'login/$', login.views.user_login),
-    url(r'logout/$', login.views.user_logout),
+    url(r'logout/$', login.views.user_logout, name='logout'),
     url(r'register/$', login.views.register)
 ]
