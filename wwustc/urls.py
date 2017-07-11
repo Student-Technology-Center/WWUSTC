@@ -27,7 +27,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^user/', include('login.urls'))
+    url(r'^user/', include('login.urls', namespace='login_urls'))
 ]
 
 #Hour manager redirects

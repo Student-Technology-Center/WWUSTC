@@ -19,7 +19,7 @@
                 Welcome {{ user.first_name }}
             </h2>
             {% if user.is_authenticated %}
-                <a href="/user/logout/">Logout</a>
+                <a href="/user/logout/">Logout</a> <a href="{% url 'login_urls:profile' %}"> Account </a>
             {% else %}
                 <a href="/user/login/">Login</a> <a href="/user/register/">Signup</a>
             {% endif %}
