@@ -23,7 +23,7 @@ from django_nyt.urls import get_pattern as get_nyt_pattern
 
 #Index redirect
 urlpatterns = [
-    url(r'^', include('index.urls'))
+    url(r'^', include('index.urls', namespace="main_page"))
 ]
 
 urlpatterns += [
