@@ -6,7 +6,6 @@ restart=false
 # List of apps are listed to iterate through, these are all the current submodules
 apps=(
   hour_manager 
-  lfp_scheduler
   django-wiki
 )
 
