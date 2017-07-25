@@ -1,6 +1,7 @@
 import smtplib
+from email.mime.text import MIMEText
 
-from texter_logins import USERNAME, PASSWORD
+from utils.alerts.texter_logins import USERNAME, PASSWORD
 
 carriers = {
     "at&t":"txt.att.net",
@@ -22,12 +23,16 @@ def text(phone_num, carrier, msg):
     print("Sending text \nfrom: {} \nto: {} \nsaying: {}.".format(USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg))
     server.sendmail(USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg)
 
-def email(email, msg):
+def email(email, subject, message):
     server = smtplib.SMTP('smtp.gmail.com:587')
+
+    msg = MIMEText(message)
+    msg['From'] = USERNAME
+    msg['To'] = email
+    msg['Subject'] = subject
+
     server.ehlo()
     server.starttls()
     server.login(USERNAME, PASSWORD)
-    server.sendmail(USERNAME, email, msg)
-
-if __name__ == "__main__":
-    text("4256985465", "verizon", "Hey this is a test to see if I can send longer texts and/or emails. Idk if this helps.")
+    server.send_message(msg)
+    server.quit()
