@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
+from login.models import UserOptions, UserOptionsForm
+
 def register(request):
     if request.method == 'POST':
         form = StcUserCreationForm(request.POST)
@@ -55,13 +57,9 @@ def user_logout(request):
 def profile(request):
     context = { }
 
-    if request.method == "POST":
-        key = request.POST.get('key')
-        if key:
-            if key == 'stc_admin_0':
-                request.user.is_superuser = True
-                request.user.save()
-                context['superuser'] = True
+    options = UserOptions.objects.get_or_create(request.user)
+    context['form'] = UserOptionsForm(initial={'texting':options[0].texting,'email':options[0].email})
+    
 
     return render(
         request,

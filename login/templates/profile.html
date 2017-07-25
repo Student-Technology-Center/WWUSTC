@@ -7,11 +7,7 @@
         <h2> Hey {{ user.first_name }} </h2>
         <form action="." method="POST">
             {% csrf_token %}
-            Add a key: <input type="text" name="key">
+            {{ form.as_p }}
             <input type="submit">
-        </form>
-        {% if superuser %}
-            <h4> {{ user.username }} is now a superuser. </h4>
-        {% endif %}
     </body>
 </html>
