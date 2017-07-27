@@ -11,7 +11,6 @@
         <!-- CSS links -->
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-
     </head>
     <body>
         <div id="header">
@@ -23,6 +22,7 @@
             {% else %}
                 <a href="/user/login/">Login</a> <a href="/user/register/">Signup</a>
             {% endif %}
+                <a href="https://github.com/Student-Technology-Center/WWUSTC/issues/new"> File a ticket </a>
         </div> 
         <ul>
             <li>
@@ -32,5 +32,16 @@
               <a href="/wiki/">Wiki</a>
             </li>
         </ul>
-    </bdyo>
+        <div id="commits">
+            <h3>
+                Issues:
+            </h3>
+            <hr>
+            <ul>
+            {% for i in issues %}
+                <li><a href="{{ i.html_url }}" style="color:red"> {{ i.user.login }} - {{ i.title }} </a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </body>
 </html>

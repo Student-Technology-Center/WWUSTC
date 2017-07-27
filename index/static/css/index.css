@@ -54,3 +54,37 @@ body ul li {
 
     color: #95a5a6;
 }
+
+#commits {
+    color: white;
+
+    float: right;
+    bottom: 0;
+    left: 0;
+
+    margin: 0;
+    margin-top: 50px;
+
+    border: #34495e solid 3px;
+    background-color: #34495e;
+    border-radius: 0px 20px 0px 0px;
+    height: 30%;
+    width: 700px;
+
+    position: absolute;
+}
+
+#commits h3 {
+    padding-left: 10px;
+}
+
+#commits hr {
+    width: 100%;
+    background-color: #95a5a6;
+}
+
+#commits ul li img {
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+}
