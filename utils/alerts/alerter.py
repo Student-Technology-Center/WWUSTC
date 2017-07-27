@@ -33,6 +33,10 @@ def email(email, subject, message):
 
     server.ehlo()
     server.starttls()
-    server.login(USERNAME, PASSWORD)
-    server.send_message(msg)
-    server.quit()
+
+    try:
+        server.login(USERNAME, PASSWORD)
+        server.send_message(msg)
+        server.quit()
+    except:
+        print("Email couldn't be sent. Probably Googles server's rejecting login request.")
