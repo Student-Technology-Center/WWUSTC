@@ -59,7 +59,7 @@ def profile(request):
 
     options = UserOptions.objects.get_or_create(user=request.user)
 
-    form = UserOptionsForm(request.POST)
+    form = UserOptionsForm(request.POST or None)
 
     if form.is_valid():
         options_form = form.save(commit=False)
@@ -67,7 +67,10 @@ def profile(request):
         options[0].email = options_form.email
         options[0].save()
 
-    context['form'] = UserOptionsForm(initial={'texting':options[0].texting,'email':options[0].email})
+    print(options[0].texting)
+    print(options[0].email)
+
+    context['form'] = UserOptionsForm(initial={'texting':options[0].texting, 'email':options[0].email})
 
     return render(
         request,

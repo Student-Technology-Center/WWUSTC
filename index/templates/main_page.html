@@ -32,16 +32,18 @@
               <a href="/wiki/">Wiki</a>
             </li>
         </ul>
-        <div id="commits">
-            <h3>
-                Issues:
-            </h3>
-            <hr>
-            <ul>
-            {% for i in issues %}
-                <li><a href="{{ i.html_url }}" style="color:red"> {{ i.user.login }} - {{ i.title }} </a></li>
-            {% endfor %}
-            </ul>
-        </div>
+        {% if issues %}
+            <div id="commits">
+                <h3>
+                    Issues:
+                </h3>
+                <hr>
+                <ul>
+                {% for i in issues %}
+                    <li><a href="{{ i.html_url }}" style="color:red"> {{ i.user.login }} - {{ i.title }} </a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </body>
 </html>
