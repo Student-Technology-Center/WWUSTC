@@ -1,6 +1,6 @@
 <html>
     <head>
-
+        <title> Profile </title>
     </head>
     <body>
         <a href="{% url 'main_page:index' %}" id="main"> Home </a>
@@ -9,5 +9,6 @@
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit">
+        </form>
     </body>
 </html>

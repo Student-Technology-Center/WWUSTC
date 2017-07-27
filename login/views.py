@@ -57,9 +57,17 @@ def user_logout(request):
 def profile(request):
     context = { }
 
-    options = UserOptions.objects.get_or_create(request.user)
+    options = UserOptions.objects.get_or_create(user=request.user)
+
+    form = UserOptionsForm(request.POST)
+
+    if form.is_valid():
+        options_form = form.save(commit=False)
+        options[0].texting = options_form.texting
+        options[0].email = options_form.email
+        options[0].save()
+
     context['form'] = UserOptionsForm(initial={'texting':options[0].texting,'email':options[0].email})
-    
 
     return render(
         request,
