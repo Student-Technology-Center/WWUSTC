@@ -7,13 +7,15 @@ class UserOptions(models.Model):
     texting = models.BooleanField(default=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
-    def create_options(self, user):
-        options = self.create(user)
-        options.texting = False
-        options.email = False
-        options.save()
-        return options
+    objects = UserOptionsManager()
 
+class UserOptionsManager(models.Manager)
+    def create_options(self, user):
+            options = self.create(user)
+            options.texting = False
+            options.email = False
+            options.save()
+            return options
 
 class UserOptionsForm(ModelForm):
     class Meta:
