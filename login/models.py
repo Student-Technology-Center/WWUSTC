@@ -9,7 +9,7 @@ class UserOptions(models.Model):
 
     objects = UserOptionsManager()
 
-class UserOptionsManager(models.Manager)
+class UserOptionsManager(models.Manager):
     def create_options(self, user):
             options = self.create(user)
             options.texting = False
