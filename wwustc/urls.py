@@ -25,4 +25,8 @@ urlpatterns += [
     url(r'^wiki/', get_wiki_pattern())
 ]
 
+urlpatterns += [
+    url(r'^lfp/', include('lfp_scheduler.urls')),
+]
+
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
