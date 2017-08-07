@@ -8,6 +8,7 @@ apps=(
   hour_manager 
   django-wiki
 	lfp_scheduler
+  evaluations
 )
 
 # Check-repo is a function that checks with upstream to see if an update is needed. 
