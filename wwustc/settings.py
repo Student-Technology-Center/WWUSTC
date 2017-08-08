@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
-    'login.apps.LoginConfig'
+    'login.apps.LoginConfig',
+    'django_cas_ng'
 ]
 
 MIDDLEWARE = [
@@ -61,11 +62,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CAS_SERVER_URL = 'https://websso.wwu.edu/cas/'
 LOGIN_URL = '/user/login/'
 LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATED_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas_ng.backends.CASBackend',
 ]
 
 ROOT_URLCONF = 'wwustc.urls'

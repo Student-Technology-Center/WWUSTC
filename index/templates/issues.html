@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>
+            File an issue
+        </title>
+    </head>
+    <body>
+        <h2> This is not similar to the old ticket system </h2>
+        <p> This is for reporting issues with this site. </p>
+        <hr>
+        <form action='' method='POST'>
+            {% csrf_token %}
+            {{issue_form.as_p}}
+            <input type='submit'>
+        </form>
+        {% if received %}
+        <h3> We received your input, thank you. </h3>
+        {% endif %}
+    </body>
+</html>

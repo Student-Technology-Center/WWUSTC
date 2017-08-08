@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_nyt.urls import get_pattern as get_nyt_pattern
 
+import django_cas_ng.views
+
 #Index redirect
 urlpatterns = [
     url(r'^', include('index.urls', namespace="main_page"))
@@ -27,6 +29,11 @@ urlpatterns += [
 
 urlpatterns += [
     url(r'^lfp/', include('lfp_scheduler.urls')),
+]
+
+urlpatterns += [
+    url(r'^accounts/login$', django_cas_ng.views.login, name='cas_ng_login'),
+    url(r'^accounts/logout$', django_cas_ng.views.logout, name='cas_ng_logout'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
