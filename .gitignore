@@ -4,7 +4,8 @@
 cas/*
 hour_manager/*
 lfp_scheduler/*
-
+env/
+wiki/
 __pycache__/
 
 lfp_pw.py
