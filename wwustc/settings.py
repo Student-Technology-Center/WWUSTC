@@ -137,13 +137,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/hour_manager/static',
+    '/wiki/static',
+    '/lfp_scheduler/static',
 ]
 
 SITE_ID = 1
 
 WIKI_ACCOUNT_HANDLING = True
 WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+
+SECURE_SSL_REDIRECT = True
