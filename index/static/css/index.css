@@ -2,89 +2,134 @@ body {
     padding: 0;
     margin: 0;
 
-    background-color: #ecf0f1;
+    background-color: white;
     font-family: 'Lato', sans-serif;
 }
 
-body h2 {
-    color: #ecf0f1;
-
-    font-family: 'Open Sans', sans-serif;
-    font-size: 40px;
-
-    padding: 6px;
-    display: inline;
-}
-
-body ul {
-    padding: 0;
-    list-style-type: none;
-}
-
-body ul li {
-    list-style: none;
-    display: block;
-
-    padding: 6px;
-}
-
-/* Divs */
-#header {
-    width: 100%;
-    height: 50px;
-
-    background-color: #34495e;
-    border-bottom: 2px solid #95a5a6;
-}
-
-#header a {
-    text-decoration: none;
-    color: #ecf0f1;
-
-    transition: .5s;
-
-    font-size: 20px;
-    float: right;
-
-    margin: 12px;
-}
-
-#header a:hover {
-    transition: .5s;
-
-    color: #95a5a6;
-}
-
-#commits {
-    color: white;
-
-    float: right;
-    bottom: 0;
-    left: 0;
-
-    margin: 0;
-    margin-top: 50px;
-
-    border: #34495e solid 3px;
-    background-color: #34495e;
-    border-radius: 0px 20px 0px 0px;
-    height: 30%;
-    width: 700px;
-
+/* Login */
+#login {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + .5px));
 }
 
-#commits h3 {
-    padding-left: 10px;
+#login h2 {
+    font-size: 150px;
+    margin: 0;
 }
 
-#commits hr {
-    width: 100%;
-    background-color: #95a5a6;
+#links span {
+    font-size: 50px;
 }
 
-#commits ul li img {
-    height: 25px;
-    width: 25px;
-    border-radius: 25px;
+#links a {
+    font-size: 50px;
+    color: black;
+    text-decoration: none;
+}
+
+body h2 {
+    font-size: 75px;
+}
+
+/* Links */
+body h2,
+#link_holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+
+    margin: 24px;
+}
+
+#wiki_link,
+#lfp_link,
+#hour_manager_link {
+    position: relative;
+
+    height: 200px;
+    width: 200px;
+
+    background-color: white;
+    border-radius: 6px;
+
+    text-align: center;
+    border: solid 3px black;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    transition: .3s;
+    margin: 24px;
+}
+
+#wiki_link:hover,
+#lfp_link:hover,
+#hour_manager_link:hover {
+    animation-name: enlarge;
+    animation-duration: .1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    transition: .3s;
+}
+
+#hour_manager_link:hover {
+    background-color: #3F637F;
+}
+
+#wiki_link:hover {
+    background-color: #337ab7;
+}
+
+#lfp_link:hover {
+    background-color: #3BCFCD;
+}
+
+#wiki_link:hover *,
+#lfp_link:hover *,
+#hour_manager_link:hover * {
+    color: white;
+    transition: .3s;
+}
+
+#wiki_link span,
+#lfp_link span,
+#hour_manager_link span {
+    position: absolute;
+    font-family: 'Open Sans', sans-serif;
+
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    margin-top: 136px;
+    font-size: 25px;
+
+    color: black;
+}
+
+#wiki_link img,
+#lfp_link img,
+#hour_manager_link img {
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    height: 100px;
+    width: 100px;
+
+    margin-top: 24px;
+}
+
+@keyframes enlarge {
+    0% {
+        transform: scale(1.0, 1.0);
+    }
+    100% {
+        transform: scale(1.1, 1.1);
+    }
 }

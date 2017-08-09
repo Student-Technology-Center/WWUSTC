@@ -7,46 +7,47 @@
         </title>
 
         <!-- JS links -->
+        <script
+            src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+        </script>
+        <script src="{% static 'js/login.js' %}"></script>
 
         <!-- CSS links -->
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     </head>
     <body>
-        <div id="header">
-            <h2>
-                Welcome {{ user.first_name }}
-            </h2>
-            {% if user.is_authenticated %}
-                <a href="/user/logout/">Logout</a> <a href="{% url 'login_urls:profile' %}"> Account </a>
-            {% else %}
-                <a href="/user/login/">Login</a> <a href="/user/register/">Signup</a>
-            {% endif %}
-                <a href="https://github.com/Student-Technology-Center/WWUSTC/issues/new"> File a ticket </a>
-        </div> 
-        <ul>
-            <li>
-                <a href="/hourmanager/">Hour Manager</a>
-            </li>
-            <li>
-              <a href="/wiki/">Wiki</a>
-            </li>
-            <li>
-                <a href="{% url 'lfp' %}">Large Format Printer scheduler</a>
-            </li>
-        </ul>
-        {% if issues %}
-            <div id="commits">
-                <h3>
-                    Issues:
-                </h3>
-                <hr>
-                <ul>
-                {% for i in issues %}
-                    <li><a href="{{ i.html_url }}" style="color:red"> {{ i.user.login }} - {{ i.title }} </a></li>
-                {% endfor %}
-                </ul>
+        {% if user.is_authenticated %}
+            <h2>Welcome {{user.first_name}}</h2>
+            <div id='link_holder'>
+                <a href='/hourmanager/'>
+                    <div id='hour_manager_link'>
+                        <img src='{% static 'icons/clock.svg' %}' />
+                        <span> Hour Manager </span>
+                    </div>
+                </a>
+                <a href='/wiki/'>
+                    <div id='wiki_link'>
+                        <img src='{% static 'icons/scroll.svg' %}' />
+                        <span> Wiki </span>
+                    </div>
+                </a>
+                <a href='/lfp/'>
+                    <div id='lfp_link'>
+                        <img src='{% static 'icons/printer.svg' %}' />
+                        <span> LFP Scheduler </span>
+                    </div>
+                </a>
             </div>
+        {% else %}
+        <div id='login'>
+            <h2>Hi.</h2>
+            <div id='links'>
+                <a href='/user/login/'>Login</a><span>|</span><a href='/user/register/'>Register</a>
+            </div>
+        </div>
         {% endif %}
     </body>
 </html>
