@@ -24,7 +24,7 @@ SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["wwustc.com", "localhost"]
+ALLOWED_HOSTS = ["localhost"]
 
 # Application definition
 
@@ -137,10 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/wwustc/static'
-#Uncomment these lines if you are in development mode
 STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 SITE_ID = 1
@@ -148,4 +146,4 @@ SITE_ID = 1
 WIKI_ACCOUNT_HANDLING = True
 WIKI_ACCOUNT_SIGNUP_ALLOWED = True
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
