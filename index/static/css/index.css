@@ -22,6 +22,7 @@ body {
 
     font-size: 75px;
     margin: 0;
+    margin-bottom: 12px;
 }
 
 #links a:hover,
