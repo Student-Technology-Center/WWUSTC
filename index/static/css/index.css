@@ -8,21 +8,20 @@ body {
 
 /* Login */
 #login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, calc(-50% + .5px));
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #login h2 {
-    transition: 1s;
+    opacity: 1;
 
-    font-size: 150px;
+    font-size: 75px;
     margin: 0;
-}
-
-#links span {
-    font-size: 50px;
 }
 
 #links a:hover,
@@ -33,6 +32,7 @@ body {
     color: white;
 }
 
+#links span,
 #xtra_links a,
 #links a {
     transition: .3s;
