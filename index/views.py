@@ -7,7 +7,7 @@ def index(request):
         "user":request.user,
     }
 
-    context['issues'] = requests.get('https://api.github.com/repos/Student-Technology-Center/WWUSTC/issues').json()
+    quote = requests.get('https://talaikis.com/api/quotes/random/').json()
 
     return render(
         request,
