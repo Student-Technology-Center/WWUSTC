@@ -76,6 +76,7 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -142,6 +143,6 @@ STATIC_ROOT = '/var/www/wwustc/static'
 SITE_ID = 1
 
 WIKI_ACCOUNT_HANDLING = True
-WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+WIKI_ACCOUNT_SIGNUP_ALLOWED = False
 
 SECURE_SSL_REDIRECT = True
