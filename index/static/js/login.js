@@ -25,7 +25,8 @@ quotes = [
     'Please submit your timesheets.',
     'Go talk to Circulation Desk.',
     'Is Zoes open?',
-    'Hi.'
+    'Hi.',
+    "tHerE's ToO mANy mEmEs aT tHE sTc."
 ]
 
 quote_choice = quotes[Math.floor((Math.random() * quotes.length))];
