@@ -2,6 +2,7 @@
 quotes = [
     'Can I get a laptop?',
     'Do you have any appointments after 9PM?', // <---- No longer than this quote.
+    'Do you have any appointments before 8AM?',
     "I'd like to schedule a 1 on 1.",
     'The printers are down.',
     'Wheres the black and white printer?',
@@ -19,7 +20,11 @@ quotes = [
     'What is the VR room?',
     "Yeah I've tried every way of printing.", // <---- Or this one.
     'Can you find all the easter eggs?',
-    'Does anyone know Wordpress?'
+    'Does anyone know Wordpress?',
+    'Where are we grabbing from?',
+    'Please submit your timesheets.',
+    'Go talk to Circulation Desk.',
+    'Is Zoes open?'
 ]
 
 quote_choice = quotes[Math.floor((Math.random() * quotes.length) + 1)];
