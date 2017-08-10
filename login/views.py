@@ -47,7 +47,7 @@ def user_login(request):
             return redirect('/')
         else:
             context['invalid_login'] = (
-                "<p style='color: red;'> Couldn't log in with username: '{}'</p>".format(username)
+                "<p style='color: red;'> Username/Password incorrect. </p>"
             )
      
     return render(
