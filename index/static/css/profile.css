@@ -1,7 +1,6 @@
-body form,
 body {
-    margin: 0;
     padding: 0;
+    margin: 0;
 
     background-color: white;
     font-family: 'Lato', sans-serif;
@@ -12,28 +11,7 @@ body {
     flex-direction: column;
 }
 
-#username,
-#password {
-    margin-top: 16px;
-    margin-bottom: 16px;
-}
-
-body form label {
-    display: none;
-}
-
-.helptext {
-    display: none;
-}
-
-body h2 {
-    font-size: 75px;
-    margin: 0;
-}
-
 body form input[type=submit] {
-    float: right;
-
     background-color: white;
     font-size: 15px;
 
@@ -48,10 +26,7 @@ body form input[type=submit]:hover {
     color: white;
 }
 
-body form input,
 body form input[type=submit],
-body form p input[type=password],
-body form p input[type=email],
 body form p input[type=text] {
     border: solid 3px black;
 
