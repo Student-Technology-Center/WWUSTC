@@ -11,6 +11,7 @@
         <h2>Login:</h2>
         <form action="." method="POST">
             {% csrf_token %}
+            {{ invalid_login|safe }}
             <input autofocus id='username' type="text" name="username" placeholder='Username'>
             <input id='password' type="password" name="password" placeholder='Password'>
             <input type="submit" value="Login">

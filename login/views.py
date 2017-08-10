@@ -34,6 +34,10 @@ def register(request):
     )
 
 def user_login(request):
+    context = {}
+
+    context['invalid_login'] = ''
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -41,11 +45,15 @@ def user_login(request):
         if user is not None:
             login(request, user)
             return redirect('/')
+        else:
+            context['invalid_login'] = (
+                "<p style='color: red;'> Couldn't log in with username: '{}'</p>".format(username)
+            )
      
     return render(
         request,
         'login.html',
-        None
+        context
     )
 
 @login_required
