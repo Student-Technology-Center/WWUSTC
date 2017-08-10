@@ -6,10 +6,11 @@
 	path = lfp_scheduler
 	url = https://github.com/Student-Technology-Center/lfp_scheduler.git
 	branch = master
-[submodule "django-wiki"]
-	path = django-wiki
-	url = https://github.com/django-wiki/django-wiki.git
 [submodule "evaluations"]
 	path = evaluations
 	url = https://github.com/Student-Technology-Center/evaluations.git
+	branch = master
+[submodule "django-wiki"]
+	path = django-wiki
+	url = https://github.com/Student-Technology-Center/django-wiki.git
 	branch = master
