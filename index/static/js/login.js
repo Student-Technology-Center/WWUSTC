@@ -13,7 +13,13 @@ quotes = [
     '12345 is a bad password!',
     'SOPA means LOSER in Swedish!',
     'Can Paul help with my PHP?',
-    'No one showed up to my workshop.'
+    'No one showed up to my workshop.',
+    '**Steals scissors**',
+    'Do you guys have a rubberband?',
+    'What is the VR room?',
+    "Yeah I've tried every way of printing.", // <---- Or this one.
+    'Can you find all the easter eggs?',
+    'Does anyone know Wordpress?'
 ]
 
 quote_choice = quotes[Math.floor((Math.random() * quotes.length) + 1)];
