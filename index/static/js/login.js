@@ -24,13 +24,22 @@ quotes = [
     'Where are we grabbing from?',
     'Please submit your timesheets.',
     'Go talk to Circulation Desk.',
-    'Is Zoes open?'
+    'Is Zoes open?',
+    'Hi.'
 ]
 
-quote_choice = quotes[Math.floor((Math.random() * quotes.length) + 1)];
+quote_choice = quotes[Math.floor((Math.random() * quotes.length))];
 
 $(document).ready(function() {
     $('#login h2').delay(700).animate({
+        opacity:'0',
+    }, 1000, function(){
+        $(this).text(quote_choice).animate({
+            opacity:'1',
+        }, 1000);
+    })
+
+    $('#welcome').delay(1500).animate({
         opacity:'0',
     }, 1000, function(){
         $(this).text(quote_choice).animate({
