@@ -60,17 +60,15 @@ def profile(request):
     options = UserOptions.objects.get_or_create(user=request.user)
 
     context['form'] = UserOptionsForm(request.POST or None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
-    context['shift_form'] = ShiftForm(request.POST or None)
+    context['shift_form'] = ShiftForm(None)
 
-    if context['form'].is_valid() and request.method == 'POST':
+    #short circuits 
+    if request.POST.get('update') and context['form'].is_valid():
         options_form = context['form'].save(commit=False)
         options[0].phone_number = options_form.phone_number
         options[0].texting = options_form.texting
         options[0].email = options_form.email
         options[0].save()
-
-    if context['shift_form'].is_valid():
-        print('hello my dude')
 
     return render(
         request,
@@ -80,8 +78,7 @@ def profile(request):
 
 @login_required
 def add_shift(request):
-    
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('shift'):
         shift_form = ShiftForm(request.POST)
         if shift_form.is_valid():
             print('hello my dude.')

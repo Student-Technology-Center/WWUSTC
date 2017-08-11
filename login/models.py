@@ -88,8 +88,8 @@ class ShiftForm(ModelForm):
         start = cleaned_data.get('start_time')
         end = cleaned_data.get('end_time')
 
-        if start < end:
-            raise forms.ValidationError('Start time must be after end time.')
+        if start >= end:
+            raise forms.ValidationError('Start time must be after end time.', code='start')
 
         if not day:
             raise forms.ValidationError('Please enter a day.')
