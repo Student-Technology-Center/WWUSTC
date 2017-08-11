@@ -8,10 +8,20 @@
     <body>
         <a href="{% url 'main_page:index' %}" id="main"> Home </a>
         <h2> Hey {{ user.first_name }} </h2>
-        <form action="." method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit">
-        </form>
+        <h4>Settings</h4>
+        <div id='forms'>
+            <form id='update' action="." method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input name='update' type="submit" value="Update">
+            </form>
+            <br>
+            <h4>Add a shift. (Please be smart)</h4>
+            <form id='shift' action='/user/add_shift/' method='POST'>
+                {% csrf_token %}
+                {{ shift_form.as_p }}
+                <input name='shift' type='submit' value='Add'>
+            </form>
+        </div>  
     </body>
 </html>

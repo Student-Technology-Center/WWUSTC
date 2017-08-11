@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
-from login.models import UserOptions, UserOptionsForm
+from login.models import UserOptions, UserOptionsForm, Shift, ShiftForm
 
 def register(request):
     if request.method == 'POST':
@@ -68,8 +68,10 @@ def profile(request):
     options = UserOptions.objects.get_or_create(user=request.user)
 
     context['form'] = UserOptionsForm(request.POST or None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
+    context['shift_form'] = ShiftForm(None)
 
-    if context['form'].is_valid() and request.method == 'POST':
+    #short circuits 
+    if request.POST.get('update') and context['form'].is_valid():
         options_form = context['form'].save(commit=False)
         options[0].phone_number = options_form.phone_number
         options[0].texting = options_form.texting
@@ -81,3 +83,12 @@ def profile(request):
         'profile.html',
         context
     )
+
+@login_required
+def add_shift(request):
+    if request.method == 'POST' and request.POST.get('shift'):
+        shift_form = ShiftForm(request.POST)
+        if shift_form.is_valid():
+            print('hello my dude.')
+
+    return redirect('/user/profile/')
