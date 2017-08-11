@@ -33,3 +33,8 @@ body form p input[type=text] {
     border-radius: 6px;
     padding: 12px;
 }
+
+#forms {
+    float: left;
+    left: 0;
+}
