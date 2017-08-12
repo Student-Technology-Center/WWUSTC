@@ -16,7 +16,7 @@ apps=(
 check-repo ()
 {
   git remote update
-  
+
   UPSTREAM=${1:-'@{u}'}
   LOCAL=$(git rev-parse @)
   REMOTE=$(git rev-parse "$UPSTREAM")
@@ -30,7 +30,7 @@ check-repo ()
   elif [[ $REMOTE = $BASE ]]; then echo "Local files have been edited.";
   else echo "Diverged";
   fi
-  
+
   echo "-----------------------"
   echo ""
 }
@@ -46,7 +46,7 @@ do
   cd ..
 done
 
-# Same thing as before, just with the main repo 
+# Same thing as before, just with the main repo
 echo "Updating WWU STC Django Project..."
 check-repo
 
