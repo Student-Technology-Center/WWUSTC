@@ -43,7 +43,7 @@ do
   fi
 
   $pythonCommand manage.py makemigrations
-  $pythonCommand manage.py migrate
+  $pythonCommand manage.py migrate --run-syncdb
   echo 'yes' | $pythonCommand manage.py collectstatic
 
   break
