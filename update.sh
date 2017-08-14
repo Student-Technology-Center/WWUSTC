@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
   exit 1;
 fi
 
-prod-$1
+prod=$1
 
 # restart is a variable where if set to true, at the end of this script, the django server will restart 
 restart=false
