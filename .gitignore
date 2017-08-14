@@ -2,6 +2,10 @@
 *.pyc
 */*.pyc
 cas/*
+hour_manager/
+lfp_scheduler/
+evaluations/
+django-wiki/
 hour_manager/*
 lfp_scheduler/*
 evaluations/*
@@ -28,4 +32,4 @@ eggs
 parts
 src/*.egg-info
 lib
-lib64
+lib64/
