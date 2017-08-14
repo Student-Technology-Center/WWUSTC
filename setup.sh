@@ -9,7 +9,6 @@ fi
 prod=$1
 
 apps=(
-  django-wiki
   hour_manager
   evaluations
   lfp_scheduler
