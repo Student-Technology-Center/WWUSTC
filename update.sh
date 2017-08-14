@@ -1,12 +1,18 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+  echo -e "\e[1m\e[31mUsage: ./setup <prod | true/false>\e[0m"
+  exit 1;
+fi
+
+prod-$1
+
 # restart is a variable where if set to true, at the end of this script, the django server will restart 
 restart=false
 
 # List of apps are listed to iterate through, these are all the current submodules
 apps=(
   hour_manager
-  django-wiki
   lfp_scheduler
   evaluations
 )
@@ -56,4 +62,11 @@ if $restart; then
   py manage.py migrate
   echo 'yes' | py manage.py collectstatic
   service apache2 restart
+fi
+
+# I hate myself
+if $prod; then
+  pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git@prod"
+else
+  pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git"
 fi
