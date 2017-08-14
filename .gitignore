@@ -10,7 +10,7 @@ hour_manager/*
 lfp_scheduler/*
 evaluations/*
 django-wiki/*
-env/
+django-env/
 wiki/
 static/*
 __pycache__/
