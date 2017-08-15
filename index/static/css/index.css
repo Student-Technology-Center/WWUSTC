@@ -63,6 +63,7 @@ body h2,
     margin: 24px;
 }
 
+#evaluations_link,
 #wiki_link,
 #lfp_link,
 #hour_manager_link {
@@ -84,6 +85,7 @@ body h2,
     margin: 24px;
 }
 
+#evaluations_link:hover,
 #wiki_link:hover,
 #lfp_link:hover,
 #hour_manager_link:hover {
@@ -107,6 +109,11 @@ body h2,
     background-color: #2C99B2;
 }
 
+#evaluations_link:hover {
+    background-color: #2C99B2;
+}
+
+#evaluations_link:hover *,
 #wiki_link:hover *,
 #lfp_link:hover *,
 #hour_manager_link:hover * {
@@ -114,6 +121,7 @@ body h2,
     transition: .3s;
 }
 
+#evaluations_link span,
 #wiki_link span,
 #lfp_link span,
 #hour_manager_link span {
@@ -129,6 +137,7 @@ body h2,
     color: black;
 }
 
+#evaluations_link img,
 #wiki_link img,
 #lfp_link img,
 #hour_manager_link img {
