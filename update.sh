@@ -60,18 +60,9 @@ pythonCommands=(
 
 # Sends the restart command to django if needed
 if $restart; then
-  for command in ${pythonCommands[*]}
-  do
-    if ! type "$command" > /dev/null; then
-      continue
-    fi
-
-    $command manage.py makemigrations
-    $command manage.py migrate
-    echo 'yes' | $command manage.py collectstatic
-
-    break
-  done
+  py manage.py makemigrations
+  py manage.py migrate
+  echo 'yes' | py manage.py collectstatic
 fi
 
 # I hate myself
