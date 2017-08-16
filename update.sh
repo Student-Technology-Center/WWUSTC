@@ -26,7 +26,7 @@ check-repo ()
 
   if [[ $LOCAL = $REMOTE ]]; then echo "Up-to-date";
   elif [[ $LOCAL = $BASE ]]; then 
-    echo "Update found, pulling and staging the django restart...";
+    echo "Update found, pulling and staging the django restart..."; 
     git pull
     restart=true
   elif [[ $REMOTE = $BASE ]]; then echo "Local files have been edited.";
