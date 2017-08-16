@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = '/var/www/dev/wwustc/media/'
 
 SITE_ID = 1
 
