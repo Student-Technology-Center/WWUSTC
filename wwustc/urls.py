@@ -29,4 +29,8 @@ urlpatterns += [
     url(r'^lfp/', include('lfp_scheduler.urls')),
 ]
 
+urlpatterns += [
+    url(r'^evaluations/', include('evaluations.urls', namespace='evals'))
+]
+
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

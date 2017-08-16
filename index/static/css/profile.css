@@ -35,6 +35,26 @@ body form p input[type=text] {
 }
 
 #forms {
+    position: absolute;
+    margin-left: 100px;
+
     float: left;
     left: 0;
+}
+
+body a {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+}
+
+/* Calendar */
+#calendar {
+    position: absolute;
+    right: 0;
+
+    margin-right: 100px;
+
+    background-color: black;
 }

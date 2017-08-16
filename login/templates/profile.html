@@ -3,13 +3,13 @@
 <html>
     <head>
         <title> Profile </title>
+        <script src='{% static 'js/calendar.min.js' %}'></script>
         <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
     </head>
     <body>
         <a href="{% url 'main_page:index' %}" id="main"> Home </a>
-        <h2> Hey {{ user.first_name }} </h2>
-        <h4>Settings</h4>
         <div id='forms'>
+            <h4>Settings</h4>
             <form id='update' action="." method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
@@ -22,6 +22,11 @@
                 {{ shift_form.as_p }}
                 <input name='shift' type='submit' value='Add'>
             </form>
+        </div>
+        <div id='calendar'>
+            <p>
+                hello.
+            </p>
         </div>  
     </body>
 </html>
