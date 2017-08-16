@@ -61,7 +61,6 @@ if $restart; then
   py manage.py makemigrations
   py manage.py migrate
   echo 'yes' | py manage.py collectstatic
-  service apache2 restart
 fi
 
 # I hate myself
