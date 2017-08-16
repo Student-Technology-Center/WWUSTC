@@ -83,14 +83,3 @@ def profile(request):
         'profile.html',
         context
     )
-
-@login_required
-def add_shift(request):
-    if request.method == 'POST' and request.POST.get('shift'):
-        shift_form = ShiftForm(request.POST)
-        if shift_form.is_valid():
-            new_shift = shift_form.save(commit=False)
-            new_shift.user = request.user
-            new_shift.save()
-
-    return redirect('/user/profile/')

@@ -7,7 +7,10 @@ def index(request):
         "user":request.user,
     }
 
-    quote = requests.get('https://talaikis.com/api/quotes/random/').json()
+    changelog = open('changelog.md')
+    context['changelog'] = changelog.read()
+    changelog.close()
+
 
     return render(
         request,

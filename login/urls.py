@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 import login.views
 
@@ -11,5 +11,5 @@ urlpatterns = [
 
 #APIs for lazy adding:
 urlpatterns += [
-    url(r'add_shift/$', login.views.add_shift, name='add_shift')
+    url(r'api/', include('login.api.api_urls'))
 ]

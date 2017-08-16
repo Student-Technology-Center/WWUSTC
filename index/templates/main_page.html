@@ -1,4 +1,5 @@
 {% load static %}
+{% load markdown_filter %}
 
 <html>
     <head>
@@ -54,6 +55,11 @@
             <h4 id='welcome'>
                 Student Technology Center
             </h4>
+            <div id='changelog'>
+                <code>
+                    {{ changelog|markdownify|safe }}
+                </code>
+            </div>
         {% else %}
         <div id='login'>
             <h2>Hi.</h2>

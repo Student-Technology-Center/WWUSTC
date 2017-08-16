@@ -98,8 +98,6 @@ class ShiftForm(ModelForm):
 
         if day in normal_hours:
             print("From {} to {}".format(start, end))
-            if start < end:
-                print('ya u gud')
 
         if day == 'Fri':
             print("From {} to {}".format(start, end))
