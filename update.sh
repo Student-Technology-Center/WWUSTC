@@ -54,18 +54,9 @@ check-repo
 
 # Sends the restart command to django if needed
 if $restart; then
-  cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
-  do
-    if ! type "$command" > /dev/null; then
-      continue
-    fi
-
-    $command manage.py makemigrations
-    $command manage.py migrate
-    echo 'yes' | $command manage.py collectstatic
-
-    break
-  done
+  py manage.py makemigrations
+  py manage.py migrate
+  echo 'yes' | py manage.py collectstatic
 fi
 
 # I hate myself
