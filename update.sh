@@ -31,7 +31,7 @@ check-repo ()
   if [[ $LOCAL = $REMOTE ]]; then echo "Up-to-date";
   elif [[ $LOCAL = $BASE ]]; then 
     echo "Update found, pulling and staging the django restart..."; 
-    su -c "git pull" stc;
+    git pull
     restart=true
   elif [[ $REMOTE = $BASE ]]; then echo "Local files have been edited.";
   else echo "Diverged";
@@ -58,9 +58,9 @@ check-repo
 
 # Sends the restart command to django if needed
 if $restart; then
-  py manage.py makemigrations
-  py manage.py migrate
-  echo 'yes' | py manage.py collectstatic
+  python3 manage.py makemigrations
+  python3 manage.py migrate
+  echo 'yes' | python3 manage.py collectstatic
 fi
 
 # I hate myself
