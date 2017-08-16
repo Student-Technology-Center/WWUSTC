@@ -7,11 +7,6 @@ def index(request):
         "user":request.user,
     }
 
-    changelog = open('changelog.md')
-    context['changelog'] = changelog.read()
-    changelog.close()
-
-
     return render(
         request,
         "main_page.html",
