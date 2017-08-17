@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
-    'login.apps.LoginConfig'
+    'login.apps.LoginConfig',
+    'django_mobile',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_mobile.middleware.MobileDetectionMiddleware',
+    'django_mobile.middleware.SetFlavourMiddleware',
 ]
 
 LOGIN_URL = '/user/login/'
@@ -83,7 +86,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'sekizai.context_processors.sekizai',
+                'django_mobile.context_processors.flavour',
+		'django_mobile.context_processors.is_mobile',
             ],
+            'loaders': ('django_mobile.loader.CachedLoader', (
+                'django_mobile.loader.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            )),
         },
     },
 ]
@@ -149,3 +159,4 @@ WIKI_ACCOUNT_HANDLING = True
 WIKI_ACCOUNT_SIGNUP_ALLOWED = False
 
 SECURE_SSL_REDIRECT = True
+
