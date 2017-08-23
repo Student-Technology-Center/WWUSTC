@@ -7,7 +7,7 @@ fi
 
 prod=$1
 
-# restart is a variable where if set to true, at the end of this script, the django server will restart 
+# restart is a variable where if set to true, at the end of this script, the django server will restart
 restart=false
 
 # List of apps are listed to iterate through, these are all the current submodules
@@ -17,7 +17,7 @@ apps=(
   evaluations
 )
 
-# Check-repo is a function that checks with upstream to see if an update is needed. 
+# Check-repo is a function that checks with upstream to see if an update is needed.
 # If so, it'll update that repo and also set $restart to true
 check-repo ()
 {
@@ -30,7 +30,7 @@ check-repo ()
 
   if [[ $LOCAL = $REMOTE ]]; then echo "Up-to-date";
   elif [[ $LOCAL = $BASE ]]; then 
-    echo "Update found, pulling and staging the django restart..."; 
+    echo "Update found, pulling and staging the django restart...";
     git pull
     restart=true
   elif [[ $REMOTE = $BASE ]]; then echo "Local files have been edited.";
@@ -56,11 +56,26 @@ done
 echo "Updating WWU STC Django Project..."
 check-repo
 
+pythonCommands=(
+  python3
+  python
+  py
+)
+
 # Sends the restart command to django if needed
 if $restart; then
-  python3 manage.py makemigrations
-  python3 manage.py migrate
-  echo 'yes' | python3 manage.py collectstatic
+  for command in ${pythonCommands[*]}
+  do
+    if ! type "$command" > /dev/null; then
+      continue
+    fi
+
+    $command manage.py makemigrations
+    $command manage.py migrate
+    echo 'yes' | $command manage.py collectstatic
+
+    break
+  done
 fi
 
 # I hate myself
