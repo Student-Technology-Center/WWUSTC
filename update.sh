@@ -26,7 +26,7 @@ check-repo ()
 
   if [[ $LOCAL = $REMOTE ]]; then echo "Up-to-date";
   elif [[ $LOCAL = $BASE ]]; then 
-    echo "Update found, pulling and staging the django restart..."; 
+    echo "Update found, pulling and staging the django restart...";
     git pull
     restart=true
   elif [[ $REMOTE = $BASE ]]; then echo "Local files have been edited.";
@@ -60,7 +60,10 @@ pythonCommands=(
 
 # Sends the restart command to django if needed
 if $restart; then
+<<<<<<< HEAD
   cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
+=======
+>>>>>>> Update script to use various python commands"
   for command in ${pythonCommands[*]}
   do
     if ! type "$command" > /dev/null; then
