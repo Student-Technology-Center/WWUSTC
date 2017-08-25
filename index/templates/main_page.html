@@ -13,6 +13,7 @@
             crossorigin="anonymous">
         </script>
         <script src="{% static 'js/login.js' %}"></script>
+        <script src="{% static 'js/detectmobilebrowser.min.js' %}"></script>
 
         <!-- CSS links -->
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
@@ -55,6 +56,11 @@
                 Student Technology Center
             </h4>
         {% else %}
+        <script>
+            if ($.browser.mobile) {
+                console.log("hey.")
+            }
+        </script>
         <div id='login'>
             <h2>Hi.</h2>
             <div id='links'>
