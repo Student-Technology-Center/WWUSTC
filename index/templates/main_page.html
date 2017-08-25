@@ -7,13 +7,19 @@
         </title>
 
         <!-- JS links -->
+        <script>
+            function getSubdomain() {
+                return (window.location.host).split('.')[0];
+            }
+            function isMobile() {return getSubdomain() === 'mdev' || getSubdomain() === 'm'}
+            alert(getSubdomain())
+        </script>
         <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous">
         </script>
         <script src="{% static 'js/login.js' %}"></script>
-        <script src="{% static 'js/detectmobilebrowser.min.js' %}"></script>
 
         <!-- CSS links -->
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
@@ -56,11 +62,6 @@
                 Student Technology Center
             </h4>
         {% else %}
-        <script>
-            if ($.browser.mobile) {
-                console.log("hey.")
-            }
-        </script>
         <div id='login'>
             <h2>Hi.</h2>
             <div id='links'>
