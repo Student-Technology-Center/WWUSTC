@@ -8,11 +8,16 @@
 
         <!-- JS links -->
         <script>
-            function getSubdomain() {
-                return (window.location.host).split('.')[0];
+            function getSubdomain() {return (window.location.host).split('.')[0];}
+            function isMobile() {return getSubdomain() === 'mdev' || getSubdomain() === 'm';}
+
+            //Mobile browser linking.
+            if(!isMobile()) {
+                document.write("<link rel='stylesheet' type='text/css' href='{% static 'css/index.css' %}'>");
+            } else {
+                document.write("<link rel='stylesheet' type='text/css' href='{% static 'css/index_mobile.css' %}'>");
             }
-            function isMobile() {return getSubdomain() === 'mdev' || getSubdomain() === 'm'}
-            alert(getSubdomain())
+            
         </script>
         <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
