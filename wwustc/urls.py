@@ -11,24 +11,28 @@ urlpatterns = [
     url(r'^', include('index.urls', namespace="main_page"))
 ]
 
+#Login redirect
 urlpatterns += [
     url(r'^user/', include('login.urls', namespace='login_urls'))
 ]
 
-#Hour manager redirects
+#Hour manager redirect
 urlpatterns += [
     url(r'^hourmanager/', include('hour_manager.urls'))
 ]
 
+#Wiki redirect
 urlpatterns += [
     url(r'^notifications/', get_nyt_pattern()),
     url(r'^wiki/', get_wiki_pattern())
 ]
 
+#LFP redirect
 urlpatterns += [
     url(r'^lfp/', include('lfp_scheduler.urls')),
 ]
 
+#Evaluation page redirect
 urlpatterns += [
-    url(r'^evaluations/', include('evaluations.urls', namespace='evals'))
+    url(r'^evaluations/', include('evaluations.urls'))
 ]

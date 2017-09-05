@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
+    'evaluations.apps.EvaluationsConfig',
     'login.apps.LoginConfig'
 ]
 
