@@ -1,30 +1,50 @@
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
 
-from login.models import Shift, ShiftForm
+from random import randint
 
+from utils.alerts.alerter import email
+
+#TODO: Fix this throwing errors (still works.)
 @require_http_methods(['GET'])
-def get_user_shifts(request):
+def send_user_email(request):
+    username = request.GET.get('user', False)
 
-    shift_info = [{
-        "start": str(i.start_time),
-        "end": str(i.end_time),
-        "day": i.day_of_week
-        }
-                  for i in request.user.shift_set.all()
-                 ]
+    if username == False:
+        return JsonResponse({
+            'status':'failure'
+        })
 
-    return JsonResponse(shift_info, safe=False)
+    user = get_user_model().objects.get(username=username)
 
-@require_http_methods(['POST'])
-def add_shift(request):
-    if request.POST.get('shift'):
-        shift_form = ShiftForm(request.POST)
-        if shift_form.is_valid():
-            new_shift = shift_form.save(commit=False)
-            new_shift.user = request.user
-            new_shift.save()
+    _key = 0
 
-    return redirect('/')
+    #because math is easier than string creation
+    for i in range(0, 8):
+        _key *= 10
+        _key += randint(0, 9)
+
+    key = str(_key)
+    print(dir(user))
+
+    user.userhiddenattributes.create(reset_key='ertasd')
+    user.save()
+
+    msg = """It appears someone has requests to reset your password.\n
+If you did not send this request, please ignore this message and contact\n
+an admin ASAP. Your key is shown below.\n
+
+Enter this key on the reset page:\n
+    """
+
+    msg = msg + " {}".format(key)
+
+    #email(user.email, '[STC] Password request key', msg)
+
+    return JsonResponse({
+        'status':'success'
+    })
+

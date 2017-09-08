@@ -5,9 +5,12 @@
         <title>
             Login
         </title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/sign-up.css' %}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/login_password_reset.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/sign-up.css' %}" />
     </head>
     <body>
+        <a href='/'>Return</a>
         <h2>Login:</h2>
         <form action="." method="POST">
             {% csrf_token %}
@@ -16,5 +19,6 @@
             <input id='password' type="password" name="password" placeholder='Password'>
             <input type="submit" value="Login">
         </form>
+        <a id='reset' href='/user/reset'> Forget your password? </a>
     </body>
 </html>

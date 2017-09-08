@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
-from login.models import UserOptions, UserOptionsForm, Shift, ShiftForm
+from login.models import UserOptions, UserOptionsForm
 
 def register(request):
     if request.method == 'POST':
@@ -61,6 +61,22 @@ def user_logout(request):
     logout(request)
     return redirect('/')
 
+def reset_password(request):
+    context = {}
+
+    context['key'] = True
+
+    #Only enter this if the user attempts to enter their key
+    if request.method == 'POST':
+        print("Received form submission.")
+        context['key'] = False
+
+    return render(
+        request,
+        'password_reset.html',
+        context
+    )
+
 @login_required
 def profile(request):
     context = {}
@@ -68,7 +84,6 @@ def profile(request):
     options = UserOptions.objects.get_or_create(user=request.user)
 
     context['form'] = UserOptionsForm(request.POST or None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
-    context['shift_form'] = ShiftForm(None)
 
     #short circuits 
     if request.POST.get('update') and context['form'].is_valid():

@@ -4,9 +4,7 @@
     <head>
         <title> Profile </title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js'></script>
         <script src='{% static 'js/profile.js' %}'></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
     </head>
     <body>
@@ -18,18 +16,6 @@
                 {{ form.as_p }}
                 <input name='update' type="submit" value="Update">
             </form>
-            <br>
-            <h4>Add a shift. (Please be smart)</h4>
-            <form id='shift' action='/user/api/add_shift/' method='POST'>
-                {% csrf_token %}
-                {{ shift_form.as_p }}
-                <input name='shift' type='submit' value='Add'>
-            </form>
         </div>
-        <div id='calendar'>
-            <div id='calendar-template'>
-                
-            </div>
-        </div>  
     </body>
 </html>

@@ -26,6 +26,11 @@ class UserOptions(models.Model):
 
     objects = UserOptionsManager()
 
+class UserHiddenAttributes(models.Model):
+    reset_key = models.CharField(max_length=7)
+
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+
 class UserOptionsForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserOptionsForm, self).__init__(*args, **kwargs)
@@ -51,67 +56,4 @@ class UserOptionsForm(ModelForm):
             'phone_number',
             'texting',
             'email'
-        ]
-
-class Shift(models.Model):
-    DAYS_OF_WEEK = [
-        ('Mon','Monday'),
-        ('Tue','Tuesday'),
-        ('Wed','Wednesday'),
-        ('Thu','Thursday'),
-        ('Fri','Friday'),
-        ('Sat','Saturday'),
-        ('Sun','Sunday'),
-    ]
-
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    day_of_week = models.CharField(max_length=3, choices=DAYS_OF_WEEK, default='Mon')
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-
-class ShiftForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(ShiftForm, self).__init__(*args, **kwargs)
-
-        self.fields['start_time'].widget.attrs.update({
-            'placeholder':'12:00',
-        })
-
-        self.fields['end_time'].widget.attrs.update({
-            'placeholder':'14:00',
-        })
-
-    def clean(self):
-        cleaned_data = super(ShiftForm, self).clean()
-        day = cleaned_data.get('day_of_week')
-        start = cleaned_data.get('start_time')
-        end = cleaned_data.get('end_time')
-
-        if start >= end:
-            raise forms.ValidationError('Start time must be after end time.', code='start')
-
-        if not day:
-            raise forms.ValidationError('Please enter a day.')
-        
-        normal_hours = ['Mon', 'Tue', 'Wed', 'Thu']
-
-        if day in normal_hours:
-            print("From {} to {}".format(start, end))
-
-        if day == 'Fri':
-            print("From {} to {}".format(start, end))
-
-        if day == 'Sat':
-            print("From {} to {}".format(start, end))
-
-        if day == 'Sun':
-            print("From {} to {}".format(start, end))
-
-    class Meta:
-        model = Shift
-        fields = [
-            'start_time',
-            'end_time',
-            'day_of_week'
         ]
