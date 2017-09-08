@@ -80,7 +80,7 @@ fi
 
 # I hate myself
 if $prod; then
-  pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git@prod"
+  #pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git@prod"
 else
-  pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git"
+  #pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git"
 fi
