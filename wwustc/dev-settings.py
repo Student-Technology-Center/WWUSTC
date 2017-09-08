@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
-    'login.apps.LoginConfig'
+    'login.apps.LoginConfig',
+    'evaluations.apps.EvaluationsConfig'
 ]
 
 MIDDLEWARE = [
