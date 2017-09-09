@@ -8,7 +8,9 @@ from random import randint
 
 from utils.alerts.alerter import email
 
-#TODO: Fix this throwing errors (still works.)
+from login.models import UserHiddenAttributes
+
+#TODO: Fix this throwing errors (works regardless)
 @require_http_methods(['GET'])
 def send_user_email(request):
     username = request.GET.get('user', False)
@@ -19,7 +21,6 @@ def send_user_email(request):
         })
 
     user = get_user_model().objects.get(username=username)
-
     _key = 0
 
     #because math is easier than string creation
@@ -28,12 +29,12 @@ def send_user_email(request):
         _key += randint(0, 9)
 
     key = str(_key)
-    print(dir(user))
+    attr = UserHiddenAttributes.objects.get_or_create(user=user)
 
-    user.userhiddenattributes.create(reset_key='ertasd')
-    user.save()
+    attr[0].reset_key = key
+    attr[0].save()
 
-    msg = """It appears someone has requests to reset your password.\n
+    msg = """It appears someone has requested to reset your password.\n
 If you did not send this request, please ignore this message and contact\n
 an admin ASAP. Your key is shown below.\n
 
@@ -41,8 +42,7 @@ Enter this key on the reset page:\n
     """
 
     msg = msg + " {}".format(key)
-
-    #email(user.email, '[STC] Password request key', msg)
+    email(user.email, '[STC] Password request key', msg)
 
     return JsonResponse({
         'status':'success'

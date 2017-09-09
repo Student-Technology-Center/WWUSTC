@@ -6,7 +6,7 @@
             Login
         </title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/login_password_reset.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/login_password.js' %}"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'css/sign-up.css' %}" />
     </head>
     <body>
@@ -19,6 +19,7 @@
             <input id='password' type="password" name="password" placeholder='Password'>
             <input type="submit" value="Login">
         </form>
-        <a id='reset' href='/user/reset'> Forget your password? </a>
+        <p id='reset-warning'></p>
+        <a id='reset' href='/user/reset/'> Forget your password? </a>
     </body>
 </html>

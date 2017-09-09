@@ -21,14 +21,11 @@ class UserOptions(models.Model):
     email = models.BooleanField(default=False)
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
-
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-
     objects = UserOptionsManager()
 
 class UserHiddenAttributes(models.Model):
     reset_key = models.CharField(max_length=7)
-
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
 class UserOptionsForm(ModelForm):

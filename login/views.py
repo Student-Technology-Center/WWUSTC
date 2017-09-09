@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from login.stc_user_form import StcUserCreationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
-from login.models import UserOptions, UserOptionsForm
+from login.models import UserOptions, UserOptionsForm, UserHiddenAttributes
 
 def register(request):
     if request.method == 'POST':
@@ -65,11 +65,41 @@ def reset_password(request):
     context = {}
 
     context['key'] = True
+    context['wrong_key'] = False
 
     #Only enter this if the user attempts to enter their key
     if request.method == 'POST':
-        print("Received form submission.")
-        context['key'] = False
+        if request.POST.get('password_reset', False):
+            pw1 = request.POST.get('pw1', False)
+            pw2 = request.POST.get('pw2', False)
+
+            if not pw1 or not pw2 or pw1 != pw2:
+                context['key'] = False
+                context['pw_no_match'] = False
+                return render(
+                    request,
+                    'password_reset.html',
+                    context
+                )
+
+            return redirect('/')
+
+        key = request.POST.get('key', False)
+        attr = None
+
+        try:
+            attr = UserHiddenAttributes.objects.get(reset_key=key)
+        except UserHiddenAttributes.DoesNotExist:
+            context['wrong_key'] = True
+            return render(
+                request,
+                'password_reset.html',
+                context
+            )
+
+        if attr.reset_key == key:
+            login(request, attr.user)
+            context['key'] = False
 
     return render(
         request,
