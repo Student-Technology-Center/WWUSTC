@@ -75,13 +75,16 @@ def reset_password(request):
 
             if not pw1 or not pw2 or pw1 != pw2:
                 context['key'] = False
-                context['pw_no_match'] = False
+                context['pw_no_match'] = True
+
                 return render(
                     request,
                     'password_reset.html',
                     context
                 )
 
+            request.user.set_password(pw2)
+            request.user.save()
             return redirect('/')
 
         key = request.POST.get('key', False)
