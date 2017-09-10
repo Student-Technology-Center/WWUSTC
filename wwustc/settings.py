@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
     'evaluations.apps.EvaluationsConfig',
-    'login.apps.LoginConfig'
+    'login.apps.LoginConfig',
+    'shiftmanager.apps.ShiftmanagerConfig'
 ]
 
 MIDDLEWARE = [

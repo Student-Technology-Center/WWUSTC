@@ -36,3 +36,8 @@ urlpatterns += [
 urlpatterns += [
     url(r'^evaluations/', include('evaluations.urls'))
 ]
+
+#Shift manager redirect
+urlpatterns += [
+    url(r'^shifts/', include('shiftmanager.urls'))
+]
