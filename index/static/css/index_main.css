@@ -64,10 +64,7 @@ body h2,
     margin: 24px;
 }
 
-#evaluations_link,
-#wiki_link,
-#lfp_link,
-#hour_manager_link {
+.app_link {
     position: relative;
 
     height: 200px;
@@ -86,6 +83,7 @@ body h2,
     margin: 24px;
 }
 
+#shift_link:hover,
 #evaluations_link:hover,
 #wiki_link:hover,
 #lfp_link:hover,
@@ -96,6 +94,10 @@ body h2,
     animation-fill-mode: forwards;
 
     transition: .3s;
+}
+
+#shift_link:hover {
+    background-color: #369475;
 }
 
 #hour_manager_link:hover {
@@ -114,6 +116,7 @@ body h2,
     background-color: #5A61FF;
 }
 
+#shift_link:hover *,
 #evaluations_link:hover *,
 #wiki_link:hover *,
 #lfp_link:hover *,
@@ -122,6 +125,7 @@ body h2,
     transition: .3s;
 }
 
+#shift_link span,
 #evaluations_link span,
 #wiki_link span,
 #lfp_link span,
@@ -138,6 +142,7 @@ body h2,
     color: black;
 }
 
+#shift_link img,
 #evaluations_link img,
 #wiki_link img,
 #lfp_link img,
