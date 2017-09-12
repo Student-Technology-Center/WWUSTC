@@ -15,6 +15,7 @@ apps=(
   hour_manager
   lfp_scheduler
   evaluations
+  shiftmanager
 )
 
 # Check-repo is a function that checks with upstream to see if an update is needed.
