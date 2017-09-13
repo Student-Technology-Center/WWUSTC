@@ -6,17 +6,12 @@ if [ -z "$1" ]; then
 fi
 
 prod=$1
+LIST_OF_APPS="list_of_apps.txt"
+LIST_OF_PYTHON_COMMANDS="list_of_python_commands.txt"
 
 # restart is a variable where if set to true, at the end of this script, the django server will restart
 restart=false
 
-# List of apps are listed to iterate through, these are all the current submodules
-apps=(
-  hour_manager
-  lfp_scheduler
-  evaluations
-  shiftmanager
-)
 
 # Check-repo is a function that checks with upstream to see if an update is needed.
 # If so, it'll update that repo and also set $restart to true
@@ -45,10 +40,10 @@ check-repo ()
 echo ""
 
 # We start to iterate through the apps...
-for item in ${apps[*]}
+cat $LIST_OF_APPS | tr -d '\r' | while read app;
 do
   echo "Updating $item..."
-  cd $item
+  cd $app
   check-repo
   cd ..
 done
@@ -57,15 +52,9 @@ done
 echo "Updating WWU STC Django Project..."
 check-repo
 
-pythonCommands=(
-  python3
-  python
-  py
-)
-
 # Sends the restart command to django if needed
 if $restart; then
-  for command in ${pythonCommands[*]}
+  cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
   do
     if ! type "$command" > /dev/null; then
       continue

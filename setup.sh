@@ -7,35 +7,25 @@ if [ -z "$1" ]; then
 fi
 
 prod=$1
+LIST_OF_APPS="list_of_apps.txt"
+LIST_OF_PYTHON_COMMANDS="list_of_python_commands.txt"
 
-apps=(
-  hour_manager
-  evaluations
-  lfp_scheduler
-)
-
-for item in ${apps[*]}
+cat $LIST_OF_APPS | tr -d '\r' | while read app;
 do
-  git clone https://github.com/Student-Technology-Center/$item.git
+  git clone https://github.com/Student-Technology-Center/$app.git
 
   if $prod; then
-    cd $item
+    cd $app
     git checkout prod
     cd ..
   else
-    cd $item
+    cd $app
     git checkout master
     cd ..
   fi
 done
 
-pythonCommands=(
-  python3
-  py
-  python
-)
-
-for pythonCommand in ${pythonCommands[*]}
+cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
 do
   echo "Trying $pythonCommand"
   if ! type "$pythonCommand" > /dev/null; then
