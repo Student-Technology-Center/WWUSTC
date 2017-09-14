@@ -32,6 +32,7 @@ urlpatterns += [
     url(r'^lfp/', include('lfp_scheduler.urls')),
 ]
 
+<<<<<<< HEAD
 #Evaluation page redirect
 urlpatterns += [
     url(r'^evaluations/', include('evaluations.urls'))
@@ -41,3 +42,7 @@ urlpatterns += [
 urlpatterns += [
     url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager'))
 ]
+=======
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> Add a more hard configured path to media
