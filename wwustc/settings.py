@@ -141,6 +141,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/wwustc/static/'
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add a more hard configured path to media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/wwustc/media/'
 
