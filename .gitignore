@@ -12,7 +12,9 @@ evaluations/*
 django-wiki/*
 django-env/
 wiki/
-static/*
+static/
+media/
+shiftmanager/
 __pycache__/
 
 lfp_pw.py
