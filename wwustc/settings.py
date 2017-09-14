@@ -142,6 +142,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/wwustc/static/'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/wwustc/media/'
 
