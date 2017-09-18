@@ -149,3 +149,9 @@ WIKI_ACCOUNT_HANDLING = True
 WIKI_ACCOUNT_SIGNUP_ALLOWED = True
 
 SECURE_SSL_REDIRECT = False
+
+#App specific settings
+
+#shiftmanager
+CREATING_SHIFTS = False
+USER_SHIFT_PLACE = 0

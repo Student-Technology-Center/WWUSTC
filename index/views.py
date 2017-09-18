@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
+
+from django.conf import settings
+
 import requests
 
 def index(request):
@@ -25,6 +28,7 @@ def index(request):
 
     context = {
         "user":request.user,
+        'creating_shifts':settings.CREATING_SHIFTS
     }
 
     return render(

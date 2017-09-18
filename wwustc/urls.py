@@ -39,5 +39,5 @@ urlpatterns += [
 
 #Shift manager redirect
 urlpatterns += [
-    url(r'^shifts/', include('shiftmanager.urls'))
+    url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager'))
 ]
