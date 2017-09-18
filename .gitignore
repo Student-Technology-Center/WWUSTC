@@ -13,6 +13,7 @@ django-wiki/*
 django-env/
 wiki/
 static/*
+.vscode/
 __pycache__/
 
 lfp_pw.py
