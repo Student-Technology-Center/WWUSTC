@@ -155,5 +155,6 @@ SECURE_SSL_REDIRECT = True
 #App specific settings
 
 #shiftmanager
+NUM_USERS = 0
 CREATING_SHIFTS = False
 USER_SHIFT_PLACE = 0
