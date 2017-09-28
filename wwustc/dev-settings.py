@@ -152,7 +152,15 @@ SECURE_SSL_REDIRECT = False
 
 #App specific settings
 
+#user specific
+ADMIN_LIST = [
+    'brintnc',
+]
+
 #shiftmanager
 NUM_USERS = 0
 CREATING_SHIFTS = False
 USER_SHIFT_PLACE = 1
+
+#index
+MOTD = ""
