@@ -4,6 +4,7 @@ from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from django.conf import settings
 
 from login.models import UserOptions, UserOptionsForm, UserHiddenAttributes
 
@@ -116,15 +117,23 @@ def profile(request):
 
     options = UserOptions.objects.get_or_create(user=request.user)
 
-    context['form'] = UserOptionsForm(request.POST or None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
+    if request.POST.get('update', False):
+        context['form'] = UserOptionsForm(request.POST, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
+    else:
+        context['form'] = UserOptionsForm(None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
 
     #short circuits 
-    if request.POST.get('update') and context['form'].is_valid():
+    if request.POST.get('update', False) and context['form'].is_valid():
         options_form = context['form'].save(commit=False)
         options[0].phone_number = options_form.phone_number
         options[0].texting = options_form.texting
         options[0].email = options_form.email
         options[0].save()
+
+    if request.POST.get('motd_update', False):
+        if request.user.is_superuser:
+            settings.MOTD = request.POST.get('motd_text', '')
+
 
     return render(
         request,

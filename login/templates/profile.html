@@ -16,6 +16,16 @@
                 {{ form.as_p }}
                 <input name='update' type="submit" value="Update">
             </form>
+            {% if user.is_superuser %}
+                <h4>
+                    Edit the MOTD
+                </h4>
+                <form id='motd' action='.' method="POST">
+                    {% csrf_token %}
+                    <input name='motd_text' type='text'>
+                    <input name='motd_update' type='submit' value='Update'>
+                </form>
+            {% endif %}
         </div>
     </body>
 </html>
