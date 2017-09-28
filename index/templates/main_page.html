@@ -41,6 +41,9 @@
             {% if user.is_superuser %}
                 <h2 style='color: green; font-size: 15px;'>Superuser enabled.</h2>
             {% endif %}
+            <h2 style='font-size: 25px;'>
+                {{motd}}
+            </h2>
             <div id='link_holder'>
                 <a href='/hourmanager/'>
                     <div id='hour_manager_link' class='app_link'>

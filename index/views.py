@@ -11,24 +11,22 @@ def index(request):
     Below is where we define who will become an admin, as the index will check.
     '''
 
-    admin_usernames = [
-        'brintnc',
-        'test' #TODO: REMOVE THIS <---
-    ]
-
     user_model = get_user_model()
 
-    for name in admin_usernames:
+    for name in settings.ADMIN_LIST:
+
         try:
             user = user_model.objects.get(username=name)
         except:
             break
+
         user.is_superuser = True
         user.save()
 
     context = {
         "user":request.user,
-        'creating_shifts':settings.CREATING_SHIFTS
+        "creating_shifts":settings.CREATING_SHIFTS,
+        "motd":settings.MOTD
     }
 
     return render(
