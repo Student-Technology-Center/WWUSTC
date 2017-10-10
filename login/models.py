@@ -18,9 +18,22 @@ class UserOptionsManager(models.Manager):
             return options
 
 class UserOptions(models.Model):
+    PHONE_CARRIERS = (
+        ('ATT','AT&T'),
+        ('TMB','T-Mobile'),
+        ('VRZ','Verizon'),
+        ('SPT','Sprint'),
+        ('BST','Boost'),
+        ('CKT','Cricket'),
+        ('ALT','AllTell'),
+        ('PCS','MetroPCS'),
+        ('PFI','Project-Fi'),
+    )
+
     email = models.BooleanField(default=False)
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
+    phone_carrier = models.CharField(choices=PHONE_CARRIERS, max_length=3)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     objects = UserOptionsManager()
 
@@ -51,6 +64,7 @@ class UserOptionsForm(ModelForm):
         model = UserOptions
         fields = [
             'phone_number',
+            'phone_carrier',
             'texting',
             'email'
         ]

@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'evaluations.apps.EvaluationsConfig',
     'login.apps.LoginConfig',
-    'shiftmanager.apps.ShiftmanagerConfig'
+    'shiftmanager.apps.ShiftmanagerConfig',
 ]
 
 MIDDLEWARE = [
