@@ -9,6 +9,8 @@ django-wiki/
 hour_manager/*
 lfp_scheduler/*
 evaluations/*
+shiftmanager/
+shiftmanager/*
 django-wiki/*
 django-env/
 wiki/
