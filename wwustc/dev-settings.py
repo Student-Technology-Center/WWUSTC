@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.generic',
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
