@@ -24,11 +24,7 @@ SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = ["wwustc.com", "dev.wwustc.com", "m.wwustc.com", "mdev.wwustc.com"]
-=======
-ALLOWED_HOSTS = ["wwustc.com", "localhost", "dev.wwustc.com", "m.wwustc.com", "mdev.wwustc.com"]
->>>>>>> Merge allowed hosts
 
 # Application definition
 
@@ -144,17 +140,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
-STATIC_ROOT = '/var/www/dev/wwustc/static/'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/dev/wwustc/media/'
-=======
 STATIC_ROOT = '/var/www/wwustc/static/'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/wwustc/media/'
->>>>>>> Add a more hard configured path to media
 
 SITE_ID = 1
 
