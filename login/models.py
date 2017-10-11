@@ -33,7 +33,7 @@ class UserOptions(models.Model):
     email = models.BooleanField(default=True)
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
-    phone_carrier = models.CharField(choices=PHONE_CARRIERS, max_length=64)
+    phone_carrier = models.CharField(blank=True, choices=PHONE_CARRIERS, max_length=64)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     objects = UserOptionsManager()
 
