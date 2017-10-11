@@ -118,13 +118,16 @@ def profile(request):
     options = UserOptions.objects.get_or_create(user=request.user)
 
     if request.POST.get('update', False):
-        context['form'] = UserOptionsForm(request.POST, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
+        context['form'] = UserOptionsForm(request.POST, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email, 
+        'phone_carrier':options[0].phone_carrier})
     else:
-        context['form'] = UserOptionsForm(None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email})
+        context['form'] = UserOptionsForm(None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email, 
+        'phone_carrier':options[0].phone_carrier})
 
     #short circuits 
     if request.POST.get('update', False) and context['form'].is_valid():
         options_form = context['form'].save(commit=False)
+        options[0].phone_carrier = options_form.phone_carrier
         options[0].phone_number = options_form.phone_number
         options[0].texting = options_form.texting
         options[0].email = options_form.email
@@ -132,8 +135,7 @@ def profile(request):
 
     if request.POST.get('motd_update', False):
         if request.user.is_superuser:
-            settings.MOTD = request.POST.get('motd_text', '')
-
+            settings.MOTD = request.POST.get('motd_text', 'Replacement')
 
     return render(
         request,

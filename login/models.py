@@ -18,25 +18,22 @@ class UserOptionsManager(models.Manager):
             return options
 
 class UserOptions(models.Model):
-    #TODO: Re-add this
-    '''
     PHONE_CARRIERS = (
-        ('ATT','AT&T'),
-        ('TMB','T-Mobile'),
-        ('VRZ','Verizon'),
-        ('SPT','Sprint'),
-        ('BST','Boost'),
-        ('CKT','Cricket'),
-        ('ALT','AllTell'),
-        ('PCS','MetroPCS'),
-        ('PFI','Project-Fi'),
+        ('at&t','AT&T'),
+        ('tmobile','T-Mobile'),
+        ('verizon','Verizon'),
+        ('sprint','Sprint'),
+        ('boost','Boost'),
+        ('cricket','Cricket'),
+        ('alltell','AllTell'),
+        ('metroPCS','MetroPCS'),
+        ('projectFi','Project-Fi'),
     )
-    '''
 
-    email = models.BooleanField(default=False)
+    email = models.BooleanField(default=True)
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
-    #phone_carrier = models.CharField(choices=PHONE_CARRIERS, max_length=3)
+    phone_carrier = models.CharField(choices=PHONE_CARRIERS, max_length=64)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     objects = UserOptionsManager()
 
@@ -49,14 +46,14 @@ class UserOptionsForm(ModelForm):
         super(UserOptionsForm, self).__init__(*args, **kwargs)
 
         self.fields['phone_number'].widget.attrs.update({
-            'placeholder':'999-999-9999',
+            'placeholder':'9999999999',
         })
 
     def clean(self):
         cleaned_data = super(UserOptionsForm, self).clean()
         number = cleaned_data.get('phone_number')
         
-        pattern = re.compile('^\d{3}[-]\d{3}[-]\d{4}$')
+        pattern = re.compile('^\d{10}$')
         
         if not pattern.match(number):
             raise forms.ValidationError('Invalid phone_number', code='invalid')
@@ -67,7 +64,7 @@ class UserOptionsForm(ModelForm):
         model = UserOptions
         fields = [
             'phone_number',
-            #'phone_carrier',
+            'phone_carrier',
             'texting',
             'email'
         ]
