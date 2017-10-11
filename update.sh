@@ -60,10 +60,7 @@ pythonCommands=(
 
 # Sends the restart command to django if needed
 if $restart; then
-<<<<<<< HEAD
   cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
-=======
->>>>>>> Update script to use various python commands"
   for command in ${pythonCommands[*]}
   do
     if ! type "$command" > /dev/null; then
