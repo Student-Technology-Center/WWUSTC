@@ -52,9 +52,19 @@ done
 echo "Updating WWU STC Django Project..."
 check-repo
 
+pythonCommands=(
+  python3
+  python
+  py
+)
+
 # Sends the restart command to django if needed
 if $restart; then
+<<<<<<< HEAD
   cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
+=======
+  for command in ${pythonCommands[*]}
+>>>>>>> origin/prod
   do
     if ! type "$command" > /dev/null; then
       continue
