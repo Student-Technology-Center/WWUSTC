@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'evaluations.apps.EvaluationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
+    'bug_tracker.apps.BugTrackerConfig'
 ]
 
 MIDDLEWARE = [

@@ -41,3 +41,8 @@ urlpatterns += [
 urlpatterns += [
     url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager'))
 ]
+
+#Bug tracker redirect
+urlpatterns += [
+    url(r'^bug/', include('bug_tracker.urls', namespace='bugtracker'))
+]

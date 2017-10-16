@@ -11,6 +11,8 @@ lfp_scheduler/*
 evaluations/*
 shiftmanager/
 shiftmanager/*
+bug_tracker/
+bug_tracker/*
 django-wiki/*
 django-env/
 wiki/
