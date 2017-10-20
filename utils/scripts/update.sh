@@ -6,12 +6,14 @@ if [ -z "$1" ]; then
 fi
 
 prod=$1
-LIST_OF_APPS="list_of_apps.txt"
-LIST_OF_PYTHON_COMMANDS="list_of_python_commands.txt"
+LIST_OF_APPS="./utils/scripts/list_of_apps.txt"
+LIST_OF_PYTHON_COMMANDS="./utils/scripts/list_of_python_commands.txt"
 
 # restart is a variable where if set to true, at the end of this script, the django server will restart
 restart=false
 
+pushd $(pwd)
+cd ../../
 
 # Check-repo is a function that checks with upstream to see if an update is needed.
 # If so, it'll update that repo and also set $restart to true
@@ -76,3 +78,5 @@ if $restart; then
     done
   done
 fi
+
+popd
