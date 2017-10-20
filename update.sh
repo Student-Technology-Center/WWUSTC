@@ -19,7 +19,7 @@ check-repo ()
 {
   git remote update
 
-  UPSTREAM=${1:-'@{u}'}
+  UPSTREAM=${1:-@{u}}
   LOCAL=$(git rev-parse @)
   REMOTE=$(git rev-parse "$UPSTREAM")
   BASE=$(git merge-base @ "$UPSTREAM")
@@ -42,7 +42,7 @@ echo ""
 # We start to iterate through the apps...
 cat $LIST_OF_APPS | tr -d '\r' | while read app;
 do
-  echo "Updating $item..."
+  echo "Updating $app..."
   cd $app
   check-repo
   cd ..
@@ -61,24 +61,18 @@ pythonCommands=(
 # Sends the restart command to django if needed
 if $restart; then
   cat $LIST_OF_PYTHON_COMMANDS | tr -d '\r' | while read pythonCommand;
-
-  for command in ${pythonCommands[*]}
+  do
+    for command in ${pythonCommands[*]}
     do
-    if ! type "$command" > /dev/null; then
-      continue
-    fi
+      if ! type "$command" > /dev/null; then
+        continue
+      fi
 
-    $command manage.py makemigrations
-    $command manage.py migrate
-    echo 'yes' | $command manage.py collectstatic
+      $command manage.py makemigrations
+      $command manage.py migrate
+      echo 'yes' | $command manage.py collectstatic
 
-    break
+      break
+    done
   done
-fi
-
-# I hate myself
-if $prod; then
-  #pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git@prod"
-else
-  #pip3 install "git+https://github.com/Student-Technology-Center/django-wiki.git"
 fi
