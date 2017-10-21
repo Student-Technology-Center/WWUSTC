@@ -7,8 +7,11 @@ if [ -z "$1" ]; then
 fi
 
 prod=$1
-LIST_OF_APPS="list_of_apps.txt"
-LIST_OF_PYTHON_COMMANDS="list_of_python_commands.txt"
+LIST_OF_APPS="./utils/scripts/list_of_apps.txt"
+LIST_OF_PYTHON_COMMANDS="./utils/scripts/list_of_python_commands.txt"
+
+pushd $(pwd)
+cd ../../
 
 cat $LIST_OF_APPS | tr -d '\r' | while read app;
 do
@@ -39,3 +42,5 @@ do
 
   break
 done
+
+popd
