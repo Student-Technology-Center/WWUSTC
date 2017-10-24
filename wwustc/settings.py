@@ -157,6 +157,7 @@ SECURE_SSL_REDIRECT = True
 #user specific
 ADMIN_LIST = [
     'brintnc',
+    'slymane',
 ]
 
 #shiftmanager
