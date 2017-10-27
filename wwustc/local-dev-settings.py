@@ -71,7 +71,7 @@ AUTHENTICATED_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-ROOT_URLCONF = 'wwustc.dev-urls'
+ROOT_URLCONF = 'wwustc.local-dev-urls'
 
 TEMPLATES = [
     {
