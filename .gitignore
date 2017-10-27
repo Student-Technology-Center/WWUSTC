@@ -16,7 +16,6 @@ bug_tracker/*
 django-wiki/*
 django-env/
 wiki/
-static/
 media/
 shiftmanager/
 .vscode/
