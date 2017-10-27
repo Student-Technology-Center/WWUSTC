@@ -23,7 +23,8 @@ SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["wwustc.com", "dev.wwustc.com", "m.wwustc.com", "mdev.wwustc.com"]
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 # Application definition
 
@@ -47,8 +48,8 @@ INSTALLED_APPS = [
     'hour_manager.apps.HourManagerConfig',
     'lfp_scheduler.apps.LfpConfig',
     'index.apps.IndexConfig',
-    'evaluations.apps.EvaluationsConfig',
     'login.apps.LoginConfig',
+    'evaluations.apps.EvaluationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
     'bug_tracker.apps.BugTrackerConfig'
 ]
@@ -70,7 +71,7 @@ AUTHENTICATED_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-ROOT_URLCONF = 'wwustc.urls'
+ROOT_URLCONF = 'wwustc.dev-urls'
 
 TEMPLATES = [
     {
@@ -78,7 +79,6 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -140,16 +140,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/wwustc/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/wwustc/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 SITE_ID = 1
 
 WIKI_ACCOUNT_HANDLING = True
-WIKI_ACCOUNT_SIGNUP_ALLOWED = False
+WIKI_ACCOUNT_SIGNUP_ALLOWED = True
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 #App specific settings
 

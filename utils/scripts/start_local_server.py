@@ -21,7 +21,7 @@ def launcher_server():
     os.chdir('../../')
 
     for cmd in py_commands:
-        subprocess.call('{} manage.py runserver --settings=wwustc.dev-settings'.format(cmd), shell=True)
+        subprocess.call('{} manage.py runserver --settings=wwustc.local-dev-settings'.format(cmd), shell=True)
 
 if __name__ == '__main__':
     main()
