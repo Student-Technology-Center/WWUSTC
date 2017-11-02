@@ -30,5 +30,16 @@
                 </div>
             {% endif %}
         </div>
+        <div id='delete_user'>
+            <form id='names_form' action='.' method='POST'>
+                {% csrf_token %}
+                <ul>
+                {% for x in users %}
+                    <li><input type='checkbox' name='delete_{{x.pk}}'> {{x.first_name}} {{x.last_name}} -- ({{x.username}})</li>
+                {% endfor %}
+                </ul>
+                <input name='delete-users' type='submit'>
+            </form>
+        </div>
     </body>
 </html>

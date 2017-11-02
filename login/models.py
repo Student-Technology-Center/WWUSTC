@@ -28,6 +28,7 @@ class UserOptions(models.Model):
         ('alltell','AllTell'),
         ('metroPCS','MetroPCS'),
         ('projectFi','Project-Fi'),
+        ('uscell','US Cellular')
     )
 
     email = models.BooleanField(default=True)

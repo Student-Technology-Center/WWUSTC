@@ -115,6 +115,7 @@ def reset_password(request):
 def profile(request):
     context = {}
 
+    context['users'] = get_user_model().objects.all()
     options = UserOptions.objects.get_or_create(user=request.user)
 
     if request.POST.get('update', False):
@@ -136,6 +137,13 @@ def profile(request):
     if request.POST.get('motd_update', False):
         if request.user.is_superuser:
             settings.MOTD = request.POST.get('motd_text', 'Replacement')
+
+    #TODO: Make this more solid.
+    if request.POST.get('delete-users', False):
+        for i in request.POST.keys():
+            if request.POST.get(i) == 'on':
+                user = get_user_model().objects.get(pk=i.split('_')[1])
+                user.delete()
 
     return render(
         request,

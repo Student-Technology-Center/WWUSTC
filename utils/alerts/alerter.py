@@ -13,6 +13,7 @@ carriers = {
     "alltell":"message.alltel.com",
     "metroPCS":"mymetropcs.com",
     "projectFi":"msg.fi.google.com",
+    "uscell":"email.uscc.net"
 }
 
 def text(phone_num, carrier, msg):

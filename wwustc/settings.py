@@ -156,7 +156,10 @@ SECURE_SSL_REDIRECT = True
 #user specific
 ADMIN_LIST = [
     'brintnc',
-]
+    'ConnorHopkins',
+    'Slymane',
+    'ayalaa2'
+    ]
 
 #shiftmanager
 NUM_USERS = 0
