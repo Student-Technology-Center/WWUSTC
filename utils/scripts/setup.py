@@ -15,13 +15,6 @@ def main():
     GitHandler(WORKING_DIR).cloneRepos()
     installDependencies(WORKING_DIR)
     
-    os.chdir(WORKING_DIR + '/../../')
-    
-    call('manage.py makemigrations', shell=True)
-    call('manage.py migrate', shell=True)
-    call('manage.py migrate --run-syncdb', shell=True)
-    call('manage.py collectstatic --noinput', shell=True)
-    
 def throwError(message, shouldExit=True):
     print('Error: {}'.format(message))
     
