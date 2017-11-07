@@ -1,9 +1,9 @@
 import os
 import sys
 from subprocess import call
-from lib.SystemHandler import getSystem
-from lib.GitHandler import GitHandler
-from lib.DependencyHandler import installDependencies
+from pylib.SystemHandler import getSystem
+from pylib.GitHandler import GitHandler
+from pylib.DependencyHandler import installDependencies
 
 SYSTEM_TYPE = getSystem()
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))

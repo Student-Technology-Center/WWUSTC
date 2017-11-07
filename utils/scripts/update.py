@@ -1,8 +1,8 @@
 import os
 import sys
 from subprocess import call
-from lib.SystemHandler import getSystem
-from lib.GitHandler import GitHandler
+from pylib.SystemHandler import getSystem
+from pylib.GitHandler import GitHandler
 from time import sleep
 
 SYSTEM_TYPE = getSystem()
