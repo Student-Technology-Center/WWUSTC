@@ -6,7 +6,7 @@ def installDependencies(workingDirectory):
     
     dependenciesList = None
         
-    with open(fileName) as f:
+    with open(os.path.join(workingDirectory, fileName)) as f:
         dependenciesList = f.readlines()
     
     dependenciesList = [x.strip() for x in dependenciesList]
