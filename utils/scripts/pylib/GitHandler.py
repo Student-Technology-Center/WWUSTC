@@ -11,7 +11,7 @@ class GitHandler():
     def generateAppList(self):
         appList = None
         
-        with open(APP_LIST_FILE) as f:
+        with open(os.path.join(self.workingDirectory, APP_LIST_FILE)) as f:
             appList = f.readlines()
         
         appList = [x.strip() for x in appList]
