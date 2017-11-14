@@ -157,7 +157,7 @@ SECURE_SSL_REDIRECT = True
 ADMIN_LIST = [
     'brintnc',
     'ConnorHopkins',
-    'Slymane',
+    'slymane',
     'ayalaa2'
     ]
 

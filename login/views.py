@@ -138,8 +138,7 @@ def profile(request):
         if request.user.is_superuser:
             settings.MOTD = request.POST.get('motd_text', 'Replacement')
 
-    #TODO: Make this more solid.
-    if request.POST.get('delete-users', False):
+    if request.POST.get('delete-users', False) and request.user.is_superuser:
         for i in request.POST.keys():
             if request.POST.get(i) == 'on':
                 user = get_user_model().objects.get(pk=i.split('_')[1])
