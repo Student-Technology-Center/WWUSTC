@@ -40,7 +40,7 @@ def main():
 
 def update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings):
     if (SYSTEM_TYPE == SystemType.WINDOWS):
-        #gitHandler.updateRepos()
+        gitHandler.updateRepos()
         os.chdir(WORKING_DIR + "/subscripts/")
         call('update_windows.bat ' + settings, shell=True)
     elif (SYSTEM_TYPE == SystemType.LINUX):
