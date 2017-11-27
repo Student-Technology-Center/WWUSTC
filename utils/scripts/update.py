@@ -28,8 +28,11 @@ def main():
         throwError("Invalid param")
         return
     
+    
+    print(len(sys.argv))
+    
     timeout = 0
-    if (len(sys.argv) > 3):
+    if (len(sys.argv) > 2):
         timeout = int(sys.argv[2])
 
     SYSTEM_TYPE = getSystem()
