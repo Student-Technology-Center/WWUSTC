@@ -38,7 +38,7 @@ def main():
         call('setup_windows.bat', shell=True)
     elif (SYSTEM_TYPE == SystemType.LINUX):
         call('setup_linux.sh', shell=True)
-    
+
 def throwError(message, shouldExit=True):
     print('Error: {}'.format(message))
     

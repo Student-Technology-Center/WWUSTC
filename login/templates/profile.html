@@ -30,6 +30,7 @@
                 </div>
             {% endif %}
         </div>
+        {% if user.is_superuser %}
         <div id='delete_user'>
             <form id='names_form' action='.' method='POST'>
                 {% csrf_token %}
@@ -41,5 +42,6 @@
                 <input name='delete-users' type='submit'>
             </form>
         </div>
+        {% endif %}
     </body>
 </html>

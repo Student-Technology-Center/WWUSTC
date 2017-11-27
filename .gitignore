@@ -21,6 +21,9 @@ shiftmanager/
 .vscode/
 __pycache__/
 
+login/migrations/*
+!login/migrations/__init__.py
+
 lfp_pw.py
 
 *.sqlite3
