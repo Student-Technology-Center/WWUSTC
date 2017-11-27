@@ -27,6 +27,9 @@ class GitHandler():
         # We first move up 2 folders
         os.chdir(self.workingDirectory + "/../../")
         
+        print("Updating wwustc...")
+        os.system("git pull")
+        
         # Iterate through our custom list and assure every folder exists
         for app in self.appList:
             # If the folder doesn't exist we note it and continue
