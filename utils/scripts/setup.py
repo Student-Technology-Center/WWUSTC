@@ -32,7 +32,7 @@ def main():
     
     SYSTEM_TYPE = getSystem()
     
-    os.chdir(self.workingDirectory + "/subscripts/")
+    os.chdir(WORKING_DIR + "/subscripts/")
     
     if (SYSTEM_TYPE == SystemType.WINDOWS):
         call('setup_windows.bat', shell=True)
