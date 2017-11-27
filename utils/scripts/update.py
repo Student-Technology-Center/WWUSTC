@@ -1,36 +1,42 @@
 import os
 import sys
 from subprocess import call
-from pylib.SystemHandler import getSystem
+from pylib.SystemHandler import getSystem, SystemType
 from pylib.GitHandler import GitHandler
 from time import sleep
 
-SYSTEM_TYPE = getSystem()
-WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
-
 def main():
-    timeout = 0
+    folderName = os.path.relpath(".","..")
     
+    if (folderName != "scripts"):
+        print("Please run update.py inside the scripts folder")
+        return
+    
+    timeout = 0
     if (len(sys.argv) > 1):
         timeout = int(sys.argv[1])
-
+    
+    SYSTEM_TYPE = getSystem()
+    WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
     gitHandler = GitHandler(WORKING_DIR)
     
-    while(True):
+    update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout)
+
+def update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout):
+    if (SYSTEM_TYPE == SystemType.WINDOWS):
         gitHandler.updateRepos()
-        
-        os.chdir(WORKING_DIR + '/../../')
-        
-        call('manage.py makemigrations', shell=True)
-        call('manage.py migrate', shell=True)
-        call('manage.py collectstatic --noinput', shell=True)
-        
-        os.chdir(WORKING_DIR)
-        
-        if (timeout == 0):
-            break;
-        
-        sleep(timeout / 1000.0)
-        
+        os.chdir(WORKING_DIR + "/subscripts/")
+        call('update_windows.bat', shell=True)
+    elif (SYSTEM_TYPE == SystemType.LINUX):
+        gitHandler.updateRepos()
+        os.chdir(WORKING_DIR + "/subscripts/")
+        call('update_linux.sh', shell=True)
+    
+    if (timeout == 0):
+        return    
+    sleep(timeout / 1000.0)
+    
+    update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout)
+
 if __name__ == '__main__':
     main()
