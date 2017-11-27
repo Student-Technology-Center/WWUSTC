@@ -14,6 +14,6 @@ elif command_exists py ; then
   pythonCommand='py'
 fi
 
-$pythonCommand ../../../manage.py makemigrations
-$pythonCommand ../../../manage.py migrate
-$pythonCommand ../../../manage.py collectstatic --noinput
+$pythonCommand ../../../manage.py makemigrations --settings=wwustc.$1
+$pythonCommand ../../../manage.py migrate --settings=wwustc.$1
+$pythonCommand ../../../manage.py collectstatic --noinput --settings=wwustc.$1

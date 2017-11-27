@@ -14,14 +14,20 @@ def main():
         return
 
     if (len(sys.argv) < 2):
-        throwError("Usage: setup.py <prod | true/false>")
+        throwError("Usage: setup.py <prod | dev | local>")
 
     prod = None
+    settings = None
 
-    if (sys.argv[1] == 'true'):
+    if (sys.argv[1] == 'prod'):
         prod = True
-    elif (sys.argv[1] == 'false'):
+        settings = "settings"
+    elif (sys.argv[1] == 'dev'):
         prod = False
+        settings = "dev-settings"
+    elif (sys.argv[1] == 'local'):
+        prod = False
+        settings = "local-dev-settings"
     else:
         throwError("Invalid param")
         return
@@ -33,9 +39,9 @@ def main():
     os.chdir(WORKING_DIR + "/subscripts/")
 
     if (SYSTEM_TYPE == SystemType.WINDOWS):
-        call('setup_windows.bat', shell=True)
+        call('setup_windows.bat ' + settings, shell=True)
     elif (SYSTEM_TYPE == SystemType.LINUX):
-        call('sh setup_linux.sh', shell=True)
+        call('sh setup_linux.sh ' + settings, shell=True)
 
 def throwError(message, shouldExit=True):
     print('Error: {}'.format(message))

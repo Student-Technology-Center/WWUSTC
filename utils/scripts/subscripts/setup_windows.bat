@@ -21,7 +21,7 @@ IF %ERRORLEVEL% EQU 0 (
 goto :EOF
 
 :proceed
-%pythonCommand% ../../../manage.py makemigrations
-%pythonCommand% ../../../manage.py migrate
-%pythonCommand% ../../../manage.py migrate --run-syncdb
-%pythonCommand% ../../../manage.py collectstatic --noinput
+%pythonCommand% ../../../manage.py makemigrations --settings=wwustc.%1
+%pythonCommand% ../../../manage.py migrate --settings=wwustc.%1
+%pythonCommand% ../../../manage.py migrate --run-syncdb --settings=wwustc.%1
+%pythonCommand% ../../../manage.py collectstatic --noinput --settings=wwustc.%1
