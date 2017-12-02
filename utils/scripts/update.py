@@ -35,8 +35,12 @@ def main():
     SYSTEM_TYPE = getSystem()
     WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
     gitHandler = GitHandler(WORKING_DIR)
-
-    update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings)
+    
+    while True:
+        shouldBreak = update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings)
+        
+        if shouldBreak:
+            break
 
 def update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings):
     if (SYSTEM_TYPE == SystemType.WINDOWS):
@@ -49,10 +53,10 @@ def update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings):
         call('sh update_linux.sh ' + settings, shell=True)
 
     if (timeout == 0):
-        return
+        return True
+        
     sleep(timeout / 1000.0)
-
-    update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings)
+    return False
 
 def throwError(message, shouldExit=True):
     print('Error: {}'.format(message))
