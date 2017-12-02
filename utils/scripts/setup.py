@@ -32,7 +32,7 @@ def main():
         throwError("Invalid param")
         return
 
-    GitHandler(WORKING_DIR).cloneRepos(prod)
+    GitHandler(WORKING_DIR, prod).cloneRepos()
     installDependencies(WORKING_DIR)
 
     SYSTEM_TYPE = getSystem()

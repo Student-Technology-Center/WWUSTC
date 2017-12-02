@@ -16,14 +16,17 @@ def main():
         throwError("Usage: setup.py <prod | dev | local> (timeout)")
     
     settings = None
+    prod = None
     
     if (sys.argv[1] == 'prod'):
         settings = "settings"
+        prod = True
     elif (sys.argv[1] == 'dev'):
         settings = "dev-settings"
-    elif (sys.argv[1] == 'local'):
         prod = False
+    elif (sys.argv[1] == 'local'):
         settings = "local-dev-settings"
+        prod = False
     else:
         throwError("Invalid param")
         return
@@ -34,7 +37,7 @@ def main():
 
     SYSTEM_TYPE = getSystem()
     WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
-    gitHandler = GitHandler(WORKING_DIR)
+    gitHandler = GitHandler(WORKING_DIR, prod)
     
     while True:
         shouldBreak = update(SYSTEM_TYPE, WORKING_DIR, gitHandler, timeout, settings)

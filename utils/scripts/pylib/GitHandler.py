@@ -1,11 +1,13 @@
 import os
 
-APP_LIST_FILE = "list_of_apps.txt"
+APP_LIST_FILE = None
 DASHES = "----------------------"
 
 class GitHandler():
-    def __init__(self, workingDirectory):
+    def __init__(self, workingDirectory, prod):
         self.workingDirectory = workingDirectory
+        self.prod = prod
+
         self.appList = self.generateAppList()
    
     # Opens a txt file and creates a python list of strings for each line
@@ -13,6 +15,8 @@ class GitHandler():
     def generateAppList(self):
         appList = None
         
+        APP_LIST_FILE = 'list_of_prod_apps.txt' if self.prod else 'list_of_dev_apps.txt'
+
         with open(os.path.join(self.workingDirectory, APP_LIST_FILE)) as f:
             appList = f.readlines()
         
@@ -53,13 +57,13 @@ class GitHandler():
         return
     
     # Used in setup.py
-    def cloneRepos(self, prod):
+    def cloneRepos(self):
         print("\nStarting cloning of repos...")
         print(DASHES)
         
         os.chdir(self.workingDirectory + "/../../")
         
-        branch = 'prod' if prod else 'master'
+        branch = 'prod' if self.prod else 'master'
         
         # Similar as updateRepos, we iterate through each app and if it doesnt exist, we clone it
         for app in self.appList:
