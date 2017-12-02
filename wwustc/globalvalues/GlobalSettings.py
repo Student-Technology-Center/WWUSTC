@@ -63,7 +63,6 @@ class GlobalSettings():
             'index.apps.IndexConfig',
             'evaluations.apps.EvaluationsConfig',
             'login.apps.LoginConfig',
-            'shiftmanager.apps.ShiftmanagerConfig',
             'bug_tracker.apps.BugTrackerConfig'
         ]
 
