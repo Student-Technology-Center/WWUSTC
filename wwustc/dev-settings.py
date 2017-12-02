@@ -54,7 +54,7 @@ MOTD = globalSettings.MOTD
 # Variables tied to dev
 STATIC_ROOT = '/var/www/dev/wwustc/static/'
 MEDIA_ROOT = '/var/www/dev/wwustc/media/'
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 DEBUG = True
 
 ROOT_URLCONF = 'wwustc.dev-urls'
