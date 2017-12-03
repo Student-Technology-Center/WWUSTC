@@ -10,4 +10,5 @@ urlpatterns = globalURLs.urlpatterns
 
 # Add dev-urls below
 urlpatterns += [
+    url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager'))
 ]

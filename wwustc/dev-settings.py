@@ -61,6 +61,7 @@ ROOT_URLCONF = 'wwustc.dev-urls'
 
 # Add custom apps here
 INSTALLED_APPS += [
+    'shiftmanager.apps.ShiftmanagerConfig',
 ]
 
 # Add allowed hosts here
