@@ -15,6 +15,6 @@ from django.core.wsgi import get_wsgi_application
 
 sys.path.append('/var/www/dev/wwustc')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wwustc.dev-settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "wwustc.dev-settings"
 
 application = get_wsgi_application()
