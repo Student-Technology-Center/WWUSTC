@@ -57,9 +57,9 @@ SECURE_SSL_REDIRECT = True
 DEBUG = False
 
 # Uncomment when shiftmanager is on prod
-#INSTALLED_APPS += [
+INSTALLED_APPS += [
     'shiftmanager.apps.ShiftmanagerConfig',
-#]
+]
 
 #-----------------------------------------------------------------------------#
 TEMPLATES = [
