@@ -2,3 +2,4 @@ hour_manager
 evaluations
 lfp_scheduler
 bug_tracker
+shiftmanager
