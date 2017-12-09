@@ -58,7 +58,7 @@ DEBUG = False
 
 # Uncomment when shiftmanager is on prod
 #INSTALLED_APPS += [
-#    'shiftmanager.apps.ShiftmanagerConfig',
+    'shiftmanager.apps.ShiftmanagerConfig',
 #]
 
 #-----------------------------------------------------------------------------#
