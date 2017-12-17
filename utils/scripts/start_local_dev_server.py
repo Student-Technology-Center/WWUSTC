@@ -18,7 +18,7 @@ def main():
     if (SYSTEM_TYPE == SystemType.WINDOWS):
         call('start_local_dev_server_windows.bat', shell=True)
     elif (SYSTEM_TYPE == SystemType.LINUX):
-        call('sh start_local_server_linux.sh', shell=True)
+        call('sh start_local_dev_server_linux.sh', shell=True)
 
 if __name__ == '__main__':
     main()
