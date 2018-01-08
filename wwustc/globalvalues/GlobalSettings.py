@@ -2,109 +2,107 @@
 
 import os
 
-class GlobalSettings():
-    def __init__(self):
-        self.BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self.SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
-        
-        self.LOGIN_URL = '/user/login/'
-        self.LOGIN_REDIRECT_URL = '/'
-        self.ROOT_URLCONF = 'wwustc.urls'
-        self.WSGI_APPLICATION = 'wwustc.wsgi.application'
-        self.LANGUAGE_CODE = 'en-us'
-        self.TIME_ZONE = 'UTC'
-        self.STATIC_URL = '/static/'
-        self.MEDIA_URL = '/media/'
-        
-        self.SITE_ID = 1
-        
-        self.WIKI_ACCOUNT_HANDLING = True
-        self.WIKI_ACCOUNT_SIGNUP_ALLOWED = False
-        self.SECURE_SSL_REDIRECT = True
-        self.USE_I18N = True
-        self.USE_L10N = True
-        self.USE_TZ = True
+GLOBAL_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+GLOBAL_SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 
-        #App specific settings
-        
-        #shiftmanager
-        self.NUM_USERS = 0
-        self.CREATING_SHIFTS = False
-        self.USER_SHIFT_PLACE = 1
+GLOBAL_LOGIN_URL = '/user/login/'
+GLOBAL_LOGIN_REDIRECT_URL = '/'
+GLOBAL_ROOT_URLCONF = 'wwustc.urls'
+GLOBAL_WSGI_APPLICATION = 'wwustc.wsgi.application'
+GLOBAL_LANGUAGE_CODE = 'en-us'
+GLOBAL_TIME_ZONE = 'UTC'
+GLOBAL_STATIC_URL = '/static/'
+GLOBAL_MEDIA_URL = '/media/'
 
-        #index
-        self.MOTD = ""
-        
-        # Any list type of objects should be added onto vs being overriden
-        self.ALLOWED_HOSTS = [
-            "wwustc.com", 
-            "m.wwustc.com", 
-        ]
+GLOBAL_SITE_ID = 1
 
-        self.INSTALLED_APPS = [
-            'django.contrib.auth',
-            'django.contrib.sites',
-            'django.contrib.contenttypes',
-            'django.contrib.humanize',
-            'django_nyt',
-            'mptt',
-            'sekizai',
-            'sorl.thumbnail',
-            'wiki',
-            'wiki.plugins.attachments',
-            'wiki.plugins.notifications',
-            'wiki.plugins.images',
-            'wiki.plugins.macros',
-            'django.contrib.sessions',
-            'django.contrib.messages',
-            'django.contrib.staticfiles',
-            'hour_manager.apps.HourManagerConfig',
-            'lfp_scheduler.apps.LfpConfig',
-            'index.apps.IndexConfig',
-            'evaluations.apps.EvaluationsConfig',
-            'login.apps.LoginConfig',
-            'bug_tracker.apps.BugTrackerConfig'
-        ]
+GLOBAL_WIKI_ACCOUNT_HANDLING = True
+GLOBAL_WIKI_ACCOUNT_SIGNUP_ALLOWED = False
+GLOBAL_SECURE_SSL_REDIRECT = True
+GLOBAL_USE_I18N = True
+GLOBAL_USE_L10N = True
+GLOBAL_USE_TZ = True
 
-        self.MIDDLEWARE = [
-            'django.middleware.security.SecurityMiddleware',
-            'django.contrib.sessions.middleware.SessionMiddleware',
-            'django.middleware.common.CommonMiddleware',
-            'django.middleware.csrf.CsrfViewMiddleware',
-            'django.contrib.auth.middleware.AuthenticationMiddleware',
-            'django.contrib.messages.middleware.MessageMiddleware',
-            'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        ]
-        
-        self.AUTHENTICATED_BACKENDS = [
-            'django.contrib.auth.backends.ModelBackend'
-        ]
-        
-        self.DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': os.path.join(self.BASE_DIR, 'db.sqlite3'),
-            }
-        }
-        
-        self.AUTH_PASSWORD_VALIDATORS = [
-            {
-                'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-            },
-            {
-                'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-            },
-            {
-                'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-            },
-            {
-                'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-            },
-        ]
-        
-        self.ADMIN_LIST = [
-            'brintnc',
-            'ConnorHopkins',
-            'Slymane',
-            'ayalaa2',
-        ]
+#App specific settings
+
+#shiftmanager
+GLOBAL_NUM_USERS = 0
+GLOBAL_CREATING_SHIFTS = False
+GLOBAL_USER_SHIFT_PLACE = 1
+
+#index
+GLOBAL_MOTD = ""
+
+# Any list type of objects should be added onto vs being overriden
+GLOBAL_ALLOWED_HOSTS = [
+    "wwustc.com", 
+    "m.wwustc.com", 
+]
+
+GLOBAL_INSTALLED_APPS = [
+    'django.contrib.auth',
+    'django.contrib.sites',
+    'django.contrib.contenttypes',
+    'django.contrib.humanize',
+    'django_nyt',
+    'mptt',
+    'sekizai',
+    'sorl.thumbnail',
+    'wiki',
+    'wiki.plugins.attachments',
+    'wiki.plugins.notifications',
+    'wiki.plugins.images',
+    'wiki.plugins.macros',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'hour_manager.apps.HourManagerConfig',
+    'lfp_scheduler.apps.LfpConfig',
+    'index.apps.IndexConfig',
+    'evaluations.apps.EvaluationsConfig',
+    'login.apps.LoginConfig',
+    'bug_tracker.apps.BugTrackerConfig'
+]
+
+GLOBAL_MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+GLOBAL_AUTHENTICATED_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+GLOBAL_DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(GLOBAL_BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+GLOBAL_AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+GLOBAL_ADMIN_LIST = [
+    'brintnc',
+    'ConnorHopkins',
+    'Slymane',
+    'ayalaa2',
+]
