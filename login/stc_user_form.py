@@ -6,6 +6,7 @@ class StcUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(required=True)
+    special_key = forms.CharField(max_length=30, required=True)
 
     def __init__(self, *args, **kwargs):
         super(StcUserCreationForm, self).__init__(*args, **kwargs)
@@ -33,7 +34,22 @@ class StcUserCreationForm(UserCreationForm):
             'placeholder':'Confirm password',
         })
 
+        self.fields['special_key'].widget.attrs.update({
+            'placeholder':'Normal STC key..',
+        })
+
+    def is_valid(self):
+        valid = super(StcUserCreationForm, self).is_valid()
+
+        if not valid:
+            return valid
+
+        key = self.cleaned_data['special_key']
+
+        if key == 's34h4wks':
+            return True
+
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'special_key')
 
