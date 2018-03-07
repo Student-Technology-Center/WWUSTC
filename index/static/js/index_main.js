@@ -31,4 +31,27 @@ $(document).ready(function() {
             });
 		}
 	});
+
+    getTodaysShifts();
 });
+
+function getTodaysShifts() {
+
+    var today = moment().format('YYYY-MM-DD')
+    var time = moment().format('HH:mm')
+
+    console.log(time)
+
+    $.ajax({
+        url: '/shifts/api/get_shifts/?start=' + today + '&end=' + today,
+        fail: function () {
+            setError("Something went wrong - file a bug report. Please retry the submission");
+        },
+        success: function(data) {
+            data.success.forEach(function(e) {
+                console.log(e)
+            })
+        }
+    })
+
+}

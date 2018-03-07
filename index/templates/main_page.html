@@ -25,6 +25,7 @@
         <script src="{% static 'js/login.js' %}"></script>
         <script src="{% static 'js/index_main.js' %}"></script>
         <script src="{% static 'js/jquery.konami.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
 
         <!-- CSS links -->
 
@@ -37,76 +38,39 @@
     </head>
     <body>
         {% if user.is_authenticated %}
-            <h2>Welcome {{user.first_name}}</h2>
-            {% if user.is_superuser %}
-                <h2 style='color: green; font-size: 15px;'>Superuser enabled.</h2>
-            {% endif %}
-            <h2 style='font-size: 25px;'>
-                {{motd}}
-            </h2>
-            <div id='link_holder'>
-                <a href='/hourmanager/' class='app_button'>
-                    <div id='hour_manager_link' class='app_link'>
-                        <img src='{% static 'icons/clock.svg' %}' />
-                        <span> Hour Manager </span>
-                        <p class='add_info_text' style='display: none'>
-                            Give up shifts or claim shifts.
-                        </p>
-                    </div>
-                </a>
-                <a href='/wiki/' class='app_button'>
-                    <div id='wiki_link' class='app_link'>
-                        <img src='{% static 'icons/scroll.svg' %}' />
-                        <span> Wiki </span>
-                        <p class='add_info_text' style='display: none'>
-                            Documentation regarding the STC is held here.
-                        </p>
-                    </div>
-                </a>
-                <a href='/lfp/' class='app_button'>
-                    <div id='lfp_link' class='app_link'>
-                        <img src='{% static 'icons/printer.svg' %}' />
-                        <span> LFP Scheduler </span>
-                        <p class='add_info_text' style='display: none'>
-                            Schedule an LFP appointment for clients.
-                        </p>
-                    </div>
-                </a>
-                <a href='/evaluations/' class='app_button'>
-                    <div id='evaluations_link' class='app_link'>
-                        <img src='{% static 'icons/notebook.svg' %}' />
-                        <span> Evaluations </span>
-                        <p class='add_info_text' style='display: none'>
-                            Evaluate a STC employee's workshop.
-                        </p>
-                    </div>
-                </a>
-                <a href='/shifts/' class='app_button'>
-                    <div id='shift_link' class='app_link'>
-                        <img src='{% static 'icons/hourglass.svg' %}' />
-                        <span> Shift Manager </span>
-                        <p class='add_info_text' style='display: none'>
-                            Create everyone's shifts for the quarter.
-                        </p>
-                    </div>
-                </a>
-                <a href='/bug/' class='app_button'>
-                    <div id='bug_link' class='app_link'>
-                        <img src='{% static 'icons/bee.svg' %}' />
-                        <span> Bug Tracker </span>
-                        <p class='add_info_text' style='display: none'>
-                            Notify us of a bug.
-                        </p>
-                    </div>
-                </a>
+        <div id='menu-holders'>
+            <div id='right-menu' class='link-menu'>
+                <ul>
+                    <li>
+                        <a href='/evaluations/'>Evaluations</a>
+                    </li>
+                    <li>
+                        <a href='/shifts/'>Shift Manager</a>
+                    </li>
+                    <li>
+                        <a href='/bug/'>Tickets</a>
+                    </li>
+                </ul>
             </div>
-            <div id='xtra_links'>
-                <a href='user/logout'>Logout</a><span>|</span><a href='/user/profile/'>Profile</a>
+            <div id='top-menu'> 
+                <span>Logged in as: {{ user.username }}</span>
+                <hr />
+                <a href='/user/logout'>Logout</a><span>|</span><a href='/user/profile/'>Profile</a>
             </div>
-            <br>
-            <h3 id='app_info'>
-                Student Technology Center
-            </h3>
+            <div id='left-menu' class='link-menu'>
+                <ul>
+                    <li>
+                        <a href='/hourmanager/'>Hour Manager</a>
+                    </li>
+                    <li>
+                        <a href='/wiki/'>Wiki</a>
+                    </li>
+                    <li>
+                        <a href='/lfp/'>LFP Scheduler</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         {% else %}
         <div id='login'>
             <h2>Hi.</h2>
