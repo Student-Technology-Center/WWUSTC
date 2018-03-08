@@ -25,6 +25,22 @@ body {
     margin-bottom: 12px;
 }
 
+#links a:hover {
+    transition: .3s;
+}
+
+#links span,
+#links a {
+-    transition: .3s;
+-
+-    padding: 6px;
+-    font-size: 50px;
+-    color: black;
+-    text-decoration: none;
+-}
+
+/* End login CSS */
+
 #top-menu {
     top: 0;
     left: 0;
@@ -56,14 +72,14 @@ body {
 }
 
 #right-menu {
-    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 
 #left-menu {
     display: inline-block;
     float: left;
 
-    border-right: 2px solid black;
+    border-left: 2px solid black;
 }
 
 .link-menu {
@@ -101,7 +117,7 @@ body {
     position: relative;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: center;
 }
