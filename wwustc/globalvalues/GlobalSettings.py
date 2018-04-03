@@ -61,7 +61,8 @@ GLOBAL_INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'evaluations.apps.EvaluationsConfig',
     'login.apps.LoginConfig',
-    'bug_tracker.apps.BugTrackerConfig'
+    'bug_tracker.apps.BugTrackerConfig',
+    'reservations.apps.ReservationsConfig'
 ]
 
 GLOBAL_MIDDLEWARE = [

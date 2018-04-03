@@ -7,9 +7,11 @@ class StcUserCreationForm(UserCreationForm):
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(required=True)
     special_key = forms.CharField(max_length=30, required=True)
+    employee_type = forms.ChoiceField(choices=[("STC", "Student Technology Center"), ("CS", "Classroom Services")], required=True)
 
     def __init__(self, *args, **kwargs):
         super(StcUserCreationForm, self).__init__(*args, **kwargs)
+
         self.fields['username'].widget.attrs.update({
             'placeholder':'Username',
         })
@@ -44,12 +46,7 @@ class StcUserCreationForm(UserCreationForm):
         if not valid:
             return valid
 
-        key = self.cleaned_data['special_key']
-
-        if key == 's34h4wks':
-            return True
-
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'special_key')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'special_key', 'employee_type')
 

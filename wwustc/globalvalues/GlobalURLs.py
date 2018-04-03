@@ -44,5 +44,9 @@ GLOBAL_urlpatterns += [
     url(r'^bug/', include('bug_tracker.urls', namespace='bugtracker'))
 ]
 
+GLOBAL_urlpatterns += [
+	url(r'^reservations/', include('reservations.urls', namespace='reservations'))
+]
+
 GLOBAL_urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 GLOBAL_urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
