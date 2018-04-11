@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
-
-from utils.alerts.texter_logins import USERNAME, PASSWORD
+from django.conf import settings
 
 carriers = {
     "at&t":"txt.att.net",
@@ -20,15 +19,15 @@ def text(phone_num, carrier, msg):
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.ehlo()
     server.starttls()
-    server.login(USERNAME, PASSWORD)
-    print("Sending text \nfrom: {} \nto: {} \nsaying: {}.".format(USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg))
-    server.sendmail(USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg)
+    server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
+    print("Sending text \nfrom: {} \nto: {} \nsaying: {}.".format(EMAIL_USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg))
+    server.sendmail(EMAIL_USERNAME, "{}@{}".format(phone_num, carriers[carrier]), msg)
 
 def email(email, subject, message):
     server = smtplib.SMTP('smtp.gmail.com:587')
 
     msg = MIMEText(message)
-    msg['From'] = USERNAME
+    msg['From'] = EMAIL_USERNAME
     msg['To'] = email
     msg['Subject'] = subject
 
@@ -36,7 +35,7 @@ def email(email, subject, message):
     server.starttls()
 
     try:
-        server.login(USERNAME, PASSWORD)
+        server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
         server.send_message(msg)
         server.quit()
     except:
