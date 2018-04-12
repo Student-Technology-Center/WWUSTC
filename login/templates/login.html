@@ -1,4 +1,5 @@
 {% load static %}
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -6,20 +7,39 @@
             Login
         </title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/login_password.js' %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/sign-up.css' %}" />
+        <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
     </head>
     <body>
-        <a href='/'>Return</a>
-        <h2>Login:</h2>
-        <form action="." method="POST">
-            {% csrf_token %}
-            {{ invalid_login|safe }}
-            <input autofocus id='username' type="text" name="username" placeholder='Username'>
-            <input id='password' type="password" name="password" placeholder='Password'>
-            <input type="submit" value="Login">
-        </form>
-        <p id='reset-warning'></p>
-        <a id='reset' href='/user/reset/'> Forget your password? </a>
+        <div id='main'>
+            <div>
+                <h1>Welcome</h1>
+                <button class='login'>Login</button> 
+                <button class='register'>Register</button>
+                <div id="login_form" style='background-color: black;'>
+                    <form action="" method="post" onsubmit="return handleLogin();">
+                        {% csrf_token %}
+                        <table>
+                            {{ login_form.as_table }}
+                        </table>
+                        <input type='submit'/>
+                    </form>
+                    <div id='login_errors'>
+                    </div>
+                </div>
+                <div id="register_form" style='background-color: white;'>
+                    <form action="" method="post" onsubmit="return handleRegistration();">
+                        {% csrf_token %}
+                        <table>
+                            {{ signup_form.as_table }}
+                            {{ registration_form.as_table }}
+                        </table>
+                        <input type='submit'/>
+                    </form>
+                    <div id='register_errors'>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

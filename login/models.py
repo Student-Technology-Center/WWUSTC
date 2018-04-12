@@ -1,10 +1,8 @@
 import re
 from datetime import datetime
 
-from django import forms
 from django.db import models
 from django.conf import settings
-from django.forms import ModelForm
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 
@@ -40,32 +38,5 @@ class UserOptions(models.Model):
 
 class UserHiddenAttributes(models.Model):
     reset_key = models.CharField(max_length=7)
+    confirmed_account = models.BooleanField(default=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-
-class UserOptionsForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(UserOptionsForm, self).__init__(*args, **kwargs)
-
-        self.fields['phone_number'].widget.attrs.update({
-            'placeholder':'9999999999',
-        })
-
-    def clean(self):
-        cleaned_data = super(UserOptionsForm, self).clean()
-        number = cleaned_data.get('phone_number')
-        
-        pattern = re.compile('^\d{10}$')
-        
-        if not pattern.match(number):
-            raise forms.ValidationError('Invalid phone_number', code='invalid')
-        else:
-            return cleaned_data
-
-    class Meta:
-        model = UserOptions
-        fields = [
-            'phone_number',
-            'phone_carrier',
-            'texting',
-            'email'
-        ]

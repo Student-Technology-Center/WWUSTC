@@ -1,33 +1,17 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.shortcuts import render
 
 from django.conf import settings
 
 import requests
 
+@login_required
 def index(request):
-
     '''
     Below is where we define who will become an admin, as the index will check.
     '''
-
-    user_model = get_user_model()
-
-    for name in settings.ADMIN_LIST:
-
-        try:
-            user = user_model.objects.get(username=name)
-        except:
-            break
-
-        user.is_superuser = True
-        user.save()
-
-    context = {
-        "user":request.user,
-        "creating_shifts":settings.CREATING_SHIFTS,
-        "motd":settings.MOTD
-    }
+    context = { }
 
     return render(
         request,

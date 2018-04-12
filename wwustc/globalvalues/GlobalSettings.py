@@ -5,7 +5,7 @@ import os
 GLOBAL_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GLOBAL_SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 
-GLOBAL_LOGIN_URL = '/user/login/'
+GLOBAL_LOGIN_URL = '/user/'
 GLOBAL_LOGIN_REDIRECT_URL = '/'
 GLOBAL_ROOT_URLCONF = 'wwustc.urls'
 GLOBAL_WSGI_APPLICATION = 'wwustc.wsgi.application'

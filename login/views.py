@@ -1,66 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from login.stc_user_form import StcUserCreationForm
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
-from login.models import UserOptions, UserOptionsForm, UserHiddenAttributes
-
-def register(request):
-    if request.method == 'POST':
-        form = StcUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-
-                return redirect('/')
-    else:
-        form = StcUserCreationForm()
-        
-    context = {
-        'form':form
-    }
-
-    return render(
-        request,
-        'register.html',
-        context
-    )
+from .forms import UserSignupForm, UserInformationForm, UserLoginForm
 
 def user_login(request):
-    context = {}
+    if request.user.is_authenticated:
+        return redirect('/')
 
-    context['invalid_login'] = ''
+    context = { 
+        'login_form' : UserLoginForm(),
+        'registration_form': UserInformationForm(),
+        'signup_form': UserSignupForm()
+    }
 
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('/')
-        else:
-            context['invalid_login'] = (
-                "<p style='color: red;'> Username/Password incorrect. </p>"
-            )
-     
     return render(
         request,
         'login.html',
         context
     )
-
-@login_required
-def user_logout(request):
-    logout(request)
-    return redirect('/')
 
 def reset_password(request):
     context = {}

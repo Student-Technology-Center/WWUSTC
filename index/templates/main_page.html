@@ -5,18 +5,6 @@
         <title>
             Student Technology Center
         </title>
-
-        <!-- JS links -->
-        <script>
-            function getSubdomain() {return (window.location.host).split('.')[0];}
-            function isMobile() {return getSubdomain() === 'mdev' || getSubdomain() === 'm';}
-            function randRGB() {
-                var first = Math.ceil((Math.random() * 255)).toString();
-                var second = Math.ceil((Math.random() * 255)).toString();
-                var third = Math.ceil((Math.random() * 255)).toString();
-                return "rgb(" + first + "," + second + "," + third + ")";
-            }            
-        </script>
         <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -24,20 +12,11 @@
         </script>
         <script src="{% static 'js/login.js' %}"></script>
         <script src="{% static 'js/index_main.js' %}"></script>
-        <script src="{% static 'js/jquery.konami.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
-
-        <!-- CSS links -->
-
-        {% if creating_shifts %}
-            <link rel='stylesheet' type='text/css' href="{% static 'css/tile_shake.css' %}">
-        {% endif %}
-
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index_main.css' %}">
     </head>
     <body>
-        {% if user.is_authenticated %}
         <div id='menu-holders'>
             <div id='right-menu' class='link-menu'>
                 <ul>
@@ -55,7 +34,7 @@
             <div id='top-menu'> 
                 <span>Logged in as: {{ user.username }}</span>
                 <hr />
-                <a href='/user/logout'>Logout</a><span>|</span><a href='/user/profile/'>Profile</a>
+                <button onclick="logoutUser();">Logout</button><span>|</span><button>Profile</button>
             </div>
             <div id='left-menu' class='link-menu'>
                 <ul>
@@ -71,13 +50,5 @@
                 </ul>
             </div>
         </div>
-        {% else %}
-        <div id='login'>
-            <h2>Hi.</h2>
-            <div id='links'>
-                <a href='/user/login/'>Login</a><span>|</span><a href='/user/register/'>Register</a>
-            </div>
-        </div>
-        {% endif %}
     </body>
 </html>
