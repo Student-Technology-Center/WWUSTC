@@ -44,6 +44,18 @@ function handleRegistration() {
 		url: "/user/api/register/",
 		data: $('#register_form form').serialize(),
 		success: function(data) {
+			if (data.failed) {
+				errs = $('#register_errors')
+				errs.empty();
+				var keys = Object.keys(data.failed);
+
+				for (var i = 0; i < keys.length; i++) {
+					errs.append("<h3 style='color: red;'> " + 
+						toTitleCase(keys[i]) + ": " + data.failed[keys[i]] + "</h3>")
+				}
+			} else {
+				window.location = '/';
+			}
 		}
 	});
 

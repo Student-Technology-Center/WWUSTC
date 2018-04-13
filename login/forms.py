@@ -37,7 +37,10 @@ class UserSignupForm(UserCreationForm):
         if self.cleaned_data['email'][-8:] == "@wwu.edu":
             return True
         else:
+            self.errors["Email"] = "Please enter a valid @wwu.edu email"
             return False
+        
+        return False
 
     class Meta:
         model = USER_MODEL
@@ -122,7 +125,7 @@ class UserLoginForm(forms.Form):
         if not valid:
             return valid
 
-        return valid #Temporary solution.
+        return valid
 
     class Meta:
         fields = [

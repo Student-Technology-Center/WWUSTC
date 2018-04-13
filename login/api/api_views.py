@@ -2,7 +2,6 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import JsonResponse
-import json
 
 from random import randint
 
@@ -18,19 +17,26 @@ def register(request):
     info = UserInformationForm(request.POST)
 
     if register.is_valid() and info.is_valid():
+        register.save()
+
         username = register.cleaned_data.get('username')
         password = register.cleaned_data.get('password')
-        first = register.cleaned_data.get('first_name')
-        last = register.cleaned_data.get('last_name')
-        email = register.cleaned_data.get('email')
+        user = authenticate(username=username, password=password)
 
-        USER_MODEL.objects.create_user(username=username,
-                                       password=password,
-                                       first_name=first,
-                                       last_name=last,
-                                       email=email)
+        if user is not None:
+            login(request, user)
+            print('logged in!')
+            return JsonResponse({
+                "success": {"Account":"Created"}    
+            })
+        return JsonResponse({
+            "failed": {"Account":"Failed to create user"}
+        })
+
     else:
-        print("Errors: {} | {}".format(register.errors, info.errors))
+        return JsonResponse({
+            "failed" : register.errors
+        }) 
 
     return JsonResponse({
         "failed": {"System":"Control should not reach here, please report this."}
@@ -44,7 +50,8 @@ def api_login(request):
     if info.is_valid():
         username = info.cleaned_data['login']
         password = info.cleaned_data['password']
-        user = authenticate(request, username=username, password=password)
+        test = USER_MODEL.objects.get(username=username)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
@@ -53,7 +60,7 @@ def api_login(request):
             })
         else:
             return JsonResponse({
-                "failed": {"Account":"User does not exist"}
+                "failed": {"Error":"User not found with that information"}
             })
     else:
         return JsonResponse({
