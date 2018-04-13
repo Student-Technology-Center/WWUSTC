@@ -6,8 +6,6 @@ GLOBAL_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GLOBAL_SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 
 GLOBAL_LOGIN_URL = '/user/'
-GLOBAL_EMAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
-GLOBAL_EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 GLOBAL_LOGIN_REDIRECT_URL = '/'
 GLOBAL_ROOT_URLCONF = 'wwustc.urls'
 GLOBAL_WSGI_APPLICATION = 'wwustc.wsgi.application'
@@ -15,6 +13,13 @@ GLOBAL_LANGUAGE_CODE = 'en-us'
 GLOBAL_TIME_ZONE = 'UTC'
 GLOBAL_STATIC_URL = '/static/'
 GLOBAL_MEDIA_URL = '/media/'
+
+GLOBAL_EMAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
+GLOBAL_EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+GLOBAL_EMAIL_PORT = 587
+GLOBAL_SERVER_HOST = "smtp.gmail.com"
+GLOBAL_EMAIL_USE_TLS = True
+GLOBAL_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 GLOBAL_SITE_ID = 1
 

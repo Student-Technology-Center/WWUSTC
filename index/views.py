@@ -4,8 +4,6 @@ from django.shortcuts import render
 
 from django.conf import settings
 
-import requests
-
 @login_required
 def index(request):
     '''
