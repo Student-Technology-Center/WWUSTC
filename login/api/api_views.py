@@ -17,18 +17,23 @@ def register(request):
     info = UserInformationForm(request.POST)
 
     if register.is_valid() and info.is_valid():
-        register.save()
-
         username = register.cleaned_data.get('username')
-        password = register.cleaned_data.get('password')
+        password = register.cleaned_data.get('password1')
+
+        USER_MODEL.objects.create_user(first_name=register.cleaned_data.get('first_name'),
+                                       last_name=register.cleaned_data.get('last_name'),
+                                       email=register.cleaned_data.get('email'),
+                                       username=username,
+                                       password=password)
+
         user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
-            print('logged in!')
             return JsonResponse({
                 "success": {"Account":"Created"}    
             })
+
         return JsonResponse({
             "failed": {"Account":"Failed to create user"}
         })
