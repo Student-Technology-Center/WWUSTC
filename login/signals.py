@@ -15,3 +15,7 @@ def create_user_attributes(sender, instance, created, **kwargs):
 def create_user_options(sender, instance, created, **kwargs):
 	if created:
 		UserOptions.objects.create(user=instance)
+
+#register signals
+post_save.connect(create_user_attributes, sender=USER_MODEL)
+post_save.connect(create_user_options, sender=USER_MODEL)

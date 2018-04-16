@@ -133,3 +133,19 @@ class UserLoginForm(forms.Form):
             'password'
         ]
 
+class EmailConfirmationForm(forms.Form):
+    uuid = forms.UUIDField()
+
+    def __init__(self, *args, **kwargs):
+        super(EmailConfirmationForm, self).__init__(*args, **kwargs)
+
+        self.fields['uuid'].widget.attrs.update({
+            'placeholder': 'Confirmation key'    
+        })
+
+    class Meat:
+        fields = [
+            'uuid'
+        ]
+
+

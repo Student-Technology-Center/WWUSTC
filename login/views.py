@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
-from .forms import UserSignupForm, UserInformationForm, UserLoginForm
+from .forms import UserSignupForm, UserInformationForm, UserLoginForm, EmailConfirmationForm
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -20,6 +20,20 @@ def user_login(request):
     return render(
         request,
         'login.html',
+        context
+    )
+
+def confirm_email(request):
+    if request.user.userhiddenattributes.confirmed_account:
+        return redirect('/')
+
+    context = { 
+        "confirmation_form" : EmailConfirmationForm()
+    }
+
+    return render(
+        request,
+        "confirm_email.html",
         context
     )
 

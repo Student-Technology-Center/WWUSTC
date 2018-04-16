@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.conf import settings
 
@@ -23,5 +25,6 @@ class UserOptions(models.Model):
 
 class UserHiddenAttributes(models.Model):
     reset_key = models.CharField(max_length=7)
+    confirmation_key = models.UUIDField(default=uuid.uuid4, editable=False)
     confirmed_account = models.BooleanField(default=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)

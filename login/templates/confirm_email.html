@@ -1,0 +1,39 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Confirm your email</title>
+  <meta name="author" content="Christian Brintnall">
+
+  <link rel="stylesheet" href="{% static 'css/confirm_email.css' %}" />
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <script>
+
+  	function checkEmail() {
+  		console.log('hey')
+  	}
+
+  </script>
+</head>
+
+<body>
+	<div>
+		<div>
+			<h1 style='color: white;'> You haven't confirmed your email. </h1>
+			<button onclick="checkEmail();"> Resend e-mail </button>
+			<form method="POST" action="#">
+				<table>
+					{{ confirmation_form.as_table }}
+				</table>
+				<input type='submit'/>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

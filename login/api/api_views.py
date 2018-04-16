@@ -1,4 +1,5 @@
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import JsonResponse
@@ -33,23 +34,17 @@ def register(request):
             return JsonResponse({
                 "success": {"Account":"Created"}    
             })
-
-        return JsonResponse({
-            "failed": {"Account":"Failed to create user"}
-        })
-
     else:
         return JsonResponse({
             "failed" : register.errors
         }) 
 
     return JsonResponse({
-        "failed": {"System":"Control should not reach here, please report this."}
+            "failed": {"Account":"Failed to create user"}
     })
 
 @require_http_methods(['POST'])
 def api_login(request):
-
     info = UserLoginForm(request.POST)
 
     if info.is_valid():
@@ -77,15 +72,17 @@ def api_login(request):
     })
 
 @require_http_methods(['GET'])
+@login_required
 def api_logout(request):
-    if request.user.is_authenticated:
-        logout(request)
-        return JsonResponse({
-            "success" : {"User":"Logged user out"}    
-        })
-    else:
-        return JsonResponse({
-            "failed" : {"User":"Not logged in"}
-        })
+    logout(request)
+    return JsonResponse({
+        "success" : {"User":"Logged user out"}    
+    })
 
+@require_http_methods(['GET'])
+def api_confirm_email(request, uuid):
+    print(uuid)
+    return JsonResponse({
+        "failed": {"Because": "Idiot"}
+    })
 
