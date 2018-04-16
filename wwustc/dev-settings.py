@@ -52,7 +52,7 @@ MOTD = GLOBAL_MOTD
 STATIC_ROOT = '/var/www/dev/wwustc/static/'
 MEDIA_ROOT = '/var/www/dev/wwustc/media/'
 SECURE_SSL_REDIRECT = True
-DEBUG = True
+DEBUG = False
 WSGI_APPLICATION = 'wwustc.wsgi-dev.application'
 
 ROOT_URLCONF = 'wwustc.dev-urls'

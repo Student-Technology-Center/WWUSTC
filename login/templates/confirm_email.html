@@ -6,27 +6,32 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Confirm your email</title>
+  <title>Email Confirmation</title>
   <meta name="author" content="Christian Brintnall">
 
   <link rel="stylesheet" href="{% static 'css/confirm_email.css' %}" />
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
   <script>
-
-  	function checkEmail() {
-  		console.log('hey')
+  	function sendEmail() {
+  		$.ajax({
+			type: "GET",
+			url: "/user/api/send_confirmation_email/"
+		})
   	}
-
   </script>
 </head>
 
 <body>
 	<div>
+		<div id='messages'>
+		</div>
 		<div>
 			<h1 style='color: white;'> You haven't confirmed your email. </h1>
-			<button onclick="checkEmail();"> Resend e-mail </button>
+			<h3 style='color: white;'> Are you sure {{ user.email }} is correct? </h3>
+			<button onclick="sendEmail();"> Resend e-mail </button>
 			<form method="POST" action="#">
 				<table>
 					{{ confirmation_form.as_table }}

@@ -5,7 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
+from .models import UserHiddenAttributes
+from .helpers import send_user_confirmation_email, check_user_confirmation_key
 from .forms import UserSignupForm, UserInformationForm, UserLoginForm, EmailConfirmationForm
+
+USER_MODEL = get_user_model()
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -23,9 +27,13 @@ def user_login(request):
         context
     )
 
-def confirm_email(request):
+def confirm_email(request, uuid=""):
     if request.user.userhiddenattributes.confirmed_account:
         return redirect('/')
+
+    if uuid:
+        if check_user_confirmation_key(uuid):
+            return redirect('/')
 
     context = { 
         "confirmation_form" : EmailConfirmationForm()

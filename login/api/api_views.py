@@ -1,12 +1,14 @@
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.http import JsonResponse
 
 from random import randint
 
-from login.models import UserHiddenAttributes
+from ..models import UserHiddenAttributes
+from ..helpers import send_user_confirmation_email
 from ..forms import UserLoginForm, UserSignupForm, UserInformationForm
 
 USER_MODEL = get_user_model()
@@ -20,14 +22,16 @@ def register(request):
     if register.is_valid() and info.is_valid():
         username = register.cleaned_data.get('username')
         password = register.cleaned_data.get('password1')
+        email = register.cleaned_data.get('email')
 
         USER_MODEL.objects.create_user(first_name=register.cleaned_data.get('first_name'),
                                        last_name=register.cleaned_data.get('last_name'),
-                                       email=register.cleaned_data.get('email'),
+                                       email=email,
                                        username=username,
                                        password=password)
 
         user = authenticate(username=username, password=password)
+        send_user_confirmation_email(request, user)
 
         if user is not None:
             login(request, user)
@@ -80,9 +84,12 @@ def api_logout(request):
     })
 
 @require_http_methods(['GET'])
-def api_confirm_email(request, uuid):
-    print(uuid)
+@login_required
+def send_email(request):
+    print(request)
+    send_user_confirmation_email(request, request.user)
     return JsonResponse({
-        "failed": {"Because": "Idiot"}
+        "success" : {"Email":"Sent!"}    
     })
+
 
