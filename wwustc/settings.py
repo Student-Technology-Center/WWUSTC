@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'bug_tracker.apps.BugTrackerConfig',
     'reservations.apps.ReservationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
-    'channels'
 ]
 
 MIDDLEWARE = [
@@ -122,7 +121,3 @@ AUTH_PASSWORD_VALIDATORS = [
 ADMIN_LIST = [
     'brintnc',
 ]
-
-#Django channels
-
-ASGI_APPLICATION = 'wwustc.routing.application'
