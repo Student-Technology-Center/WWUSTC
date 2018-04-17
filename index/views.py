@@ -13,8 +13,6 @@ def index(request):
     '''
     context = { }
 
-    print(dir(request.user))
-
     return render(
         request,
         "main_page.html",

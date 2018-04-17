@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 
 import login.views as views
 
+app_name = 'login'
+
 urlpatterns = [
     url(r'^$', views.user_login, name='login'),
     url(r'^email/$', views.confirm_email, name='base_confirm_email'),

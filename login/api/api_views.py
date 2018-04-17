@@ -54,7 +54,6 @@ def api_login(request):
     if info.is_valid():
         username = info.cleaned_data['login']
         password = info.cleaned_data['password']
-        test = USER_MODEL.objects.get(username=username)
         user = authenticate(username=username, password=password)
 
         if user is not None:
@@ -86,7 +85,6 @@ def api_logout(request):
 @require_http_methods(['GET'])
 @login_required
 def send_email(request):
-    print(request)
     send_user_confirmation_email(request, request.user)
     return JsonResponse({
         "success" : {"Email":"Sent!"}    

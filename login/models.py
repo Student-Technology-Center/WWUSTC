@@ -21,10 +21,10 @@ class UserOptions(models.Model):
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
     phone_carrier = models.CharField(blank=True, choices=PHONE_CARRIERS, max_length=64)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class UserHiddenAttributes(models.Model):
     reset_key = models.CharField(max_length=7)
     confirmation_key = models.UUIDField(default=uuid.uuid4, editable=False)
     confirmed_account = models.BooleanField(default=False)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

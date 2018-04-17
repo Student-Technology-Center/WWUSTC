@@ -1,7 +1,5 @@
 import os
 
-from wwustc.wsgi import application
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v+pm63^+qgh)9qw=&85j_mtoks(bv7l%i=ae!!qo1%4n#4hd41'
 
@@ -16,18 +14,18 @@ MEDIA_URL = '/media/'
 
 DEBUG = True
 
-EMAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
-EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
-SERVER_HOST = "smtp.gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SITE_ID = 1
 
-WIKI_ACCOUNT_HANDLING = True
+WIKI_ACCOUNT_HANDLING = False
 WIKI_ACCOUNT_SIGNUP_ALLOWED = False
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -62,7 +60,6 @@ INSTALLED_APPS = [
     'bug_tracker.apps.BugTrackerConfig',
     'reservations.apps.ReservationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
-    'channels'
 ]
 
 MIDDLEWARE = [

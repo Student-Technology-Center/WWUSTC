@@ -4,6 +4,8 @@ body {
 
     background-color: white;
     font-family: 'Lato', sans-serif;
+
+    background-color: #53647E;
 }
 
 /* Login */
@@ -80,6 +82,12 @@ body {
     float: left;
 
     border-left: 2px solid black;
+}
+
+#top-menu,
+#left-menu,
+#right-menu {
+    background-color: white;
 }
 
 .link-menu {
