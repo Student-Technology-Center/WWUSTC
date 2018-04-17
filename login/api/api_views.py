@@ -1,5 +1,6 @@
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -23,6 +24,7 @@ def register(request):
         username = register.cleaned_data.get('username')
         password = register.cleaned_data.get('password1')
         email = register.cleaned_data.get('email')
+        employee = info.cleaned_data.get('employee_type')
 
         USER_MODEL.objects.create_user(first_name=register.cleaned_data.get('first_name'),
                                        last_name=register.cleaned_data.get('last_name'),
@@ -31,9 +33,12 @@ def register(request):
                                        password=password)
 
         user = authenticate(username=username, password=password)
-        send_user_confirmation_email(request, user)
 
         if user is not None:
+            send_user_confirmation_email(request, user)
+            grp, created = Group.objects.get_or_create(name=employee)
+            user.groups.add(grp)
+            user.save()
             login(request, user)
             return JsonResponse({
                 "success": {"Account":"Created"}    

@@ -13,6 +13,8 @@ def index(request):
     '''
     context = { }
 
+    print(request.user.groups)
+
     return render(
         request,
         "main_page.html",

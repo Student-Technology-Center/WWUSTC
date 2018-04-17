@@ -23,3 +23,4 @@ def check_user_confirmation_key(key):
 	user = UserHiddenAttributes.objects.get(confirmation_key=key)
 	user.confirmed_account = True
 	user.save()
+	return user.confirmed_account
