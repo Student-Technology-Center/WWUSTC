@@ -35,8 +35,6 @@ def confirm_email(request, uuid=""):
         if check_user_confirmation_key(uuid):
             return redirect('/')
 
-    print(request.user.groups)
-
     context = { 
         "confirmation_form" : EmailConfirmationForm()
     }

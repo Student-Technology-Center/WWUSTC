@@ -37,6 +37,12 @@ def register(request):
         if user is not None:
             send_user_confirmation_email(request, user)
             grp, created = Group.objects.get_or_create(name=employee)
+
+            if created:
+                print("New group {} created".format(employee))
+            else:
+                print("Group already created.")
+
             user.groups.add(grp)
             user.save()
             login(request, user)
