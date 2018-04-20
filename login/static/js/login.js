@@ -1,17 +1,22 @@
 $(document).ready(function() {
-	$('.login').click(() => {
+	$('#login').click(() => {
 		$('#register_form').css("visibility", "hidden");
 		$('#register_form').css("display", "none");
 		$('#login_form').css("visibility", "visible");
 		$('#login_form').css("display", "block");
 	});
 
-	$('.register').click(() => {
+	$('#register').click(() => {
 		$('#login_form').css("visibility", "hidden");
 		$('#login_form').css("display", "none");
 		$('#register_form').css("visibility", "visible");
 		$('#register_form').css("display", "block");
 	});
+
+	$('input[type="email"]').keypress((data) => {
+		var input = $(this).val();
+		console.log(input);
+	})
 });
 
 function handleLogin() {

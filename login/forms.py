@@ -15,9 +15,22 @@ class UserSignupForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
 
+        self.fields['username'].widget.attrs.update({
+            'autofocus': True,
+            'placeholder': 'Username'
+        })
+
+        self.fields['password1'].widget.attrs.update({
+            'placeholder': 'Password'
+        })
+
+        self.fields['password2'].widget.attrs.update({
+            'placeholder': 'Confirm password'
+        })
+
         self.fields['first_name'].widget.attrs.update({
             'autofocus': True,
-            'placeholder': 'First Name'    
+            'placeholder': 'First Name',
         })
 
         self.fields['last_name'].widget.attrs.update({

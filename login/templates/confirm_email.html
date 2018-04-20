@@ -16,11 +16,23 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
   <script>
   	function sendEmail() {
-  		$.ajax({
-			type: "GET",
-			url: "/user/api/send_confirmation_email/"
-		})
+  			$.ajax({
+					type: "GET",
+					url: "/user/api/send_confirmation_email/"
+			})
   	}
+
+		function logout() {
+			$.ajax({
+				type: "GET",
+				url: "/user/api/user_logout",
+				success: function (data) {
+					if (data.success) {
+						window.location = '/user/';
+					}
+				}
+			})
+		}
   </script>
 </head>
 
@@ -29,6 +41,7 @@
 		<div id='messages'>
 		</div>
 		<div>
+			<button onclick="logout();"> Logout </button>
 			<h1 style='color: white;'> You haven't confirmed your email. </h1>
 			<h3 style='color: white;'> Are you sure {{ user.email }} is correct? </h3>
 			<button onclick="sendEmail();"> Resend e-mail </button>
