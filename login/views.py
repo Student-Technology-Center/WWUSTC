@@ -27,6 +27,7 @@ def user_login(request):
         context
     )
 
+@login_required
 def confirm_email(request, uuid=""):
     if request.user.userhiddenattributes.confirmed_account:
         return redirect('/')
@@ -61,6 +62,7 @@ def reset_password(request):
                 context['key'] = False
                 context['pw_no_match'] = True
 
+                w
                 return render(
                     request,
                     'password_reset.html',
