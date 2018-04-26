@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 
 <html>
@@ -7,44 +8,30 @@
             Login
         </title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-				<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
-				<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
     </head>
     <body>
-        <div id='main'>
-            <div id='content'>
-								<div class='two ui large buttons'>
-									<button id='login' class='ui button'> Login </button>
-									<div class='or'> </div>
-									<button id='register' class='ui button'> Register </button>
-								</div>
-								<div class='ui segments'>
-                <div id="login_form" class='ui center aligned basic segment'>
-                    <form onsubmit="return handleLogin();">
-                        {% csrf_token %}
-                        <table>
-                            {{ login_form.as_table }}
-                        </table>
-												<input type='submit' value="Send" class="ui button" />
-                    </form>
-                    <div id='login_errors'>
-                    </div>
-                </div>
-                <div id="register_form" style='display: none;' class='ui center aligned basic segment'>
-                    <form onsubmit="return handleRegistration();">
-                        {% csrf_token %}
-                        <table>
-                            {{ signup_form.as_table }}
-                            {{ registration_form.as_table }}
-                        </table>
-                        <input type='submit' class='ui button' value="Send"/>
-                    </form>
-                    <div id='register_errors'>
-                    </div>
-                </div>
-								</div>
+        <div id='content'>
+            <div id="login_form">
+                <form onsubmit="return handleLogin();">
+                    {% csrf_token %}
+                    {{ login_form }}
+                    <input type='submit' value="Send" class="ui button" />
+                </form>
+            </div>
+            <div class="ui vertical divider">
+                Or
+            </div>
+            <div id="register_form">
+                <form onsubmit="return handleRegistration();">
+                    {% csrf_token %}
+                    {{ signup_form }}
+                    {{ registration_form }}
+                    <input type='submit' class='ui button' value="Send"/>
+                </form>
             </div>
         </div>
     </body>

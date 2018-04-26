@@ -1,22 +1,7 @@
 $(document).ready(function() {
-	$('#login').click(() => {
-		$('#register_form').css("visibility", "hidden");
-		$('#register_form').css("display", "none");
-		$('#login_form').css("visibility", "visible");
-		$('#login_form').css("display", "block");
-	});
-
-	$('#register').click(() => {
-		$('#login_form').css("visibility", "hidden");
-		$('#login_form').css("display", "none");
-		$('#register_form').css("visibility", "visible");
-		$('#register_form').css("display", "block");
-	});
-
-	$('input[type="email"]').keypress((data) => {
-		var input = $(this).val();
-		console.log(input);
-	})
+	$('input[type=text]').parent().addClass('ui input');
+	$('input[type=email]').parent().addClass('ui input');
+	$('input[type=password]').parent().addClass('ui input');
 });
 
 function handleLogin() {
@@ -26,7 +11,7 @@ function handleLogin() {
 		data: $('#login_form form').serialize(),
 		success: function(data) {
 			if (data.failed) {
-				errs = $('#login_errors')
+				errs = $('#errors')
 				errs.empty();
 				var keys = Object.keys(data.failed);
 
@@ -50,7 +35,7 @@ function handleRegistration() {
 		data: $('#register_form form').serialize(),
 		success: function(data) {
 			if (data.failed) {
-				errs = $('#register_errors')
+				errs = $('#errors')
 				errs.empty();
 				var keys = Object.keys(data.failed);
 
@@ -65,6 +50,35 @@ function handleRegistration() {
 	});
 
 	return false;
+}
+
+var register = false;
+var login = true;
+
+function setRegister(el) {
+	if (register)
+		return
+
+	register = true;
+	login = false;
+
+	$(el).toggleClass('active');
+	$('#login-btn').toggleClass('active');
+	$('#login_form').css('visibility', 'hidden');
+	$('#register_form').css('visibility', 'visible');
+}
+
+function setLogin(el) {
+	if (login)
+		return;
+
+	register = false;
+	login = true;
+
+	$(el).toggleClass('active');
+	$('#register-btn').toggleClass('active');
+	$('#register_form').css('visibility', 'hidden');
+	$('#login_form').css('visibility', 'visible');
 }
 
 function toTitleCase(str)
