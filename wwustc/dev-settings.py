@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.humanize',
-    'semanticuiforms',
     'django_nyt',
     'mptt',
     'sekizai',
