@@ -13,8 +13,10 @@
         <script src="{% static 'js/login.js' %}"></script>
         <script src="{% static 'js/index_main.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+        <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index_main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
     </head>
     <body>
         <div id='menu-holders'>
@@ -34,7 +36,7 @@
             <div id='top-menu'> 
                 <span>Logged in as: {{ user.username }}</span>
                 <hr />
-                <button onclick="logoutUser();">Logout</button><span>|</span><button>Profile</button>
+                <button class='ui button' onclick="logoutUser();">Logout</button><span>|</span><a href="/user/profile/"><button class='ui button'>Profile</button></a>
             </div>
             <div id='left-menu' class='link-menu'>
                 <ul>

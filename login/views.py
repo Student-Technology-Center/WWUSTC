@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
-from .models import UserHiddenAttributes
+from .models import UserHiddenAttributes, UserOptions
 from .helpers import send_user_confirmation_email, check_user_confirmation_key
-from .forms import UserSignupForm, UserInformationForm, UserLoginForm, EmailConfirmationForm
+from .forms import UserSignupForm, UserInformationForm, UserLoginForm, UserOptionsForm, EmailConfirmationForm
 
 USER_MODEL = get_user_model()
 
@@ -99,34 +99,28 @@ def reset_password(request):
 def profile(request):
     context = {}
 
-    context['users'] = get_user_model().objects.all()
-    options = UserOptions.objects.get_or_create(user=request.user)
-
-    if request.POST.get('update', False):
-        context['form'] = UserOptionsForm(request.POST, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email, 
-        'phone_carrier':options[0].phone_carrier})
+    if request.POST:
+        form = UserOptionsForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            m = UserOptions.objects.get(user=request.user)
+            m.texting = f.texting
+            m.email = f.email
+            m.shift_name = f.shift_name
+            m.phone_carrer = f.phone_carrier
+            m.phone_number = f.phone_number
+            m.save()
     else:
-        context['form'] = UserOptionsForm(None, initial={'phone_number': options[0].phone_number,'texting':options[0].texting, 'email':options[0].email, 
-        'phone_carrier':options[0].phone_carrier})
+        options = UserOptions.objects.get(user=request.user)
+        form = UserOptionsForm(initial={
+            "shift_name" : options.shift_name,
+            "phone_number" : options.phone_number,
+            "phone_carrier" : options.phone_carrier,
+            "texting" : options.texting,
+            "email" : options.email
+        })
 
-    #short circuits 
-    if request.POST.get('update', False) and context['form'].is_valid():
-        options_form = context['form'].save(commit=False)
-        options[0].phone_carrier = options_form.phone_carrier
-        options[0].phone_number = options_form.phone_number
-        options[0].texting = options_form.texting
-        options[0].email = options_form.email
-        options[0].save()
-
-    if request.POST.get('motd_update', False):
-        if request.user.is_superuser:
-            settings.MOTD = request.POST.get('motd_text', 'Replacement')
-
-    if request.POST.get('delete-users', False) and request.user.is_superuser:
-        for i in request.POST.keys():
-            if request.POST.get(i) == 'on':
-                user = get_user_model().objects.get(pk=i.split('_')[1])
-                user.delete()
+    context['options'] = form
 
     return render(
         request,

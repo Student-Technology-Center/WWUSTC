@@ -4,44 +4,20 @@
     <head>
         <title> Profile </title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script src='{% static 'js/profile.js' %}'></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
     </head>
     <body>
         <a href="{% url 'main_page:index' %}" id="main"> Home </a>
-        <div id='forms'>
-            <h4>Settings</h4>
-            <form id='update' action="." method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input name='update' type="submit" value="Update">
-            </form>
-            {% if user.is_superuser %}
-                <h4>
-                    Edit the MOTD
-                </h4>
-                <form id='motd' action='.' method="POST">
-                    {% csrf_token %}
-                    <input name='motd_text' type='text'>
-                    <input name='motd_update' type='submit' value='Update'>
-                </form>
-                <div id='admin-panel'>
-                    
-                </div>
-            {% endif %}
-        </div>
-        {% if user.is_superuser %}
-        <div id='delete_user'>
-            <form id='names_form' action='.' method='POST'>
-                {% csrf_token %}
-                <ul>
-                {% for x in users %}
-                    <li><input type='checkbox' name='delete_{{x.pk}}'> {{x.first_name}} {{x.last_name}} -- ({{x.username}})</li>
-                {% endfor %}
-                </ul>
-                <input name='delete-users' type='submit'>
-            </form>
-        </div>
-        {% endif %}
+        <form action='.' method="POST">
+        	{% csrf_token %}
+        	<table>
+        		{{ options.as_table }}
+        	</table>
+        	<input type='submit' class='ui button' />
+        </form>
     </body>
 </html>

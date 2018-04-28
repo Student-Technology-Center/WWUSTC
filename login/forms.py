@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django import forms
 
+import re
+
 from .models import UserOptions
 
 USER_MODEL = get_user_model()
@@ -93,24 +95,32 @@ class UserOptionsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserOptionsForm, self).__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].required = False
+
         self.fields['phone_number'].widget.attrs.update({
-            'placeholder':'9999999999',
+            'placeholder':'4253233242',
+        })
+
+        self.fields['shift_name'].widget.attrs.update({
+            'placeholder': 'Excel sheet name'
         })
 
     def clean(self):
         cleaned_data = super(UserOptionsForm, self).clean()
         number = cleaned_data.get('phone_number')
+
+        pattern = re.compile('\d{3}-?\d{3}-?\d{4}')
         
-        pattern = re.compile('^\d{10}$')
-        
-        if not pattern.match(number):
-            raise forms.ValidationError('Invalid phone_number', code='invalid')
+        if not pattern.match(number) and number != "":
+            raise forms.ValidationError('Invalid phone number', code='invalid')
         else:
             return cleaned_data
 
     class Meta:
         model = UserOptions
         fields = [
+            'shift_name',
             'phone_number',
             'phone_carrier',
             'texting',

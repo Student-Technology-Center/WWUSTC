@@ -59,15 +59,6 @@ body {
     border-top: none;
 }
 
-#top-menu a {
-    color: black;
-}
-
-#top-menu a:hover {
-    color: white;
-    background-color: black;
-}
-
 #top-menu span {
     color: black;
     margin: 12px;

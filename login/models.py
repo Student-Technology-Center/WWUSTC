@@ -21,6 +21,7 @@ class UserOptions(models.Model):
     texting = models.BooleanField(default=False)
     phone_number = models.CharField(blank=True, max_length=12)
     phone_carrier = models.CharField(blank=True, choices=PHONE_CARRIERS, max_length=64)
+    shift_name = models.CharField(blank=True, max_length=32)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class UserHiddenAttributes(models.Model):
