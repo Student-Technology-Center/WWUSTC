@@ -27,7 +27,6 @@ If you're still confused, talk to Christian or Alex.
 
     #Selects where emails will go
     if settings.DEBUG:
-        print("Sending {} e-mail(s) via console.".format(len(recipients)))
         conn = get_connection('django.core.mail.backends.console.EmailBackend')
     else:
         conn = settings.EMAIL_BACKEND
@@ -43,7 +42,7 @@ If you're still confused, talk to Christian or Alex.
     else:
         email_t = Thread(
             target=send_mail,
-            args=(subject, message, settings.EMAIL_HOST_USER, recipients, conn)
+            args=(subject, message, settings.EMAIL_HOST_USER, recipients)
         )
         email_t.start()
 

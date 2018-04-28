@@ -25,9 +25,11 @@ def main():
     elif (sys.argv[1] == 'dev'):
         prod = False
         settings = "dev-settings"
+
+    #This nmight be temporary
     elif (sys.argv[1] == 'local'):
         prod = False
-        settings = "local-dev-settings"
+        settings = "dev-settings"
     else:
         throwError("Invalid param")
         return
