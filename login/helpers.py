@@ -17,7 +17,7 @@ def send_user_confirmation_email(request, user):
 			{}
 		  """.format(url, key, url, key)
 
-	send_stc_email("Confirm your account on WWUSTC.com", msg, [user.email], override=True, threaded=True)
+	send_stc_email("Confirm your account on WWUSTC.com", msg, [user.email], threaded=True)
 
 def check_user_confirmation_key(key):
 	user = UserHiddenAttributes.objects.get(confirmation_key=key)

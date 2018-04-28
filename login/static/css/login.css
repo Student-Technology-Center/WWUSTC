@@ -10,14 +10,10 @@ body {
 	transform: translate(-50%, -50%);
 }
 
+#divider,
+#login_form,
 #register_form {
-	display: inline-block;
-	overflow: hidden;
-}
-
-#login_form {
-	float: left;
-	display: inline-block;
+	display:inline-block;
 }
 
 

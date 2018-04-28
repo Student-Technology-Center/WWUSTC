@@ -62,7 +62,6 @@ def reset_password(request):
                 context['key'] = False
                 context['pw_no_match'] = True
 
-                w
                 return render(
                     request,
                     'password_reset.html',

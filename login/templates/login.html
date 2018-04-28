@@ -18,18 +18,22 @@
             <div id="login_form">
                 <form onsubmit="return handleLogin();">
                     {% csrf_token %}
-                    {{ login_form }}
+                    <table>
+                        {{ login_form.as_table }}
+                    </table>
                     <input type='submit' value="Send" class="ui button" />
                 </form>
             </div>
-            <div class="ui vertical divider">
+            <div id='divider' class="ui vertical divider">
                 Or
             </div>
             <div id="register_form">
                 <form onsubmit="return handleRegistration();">
                     {% csrf_token %}
-                    {{ signup_form }}
-                    {{ registration_form }}
+                    <table>
+                        {{ signup_form.as_table }}
+                        {{ registration_form.as_table }}
+                    </table>
                     <input type='submit' class='ui button' value="Send"/>
                 </form>
             </div>

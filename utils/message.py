@@ -32,7 +32,7 @@ If you're still confused, talk to Christian or Alex.
     else:
         conn = settings.EMAIL_BACKEND
 
-    if not threaded:
+    if not threaded or settings.DEBUG:
         send_mail(
             subject,
             message,
