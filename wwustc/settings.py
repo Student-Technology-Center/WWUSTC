@@ -10,7 +10,6 @@ LOGIN_REDIRECT_URL = '/'
 ROOT_URLCONF = 'wwustc.urls'
 WSGI_APPLICATION = 'wwustc.wsgi.application'
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -31,6 +30,7 @@ SECURE_SSL_REDIRECT = True
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+TIME_ZONE = 'US/Pacific'
 
 ALLOWED_HOSTS = [
     "wwustc.com", 
