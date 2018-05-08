@@ -15,27 +15,26 @@
     </head>
     <body>
         <div id='content'>
-            <div id="login_form">
-                <form onsubmit="return handleLogin();">
-                    {% csrf_token %}
-                    <table>
-                        {{ login_form.as_table }}
-                    </table>
-                    <input type='submit' value="Send" class="ui button" />
-                </form>
-            </div>
-            <div id='divider' class="ui vertical divider">
-                Or
-            </div>
-            <div id="register_form">
-                <form onsubmit="return handleRegistration();">
-                    {% csrf_token %}
-                    <table>
-                        {{ signup_form.as_table }}
-                        {{ registration_form.as_table }}
-                    </table>
-                    <input type='submit' class='ui button' value="Send"/>
-                </form>
+            <div class='ui horizontal segments'>
+                <div class='ui segment' id="login_form">
+                    <form class='ui form' onsubmit="return handleLogin();">
+                        {% csrf_token %}
+                        <table>
+                            {{ login_form.as_table }}
+                        </table>
+                        <input type='submit' value="Send" class="ui button" />
+                    </form>
+                </div>
+                <div class='ui segment' id="register_form">
+                    <form class='ui form' onsubmit="return handleRegistration();">
+                        {% csrf_token %}
+                        <table>
+                            {{ signup_form.as_table }}
+                            {{ registration_form.as_table }}
+                        </table>
+                        <input type='submit' class='ui button' value="Send"/>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

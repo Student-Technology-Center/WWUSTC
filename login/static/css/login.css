@@ -1,19 +1,27 @@
 body {
 	background-color: #53647E;
+	margin: 0;
+	padding: 0;
 }
 
 #content {
-	color: black;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#divider,
-#login_form,
-#register_form {
-	display:inline-block;
+#content div {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 50%;
+}
+
+.helptext {
+	display: none;
 }
 
 
