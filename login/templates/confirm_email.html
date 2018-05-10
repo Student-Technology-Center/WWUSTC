@@ -8,19 +8,20 @@
 
   <title>Email Confirmation</title>
   <meta name="author" content="Christian Brintnall">
-
-  <link rel="stylesheet" href="{% static 'css/confirm_email.css' %}" />
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
-  <script>
-  	function sendEmail() {
-  			$.ajax({
-					type: "GET",
-					url: "/user/api/send_confirmation_email/"
-			})
-  	}
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/confirm_email.css' %}" />
+	<script>
+	  	function sendEmail() {
+	  			$.ajax({
+						type: "GET",
+						url: "/user/api/send_confirmation_email/"
+				})
+	  	}
 
 		function logout() {
 			$.ajax({
@@ -33,25 +34,49 @@
 				}
 			})
 		}
-  </script>
+  	</script>
 </head>
-
 <body>
-	<div>
+			<div class="ui middle aligned center aligned grid">
+            <div class='twelve wide stretched column'>
+                <div class="ui attached message">
+                  <div class="header">
+                    <h2 class="ui header">Confirm Your Email</h2>
+                  </div>
+                </div>
+                <div class='ui attached segment'>
+    				<form method="POST" action="#" class='ui form'>
+						{% csrf_token %}
+						<div class='field'>
+							<label> Enter code in email: </label>
+							{{ confirmation_form.uuid }}
+						</div>
+						<input type='submit' class='ui positive button'/>
+					</form>
+                </div>
+                <div class='ui two bottom attached buttons'>
+        				<button onclick="logout();" class='ui button'> Logout </button>
+        				<div class='or'></div>
+						<button onclick="sendEmail();" class='ui button'> Resend e-mail </button>
+                </div>
+                <div class='ui segment' style='display: none;'>
+                    <div id='errors'>
+                    </div>
+                </div>
+            </div>
+		</div>
+	<div class="ui middle aligned center aligned grid">		
 		<div id='messages'>
 		</div>
-		<div>
-			<button onclick="logout();"> Logout </button>
-			<h1 style='color: white;'> You haven't confirmed your email. </h1>
-			<h3 style='color: white;'> Are you sure {{ user.email }} is correct? </h3>
-			<button onclick="sendEmail();"> Resend e-mail </button>
-			<form method="POST" action="#">
-				<table>
-					{% csrf_token %}
-					{{ confirmation_form.as_table }}
-				</table>
-				<input type='submit'/>
-			</form>
+		<div class='ui segment'>
+			<div>
+			<h2 class="ui inverted white header">
+				<i class='lock icon'></i>
+				<div class="content">
+					Confirm Your Account
+				</div>
+			</h2>
+		</div>
 		</div>
 	</div>
 </body>
