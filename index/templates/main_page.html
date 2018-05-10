@@ -10,46 +10,60 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous">
         </script>
-        <script src="{% static 'js/login.js' %}"></script>
         <script src="{% static 'js/index_main.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
         <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'css/index_main.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
     </head>
     <body>
-        <div id='menu-holders'>
-            <div id='right-menu' class='link-menu'>
-                <ul>
-                    <li>
-                        <a href='/evaluations/'>Evaluations</a>
-                    </li>
-                    <li>
-                        <a href='/shifts/'>Shift Manager</a>
-                    </li>
-                    <li>
-                        <a href='/bug/'>Tickets</a>
-                    </li>
-                </ul>
+        <div class='ui grid'>
+            <div class='row'>
+              <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px;'>
+                  <div class="ui inverted secondary labeled icon menu">
+                      <a class="item" href='/hourmanager/'>
+                        <i class="clock icon"></i>
+                        Hour Manager
+                      </a>
+                      <a class="item" href='/shifts/'>
+                        <i class="hourglass icon"></i>
+                        Shift Manager
+                      </a>
+                      <a class="item" href='/lfp/'>
+                        <i class="print icon"></i>
+                        LFP Scheduler
+                      </a>
+                      <a class="item" href='/evaluations/'>
+                        <i class="edit icon"></i>
+                        Evaluations
+                      </a>
+                      <div class="right menu">
+                        <a class='item' href='/bug/'>
+                            <i class='bug icon'></i>
+                            Submit a Ticket
+                        </a>
+                        <a class='item' href='/user/profile/'>
+                            <i class='user icon'></i>
+                            Profile
+                        </a>
+                        <a class='item' onclick='logoutUser("/user");'>
+                            <i class='hand peace icon'></i>
+                            Logout
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                <div class='ui floating bottom attached compact message' style="margin:0px 32px 0px auto;">
+                    <div class="header">
+                      Logged in as:
+                    </div>
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                </div>
             </div>
-            <div id='top-menu'> 
-                <span>Logged in as: {{ user.username }}</span>
-                <hr />
-                <button class='ui button' onclick="logoutUser();">Logout</button><span>|</span><a href="/user/profile/"><button class='ui button'>Profile</button></a>
-            </div>
-            <div id='left-menu' class='link-menu'>
-                <ul>
-                    <li>
-                        <a href='/hourmanager/'>Hour Manager</a>
-                    </li>
-                    <li>
-                        <a href='/wiki/'>Wiki</a>
-                    </li>
-                    <li>
-                        <a href='/lfp/'>LFP Scheduler</a>
-                    </li>
-                </ul>
+            <div class='row'>
+
             </div>
         </div>
     </body>
