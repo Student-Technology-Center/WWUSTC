@@ -1,6 +1,8 @@
 var LOGIN_ID 		= 'login_form';
 var REGISTER_ID 	= 'register_form';
 var ERRORS_ID		= 'errors';
+var FLIP_ID			= 'flip';
+var BUTTON_TEXT		= 'Register';
 
 function handleLogin() {
 	$.ajax({
@@ -17,6 +19,16 @@ function handleLogin() {
 	});
 
 	return false;
+}
+
+function flipText() {
+	if (BUTTON_TEXT === 'Register') {
+		BUTTON_TEXT = 'Login';
+	} else {
+		BUTTON_TEXT = 'Register'
+	}
+
+	$('#' + FLIP_ID).text(BUTTON_TEXT);
 }
 
 function handleRegistration() {
@@ -43,6 +55,7 @@ function flipItem() {
 
 	clearErrors();
 	flipErrorDisplay(false);
+	flipText();
 
 	if (login) {
 		$('#' + REGISTER_ID).css({'display': 'none'});
@@ -61,6 +74,7 @@ function clearErrors() {
 
 function flipErrorDisplay(open) {
 	errors = open;
+	var errs = $('#' + ERRORS_ID);
 
 	if (errors) {
 		errs.parent().css("display", "block");
