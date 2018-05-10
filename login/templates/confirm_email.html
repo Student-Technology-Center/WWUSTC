@@ -47,6 +47,7 @@
 			<button onclick="sendEmail();"> Resend e-mail </button>
 			<form method="POST" action="#">
 				<table>
+					{% csrf_token %}
 					{{ confirmation_form.as_table }}
 				</table>
 				<input type='submit'/>

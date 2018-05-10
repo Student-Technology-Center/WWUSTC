@@ -32,6 +32,8 @@ def confirm_email(request, uuid=""):
     if request.user.userhiddenattributes.confirmed_account:
         return redirect('/')
 
+    uuid = request.POST.get('uuid', "")
+
     if uuid:
         if check_user_confirmation_key(uuid):
             return redirect('/')
