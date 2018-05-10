@@ -17,8 +17,8 @@ def user_login(request):
 
     context = { 
         'login_form' : UserLoginForm(),
-        'registration_form': UserInformationForm(),
-        'signup_form': UserSignupForm()
+        'information_form': UserInformationForm(),
+        'registration_form': UserSignupForm()
     }
 
     return render(

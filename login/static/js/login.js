@@ -9,7 +9,7 @@ function handleLogin() {
 		data: $('#' + LOGIN_ID).serialize(),
 		success: function(data) {
 			if (data.failed) {
-				writeErrors(Object.keys(data.failed))
+				writeErrors(Object.keys(data.failed), data)
 			} else {
 				window.location = '/';
 			}
@@ -26,7 +26,7 @@ function handleRegistration() {
 		data: $('#' + REGISTER_ID).serialize(),
 		success: function(data) {
 			if (data.failed) {
-				writeErrors(Object.keys(data.failed));
+				writeErrors(Object.keys(data.failed), data);
 			} else {
 				window.location = '/';
 			}
@@ -36,38 +36,53 @@ function handleRegistration() {
 	return false;
 }
 
-var login 		= true;
+var login = true;
 
 function flipItem() {
 	login = !login;
 
+	clearErrors();
+	flipErrorDisplay(false);
+
 	if (login) {
 		$('#' + REGISTER_ID).css({'display': 'none'});
-		$('#' + LOGIN_ID).css({'display':'visible'});
+		$('#' + LOGIN_ID).css({'display':'block'});
 	} else {
 		$('#' + LOGIN_ID).css({'display': 'none'});
-		$('#' + REGISTER_ID).css({'display':'visible'});
+		$('#' + REGISTER_ID).css({'display':'block'});
 	}
 }
 
-function writeErrors(errors) {
+var errors = false;
+
+function clearErrors() {
+	$('#' + ERRORS_ID).empty();
+}
+
+function flipErrorDisplay(open) {
+	errors = open;
+
+	if (errors) {
+		errs.parent().css("display", "block");
+	} else {
+		errs.parent().css("display", "none");
+	}
+}
+
+function writeErrors(errors, data) {
 	errs = $('#' + ERRORS_ID)
-	errs.empty();
+
+	flipErrorDisplay(true);
+	clearErrors();
 
 	for (var i = 0; i < errors.length; i++) {
 		errs.append(getErrorMsg(toTitleCase(errors[i]), data.failed[errors[i]]));
 	}
 }
 
-/* This block of could is why react exists */
+/* This block of code is why React exists */
 function getErrorMsg(header, data) {
-	var str = "<div class='ui negative message'> \
-				  <div class='header'> \
-				    " + header + " \
-				  </div> \
-				  	<p> " + data + "</p> \
-			   </div>";
-
+	var str = "<div class='ui negative message'> <div class='header'>"+header+"</div><p> "+data+"</p></div>";
 	return str;
 }
 

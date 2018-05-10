@@ -20,7 +20,7 @@
                   <div class="header">
                     Welcome to WWUSTC
                   </div>
-                  <p>Login or Signup</p>
+                  <p>Login or Register</p>
                 </div>
                 <div class='ui attached segment'>
                     <form onsubmit="return handleLogin();" id='login_form' class='ui form'>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class='field'>
-                            <div class="ui large header">{{ login_form.password.label}}</div>
+                            <div class="ui large header">{{login_form.password.label}}</div>
                             <div class='ui left icon input'>
                                 {{ login_form.password }}
                                 <i class="lock icon"></i>
@@ -41,12 +41,47 @@
                         </div>
                         <input type='submit' value="Send" class='fluid ui button'/>
                     </form>
-                    <form onsubmit="return handleLogin();" id='register_form' class='ui form' style='display: none;'>
-                        <p> HELLO </p>
+                    <form onsubmit="return handleRegistration();" id='register_form' class='ui form' style='display: none;'>
+                        {% csrf_token %}
+                        <div class='field'>
+                            <label><div class="ui left medium header">Name</div></label>
+                            <div class='two fields'>
+                                <div class='field'>
+                                    {{ registration_form.first_name }}
+                                </div>
+                                <div class='field'>
+                                    {{ registration_form.last_name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class='field'>
+                            <label><div class="ui left medium header">{{registration_form.username.label}}</div></label>
+                            {{registration_form.username}}
+                        </div>
+                        <div class='field'>
+                            <label><div class="ui left medium header">Password</div></label>
+                            <div class='two fields'>
+                                <div class='field'>
+                                    {{ registration_form.password1 }}
+                                </div>
+                                <div class='field'>
+                                    {{ registration_form.password2 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class='field'>
+                            <label><div class="ui left medium header">{{registration_form.email.label}}</div></label>
+                            {{registration_form.email}}
+                        </div>
+                        <div class='field'>
+                            <label><div class="ui left medium header">Employee Type</div></label>
+                            {{information_form.employee_type}}
+                        </div>
+                        <input type='submit' value="Send" class='fluid ui button'/>
                     </form>
                 </div>
                 <div class="bottom attached ui buttons">
-                      <button class="fluid blue ui button" onclick="flipItem();">Register</button>
+                    <button class="fluid blue ui button" onclick="flipItem();">Register</button>
                 </div>
                 <div class='ui segment' style='display: none;'>
                     <div id='errors'>

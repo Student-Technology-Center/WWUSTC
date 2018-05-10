@@ -69,11 +69,11 @@ def api_login(request):
             })
         else:
             return JsonResponse({
-                "failed": {"Error":"User not found with that information"}
+                "failed": {"Error":"User doesn't exist or username/password incorrect."}
             })
     else:
         return JsonResponse({
-            "failed": info.errors
+            "failed": info.errors.as_json()
         })            
 
     return JsonResponse({
