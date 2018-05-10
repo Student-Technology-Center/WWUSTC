@@ -1,29 +1,25 @@
 body {
 	background-color: #53647E;
-	margin: 0;
-	padding: 0;
 }
 
-#content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+body > .grid {
+  height: 100%;
 }
 
-#content div {
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	width: 50%;
+label div {
+	color: black;
 }
 
-.helptext {
-	display: none;
+.column {
+	max-width: 450px;
 }
 
+#switch_button {
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+
+	padding: 12px;
+}
 
 
 

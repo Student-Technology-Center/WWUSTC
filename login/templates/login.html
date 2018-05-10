@@ -3,39 +3,56 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>
-            Login
-        </title>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<head>
+		<title>
+			Login
+		</title>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
-    </head>
-    <body>
-        <div id='content'>
-            <div class='ui horizontal segments'>
-                <div class='ui segment' id="login_form">
-                    <form class='ui form' onsubmit="return handleLogin();">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+	</head>
+	<body>
+		<div class="ui middle aligned center aligned grid">
+            <div class='twelve wide stretched column'>
+                <div class="ui attached message">
+                  <div class="header">
+                    Welcome to WWUSTC
+                  </div>
+                  <p>Login or Signup</p>
+                </div>
+                <div class='ui attached segment'>
+                    <form onsubmit="return handleLogin();" id='login_form' class='ui form'>
                         {% csrf_token %}
-                        <table>
-                            {{ login_form.as_table }}
-                        </table>
-                        <input type='submit' value="Send" class="ui button" />
+                        <div class='field'>
+                            <div class="ui large header">{{login_form.login.label}}</div>
+                            <div class='ui left icon input'>
+                                {{ login_form.login }}
+                                <i class="users icon"></i>
+                            </div>
+                        </div>
+                        <div class='field'>
+                            <div class="ui large header">{{ login_form.password.label}}</div>
+                            <div class='ui left icon input'>
+                                {{ login_form.password }}
+                                <i class="lock icon"></i>
+                            </div>
+                        </div>
+                        <input type='submit' value="Send" class='fluid ui button'/>
+                    </form>
+                    <form onsubmit="return handleLogin();" id='register_form' class='ui form' style='display: none;'>
+                        <p> HELLO </p>
                     </form>
                 </div>
-                <div class='ui segment' id="register_form">
-                    <form class='ui form' onsubmit="return handleRegistration();">
-                        {% csrf_token %}
-                        <table>
-                            {{ signup_form.as_table }}
-                            {{ registration_form.as_table }}
-                        </table>
-                        <input type='submit' class='ui button' value="Send"/>
-                    </form>
+                <div class="bottom attached ui buttons">
+                      <button class="fluid blue ui button" onclick="flipItem();">Register</button>
+                </div>
+                <div class='ui segment' style='display: none;'>
+                    <div id='errors'>
+                    </div>
                 </div>
             </div>
-        </div>
-    </body>
+		</div>
+	</body>
 </html>
