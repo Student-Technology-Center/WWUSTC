@@ -1,0 +1,81 @@
+{% load static %}
+
+<!-- 
+This file serves as a template for the entire website.
+
+Link files include semantic css and js, a common.js file for all generic javascript methods, and jQuery. This means you do not need to link those if you extend this base properly.
+
+Block title simply sets the title.
+ -->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="https://github.com/Student-Technology-Center">
+        <title>
+            {% block title %} Student Technology Center {% endblock %}
+        </title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+        <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            background-color: #53647E;
+          }
+        </style>
+        {% block links %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class='ui grid'>
+            <div class='row'>
+              <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px;'>
+                  <div class="ui inverted secondary labeled icon menu">
+                      <a class="item" href='/hourmanager/'>
+                        <i class="clock icon"></i>
+                        Hour Manager
+                      </a>
+                      <a class="item" href='/shifts/'>
+                        <i class="hourglass icon"></i>
+                        Shift Manager
+                      </a>
+                      <a class="item" href='/lfp/'>
+                        <i class="print icon"></i>
+                        LFP Scheduler
+                      </a>
+                      <a class="item" href='/evaluations/'>
+                        <i class="edit icon"></i>
+                        Evaluations
+                      </a>
+                      <a class='item' href='/bug/'>
+                          <i class='bug icon'></i>
+                          Submit a Ticket
+                      </a>
+                      <div class="right menu">
+                        <a class='item' href='/user/profile/'>
+                            <i class='user icon'></i>
+                            Profile
+                        </a>
+                        <a class='item' onclick='logoutUser("/user");'>
+                            <i class='hand peace icon'></i>
+                            Logout
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                <div class='ui floating bottom attached compact message' style="margin:0px 32px 0px auto;">
+                    <div class="header">
+                      Logged in as:
+                    </div>
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                </div>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

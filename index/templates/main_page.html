@@ -1,70 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<html>
-    <head>
-        <title>
-            Student Technology Center
-        </title>
-        <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous">
-        </script>
-        <script src="{% static 'js/index_main.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
-        <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/index_main.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
-    </head>
-    <body>
-        <div class='ui grid'>
-            <div class='row'>
-              <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px;'>
-                  <div class="ui inverted secondary labeled icon menu">
-                      <a class="item" href='/hourmanager/'>
-                        <i class="clock icon"></i>
-                        Hour Manager
-                      </a>
-                      <a class="item" href='/shifts/'>
-                        <i class="hourglass icon"></i>
-                        Shift Manager
-                      </a>
-                      <a class="item" href='/lfp/'>
-                        <i class="print icon"></i>
-                        LFP Scheduler
-                      </a>
-                      <a class="item" href='/evaluations/'>
-                        <i class="edit icon"></i>
-                        Evaluations
-                      </a>
-                      <a class='item' href='/bug/'>
-                          <i class='bug icon'></i>
-                          Submit a Ticket
-                      </a>
-                      <div class="right menu">
-                        <a class='item' href='/user/profile/'>
-                            <i class='user icon'></i>
-                            Profile
-                        </a>
-                        <a class='item' onclick='logoutUser("/user");'>
-                            <i class='hand peace icon'></i>
-                            Logout
-                        </a>
-                      </div>
-                  </div>
-                </div>
-                <div class='ui floating bottom attached compact message' style="margin:0px 32px 0px auto;">
-                    <div class="header">
-                      Logged in as:
-                    </div>
-                    <p>{{ user.first_name }} {{ user.last_name }}</p>
-                </div>
-            </div>
-            <div class='row'>
+{% block links %}
+  <script src="{% static 'js/index_main.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index_main.css' %}">
+{% endblock %}
 
-            </div>
-        </div>
-    </body>
-</html>
+{% block content %}
+{% endblock %}
+
+<!-- 
+Use this as a template for creating newer pages.
+All of them should extend base.html, which is an HTML template
+within the index as well. Please understand if you change that, you change every page. So changes should be minimal. 
+-->
