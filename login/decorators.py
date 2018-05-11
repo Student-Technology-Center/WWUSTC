@@ -1,9 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-@login_required
 def user_is_email_confirmed(function):
     def wrap(request, *args, **kwargs):
         if request.user.userhiddenattributes.confirmed_account:
@@ -15,7 +13,6 @@ def user_is_email_confirmed(function):
     wrap.__name__ = function.__name__
     return wrap
 
-@login_required
 def user_is_stc(function):
     def wrap(request, *args, **kwargs):
         for grp in request.user.groups:
