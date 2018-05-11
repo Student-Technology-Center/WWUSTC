@@ -18,7 +18,6 @@ class UserSignupForm(UserCreationForm):
         super(UserSignupForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs.update({
-            'autofocus': True,
             'placeholder': 'Username'
         })
 
@@ -31,7 +30,6 @@ class UserSignupForm(UserCreationForm):
         })
 
         self.fields['first_name'].widget.attrs.update({
-            'autofocus': True,
             'placeholder': 'First Name',
         })
 
@@ -59,12 +57,14 @@ class UserSignupForm(UserCreationForm):
 
     class Meta:
         model = USER_MODEL
-        fields = ('username',
-                  'email', 
-                  'password1', 
-                  'password2',
-                  'first_name', 
-                  'last_name')
+        fields = [
+            'username',
+            'email', 
+            'password1', 
+            'password2',
+            'first_name', 
+            'last_name'
+        ]   
 
 class UserInformationForm(forms.Form):
     employee_types = {
@@ -135,6 +135,7 @@ class UserLoginForm(forms.Form):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
         self.fields['login'].widget.attrs.update({
+            'autofocus': True,
             'placeholder':'Username',
         })
 
