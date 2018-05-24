@@ -103,7 +103,7 @@ class UserOptionsForm(forms.ModelForm):
         })
 
         self.fields['shift_name'].widget.attrs.update({
-            'placeholder': 'Excel sheet name'
+            'placeholder': 'Your name as it appears on the excel sheet.'
         })
 
     def clean(self):
@@ -167,7 +167,7 @@ class EmailConfirmationForm(forms.Form):
             'placeholder': 'Confirmation key'    
         })
 
-    class Meat:
+    class Meta:
         fields = [
             'uuid'
         ]
