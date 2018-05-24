@@ -20,6 +20,7 @@ Block title simply sets the title.
         <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
         <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
         <style>
           body {
             margin: 0;
@@ -31,51 +32,49 @@ Block title simply sets the title.
         {% endblock %}
     </head>
     <body>
+      <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px; border-radius: 0px;'>
+          <div class="ui inverted secondary labeled icon menu">
+              <a class="item" href='/hourmanager/'>
+                <i class="clock icon"></i>
+                Hour Manager
+              </a>
+              <a class="item" href='/shifts/'>
+                <i class="hourglass icon"></i>
+                Shift Manager
+              </a>
+              <a class="item" href='/lfp/'>
+                <i class="print icon"></i>
+                LFP Scheduler
+              </a>
+              <a class="item" href='/evaluations/'>
+                <i class="edit icon"></i>
+                Evaluations
+              </a>
+              <a class='item' href='/bug/'>
+                  <i class='bug icon'></i>
+                  Submit a Ticket
+              </a>
+              <div class="right menu">
+                <a class='item' href='/user/profile/'>
+                    <i class='user icon'></i>
+                    Profile
+                </a>
+                <a class='item' onclick='logoutUser("/user");'>
+                    <i class='hand peace icon'></i>
+                    Logout
+                </a>
+              </div>
+          </div>  
+        </div>
+        <div class='ui floating bottom attached compact message' style="position: absolute; right: 0;">
+          <div class="header">
+            Logged in as:
+          </div>
+          <p>{{ user.first_name }} {{ user.last_name }}</p>
+        </div>
         <div class='ui grid'>
-            <div class='row'>
-              <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px;'>
-                  <div class="ui inverted secondary labeled icon menu">
-                      <a class="item" href='/hourmanager/'>
-                        <i class="clock icon"></i>
-                        Hour Manager
-                      </a>
-                      <a class="item" href='/shifts/'>
-                        <i class="hourglass icon"></i>
-                        Shift Manager
-                      </a>
-                      <a class="item" href='/lfp/'>
-                        <i class="print icon"></i>
-                        LFP Scheduler
-                      </a>
-                      <a class="item" href='/evaluations/'>
-                        <i class="edit icon"></i>
-                        Evaluations
-                      </a>
-                      <a class='item' href='/bug/'>
-                          <i class='bug icon'></i>
-                          Submit a Ticket
-                      </a>
-                      <div class="right menu">
-                        <a class='item' href='/user/profile/'>
-                            <i class='user icon'></i>
-                            Profile
-                        </a>
-                        <a class='item' onclick='logoutUser("/user");'>
-                            <i class='hand peace icon'></i>
-                            Logout
-                        </a>
-                      </div>
-                  </div>
-                </div>
-                <div class='ui floating bottom attached compact message' style="margin:0px 32px 0px auto;">
-                    <div class="header">
-                      Logged in as:
-                    </div>
-                    <p>{{ user.first_name }} {{ user.last_name }}</p>
-                </div>
-            </div>
-            {% block content %}
-            {% endblock %}
+          {% block content %}
+          {% endblock %}
         </div>
     </body>
 </html>
