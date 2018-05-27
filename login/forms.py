@@ -103,7 +103,7 @@ class UserOptionsForm(forms.ModelForm):
         })
 
         self.fields['shift_name'].widget.attrs.update({
-            'placeholder': 'Your name as it appears on the excel sheet.'
+            'placeholder': 'Shift name'
         })
 
     def clean(self):

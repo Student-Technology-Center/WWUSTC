@@ -58,6 +58,16 @@ Block title simply sets the title.
                 <a class='item' href='/user/profile/'>
                     <i class='user icon'></i>
                     Profile
+                    {% if request.user.useroptions.shift_name == "" %}
+                      <script>
+                        $('.user.icon')
+                        .transition({
+                          animation : 'jiggle',
+                          looping   : true,
+                          interval  : 200
+                        })
+                      </script>
+                    {% endif %}
                 </a>
                 <a class='item' onclick='logoutUser("/user");'>
                     <i class='hand peace icon'></i>

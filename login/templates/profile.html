@@ -20,6 +20,11 @@ Profile
                 <div class='field'>
                     <label>{{ options.shift_name.label }}</label>
                     {{ options.shift_name }}
+                    {% if request.user.useroptions.shift_name == "" %}
+                        <div class="ui pointing label">
+                            Please enter your name as it appears on the excel sheet
+                        </div>
+                    {% endif %}
                 </div>
                 <div class='two fields'>
                     <div class='field'>
