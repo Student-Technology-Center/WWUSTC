@@ -21,6 +21,13 @@ Block title simply sets the title.
         <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
         <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+        <script>
+          if (getCookie('csrftoken')) {
+            eraseCookie('csrftoken');
+          }
+
+          setCookie('csrftoken', '{{csrf_token}}', 1);
+        </script>
         <style>
           body {
             margin: 0;
