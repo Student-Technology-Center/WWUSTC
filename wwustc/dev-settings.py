@@ -24,7 +24,3 @@ TEMPLATES = [
         },
     },
 ]
-
-ADMIN_LIST += [
-    'deyounn',
-]
