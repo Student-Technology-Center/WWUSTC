@@ -118,6 +118,5 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ADMIN_LIST = [
-    'brintnc',
-]
+STATIC_ROOT = '/var/www/wwustc/static/'
+MEDIA_ROOT = '/var/www/wwustc/media/'
