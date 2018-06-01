@@ -94,11 +94,14 @@ Block title simply sets the title.
               </div>
           </div>  
         </div>
-        <div class='ui floating bottom attached compact message' style="position: absolute; right: 0;">
+        <div class='ui floating bottom attached compact message' style="position: absolute; right: 0; z-index: -999;">
           <div class="header">
             Logged in as:
           </div>
           <p>{{ user.first_name }} {{ user.last_name }}</p>
+          {% if user.is_superuser %}
+            <p style='color: green;'>Admin</p>
+          {% endif %}
         </div>
         <div class='ui grid'>
           {% block content %}

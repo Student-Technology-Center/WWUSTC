@@ -167,6 +167,14 @@ class EmailConfirmationForm(forms.Form):
             'placeholder': 'Confirmation key'    
         })
 
+    def is_valid(self):
+        valid = super(EmailConfirmationForm, self).is_valid()
+
+        if not valid:
+            return valid
+
+        return valid
+
     class Meta:
         fields = [
             'uuid'
