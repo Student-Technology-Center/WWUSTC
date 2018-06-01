@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'register/$', register),
     url(r'user_login/$', api_login),
     url(r'user_logout/$', api_logout),
-    url(r'send_confirmation_email/$', send_email)
+    url(r'send_confirmation_email/$', send_email),
+    url(r'reset_password/$', reset_password)
 ]

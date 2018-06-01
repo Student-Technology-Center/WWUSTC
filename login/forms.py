@@ -180,4 +180,31 @@ class EmailConfirmationForm(forms.Form):
             'uuid'
         ]
 
+class PasswordResetRequest(forms.Form):
+    email = forms.EmailField()
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordResetRequest, self).__init__(*args, **kwargs)
+
+        self.fields['email'].widget.attrs.update({
+            'placeholder': 'Your email'    
+        })
+
+    def is_valid(self):
+        valid = super(PasswordResetRequest, self).is_valid()
+
+        if not valid:
+            return valid
+
+        return valid or USER_MODEL.objects.filter(email=self.cleaned_data.get('email')).exists()
+
+    class Meta:
+        fields = [
+            'email'
+        ]
+
+class PasswordResetForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+        
+
 

@@ -10,7 +10,7 @@ from random import randint
 
 from ..models import UserHiddenAttributes
 from ..helpers import send_user_confirmation_email
-from ..forms import UserLoginForm, UserSignupForm, UserInformationForm
+from ..forms import UserLoginForm, UserSignupForm, UserInformationForm, PasswordResetRequest
 
 USER_MODEL = get_user_model()
 
@@ -94,6 +94,22 @@ def send_email(request):
     send_user_confirmation_email(request, request.user)
     return JsonResponse({
         "success" : {"Email":"Sent!"}    
+    })
+
+@require_http_methods(['GET'])
+def reset_password(request):
+    reset_request = PasswordResetRequest(request.GET)
+    
+    if reset_request.is_valid():
+        
+        
+
+        return JsonResponse({
+            "success" : "Sent to {}".format(request.GET.get("email"))
+        })
+
+    return JsonResponse({
+        "failed" : "No account associated with {}".format(request.GET.get("email", ""))
     })
 
 
