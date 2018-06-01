@@ -202,9 +202,6 @@ class PasswordResetRequest(forms.Form):
         fields = [
             'email'
         ]
-
-class PasswordResetForm(forms.Form):
-    password = forms.CharField(widget=forms.PasswordInput())
         
 
 
