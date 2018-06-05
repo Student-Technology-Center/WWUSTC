@@ -118,5 +118,5 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATIC_ROOT = '/var/www/wwustc/static/'
-MEDIA_ROOT = '/var/www/wwustc/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -4,6 +4,7 @@
 
 <html>
 	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
 			Login
 		</title>
@@ -11,7 +12,12 @@
 		<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/user_login.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
-		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+        <style>
+            @media all and (max-width: 400px) {
+                #login_block { height: 100%; width: 100%; }
+            }
+        </style>
 	</head>
 	<body>
 		<div class="ui middle aligned center aligned grid">
@@ -22,7 +28,7 @@
                   </div>
                   <p>Login or Register</p>
                 </div>
-                <div class='ui attached segment'>
+                <div class='ui attached segment' id='login_block'>
                     <form onsubmit="return handleLogin();" id='login_form' class='ui form'>
                         {% csrf_token %}
                         <div class='field'>

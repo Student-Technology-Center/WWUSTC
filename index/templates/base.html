@@ -12,6 +12,7 @@ Block title simply sets the title.
     <head>
         <meta charset="utf-8">
         <meta name="author" content="https://github.com/Student-Technology-Center">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
         <title>
             {% block title %} Student Technology Center {% endblock %}
         </title>
@@ -28,30 +29,12 @@ Block title simply sets the title.
 
           setCookie('csrftoken', '{{csrf_token}}', 1);
         </script>
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            background-color: #53647E;
-          }
-
-          #menu {
-            max-height: 100px;
-            height: 100%;
-          }
-
-          @media only screen and (max-width: 600px) {
-            #menu {
-              max-height: 200px;
-            }
-          }
-        </style>
         {% block links %}
         {% endblock %}
     </head>
     <body>
       <div class='ui inverted segment' style='width: 100%; margin-bottom: 0px; border-radius: 0px;' id='menu'>
-          <div class="ui inverted secondary labeled icon menu">
+          <div class="ui inverted secondary labeled icon menu" style='width: 100%;'>
               <a class="item" href='/hourmanager/'>
                 <i class="clock icon"></i>
                 Hour Manager
@@ -98,9 +81,9 @@ Block title simply sets the title.
           <div class="header">
             Logged in as:
           </div>
-          <p>{{ user.first_name }} {{ user.last_name }}</p>
+          <p style='margin-bottom: 0px;'>{{ user.first_name }} {{ user.last_name }}</p>
           {% if user.is_superuser %}
-            <p style='color: green;'>Admin</p>
+            <p style='color: green; margin-top: 3px;'>Admin</p>
           {% endif %}
         </div>
         <div class='ui grid'>
