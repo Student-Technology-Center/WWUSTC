@@ -7,7 +7,7 @@ from django.conf import settings
 
 from .models import UserHiddenAttributes, UserOptions
 from .helpers import send_user_confirmation_email, check_user_confirmation_key
-from .forms import UserSignupForm, UserInformationForm, UserLoginForm, UserOptionsForm, EmailConfirmationForm, PasswordResetRequest
+from .forms import UserSignupForm, UserInformationForm, UserLoginForm, UserOptionsForm, EmailConfirmationForm, PasswordResetRequest, PasswordReset
 
 USER_MODEL = get_user_model()
 
@@ -29,7 +29,8 @@ def user_login(request):
 
 def reset_password(request):
     context = { 
-        "request" : PasswordResetRequest()
+        "request"   : PasswordResetRequest(),
+        "reset"     : PasswordReset()
     }
 
     return render(

@@ -24,9 +24,15 @@
                             writeError(data.failed, false);
                         } else {
                             writeError(data.success, true);
+                            $("#password-form").css("display", "none");
+                            $("#reset-form").css("display", "block");
                         }
                     }
                 })
+
+                function submitReset() {
+                    console.log("resetting")
+                }
 
                 return false;
             }
@@ -63,12 +69,10 @@
                         </div>
                         <input type='submit' class='ui blue button'>
                     </form>
-                </div>
-                <div class='ui attached segment'>
-                    <form class='ui form' id='reset-form' onsubmit="return submitReset();">
+                    <form class='ui form' id='reset-form' onsubmit="return submitReset();" style="display: none;">
                         <div class='field'>
-                            <label> {{ request.email.label }} </label>
-                            {{ request.email }}
+                            <label> {{ reset.key.label }} </label>
+                            {{ reset.key }}
                         </div>
                         <input type='submit' class='ui blue button'>
                     </form>

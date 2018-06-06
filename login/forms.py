@@ -196,11 +196,26 @@ class PasswordResetRequest(forms.Form):
         if not valid:
             return valid
 
-        return valid or USER_MODEL.objects.filter(email=self.cleaned_data.get('email')).exists()
+        return valid and USER_MODEL.objects.filter(email=self.cleaned_data.get('email')).exists()
 
     class Meta:
         fields = [
             'email'
+        ]
+
+class PasswordReset(forms.Form):
+    key = forms.CharField(max_length=6)
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordReset, self).__init__(*args, **kwargs)
+
+        self.fields['key'].widget.attrs.update({
+            'placeholder': 'Key sent to email'    
+        })
+
+    class Meta:
+        fields = [
+            'key'
         ]
         
 

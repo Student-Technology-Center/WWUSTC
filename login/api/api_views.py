@@ -101,9 +101,6 @@ def reset_password(request):
     reset_request = PasswordResetRequest(request.GET)
     
     if reset_request.is_valid():
-        
-        
-
         return JsonResponse({
             "success" : "Sent to {}".format(request.GET.get("email"))
         })
