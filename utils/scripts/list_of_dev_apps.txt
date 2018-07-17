@@ -3,4 +3,4 @@ evaluations
 lfp_scheduler
 shiftmanager
 bug_tracker
-reservations
+adminpage

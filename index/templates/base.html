@@ -60,23 +60,30 @@ Block title simply sets the title.
                   Submit a Ticket
               </a>
               <div class="right menu">
+                {% if request.user.is_superuser %}
+                <a class="item" href="/admin/">
+                  <i class="wrench icon"></i>
+                  Admin Page
+                </a>
+                {% endif %}
+
                 <a class='item' href='/user/profile/'>
-                    <i class='user icon'></i>
-                    Profile
-                    {% if request.user.useroptions.shift_name == "" %}
-                      <script>
-                        $('.user.icon')
-                        .transition({
-                          animation : 'jiggle',
-                          looping   : true,
-                          interval  : 200
-                        })
-                      </script>
-                    {% endif %}
+                  <i class='user icon'></i>
+                  Profile
+                  {% if request.user.useroptions.shift_name == "" %}
+                    <script>
+                      $('.user.icon')
+                      .transition({
+                        animation : 'jiggle',
+                        looping   : true,
+                        interval  : 200
+                      })
+                    </script>
+                  {% endif %}
                 </a>
                 <a class='item' onclick='logoutUser("/user");'>
-                    <i class='hand peace icon'></i>
-                    Logout
+                  <i class='hand peace icon'></i>
+                  Logout
                 </a>
               </div>
           </div>  

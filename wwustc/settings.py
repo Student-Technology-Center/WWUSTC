@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'bug_tracker.apps.BugTrackerConfig',
     'reservations.apps.ReservationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
+    'adminpage.apps.AdminpageConfig',
 ]
 
 MIDDLEWARE = [

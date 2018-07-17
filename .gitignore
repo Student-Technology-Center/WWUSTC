@@ -17,9 +17,10 @@ django-wiki/*
 django-env/
 reservations/
 reservations/*
+adminpage/
+adminpage/*
 wiki/
 media/
-shiftmanager/
 .vscode/
 __pycache__/
 

@@ -17,7 +17,8 @@ urlpatterns = [
     url(r'^evaluations/', include('evaluations.urls')),
     url(r'^bug/', include('bug_tracker.urls', namespace='bugtracker')),
     url(r'^reservations/', include('reservations.urls', namespace='reservations')),
-    url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager'))
+    url(r'^shifts/', include('shiftmanager.urls', namespace='shiftmanager')),
+    url(r'^admin/', include('adminpage.urls', namespace='adminpage'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
