@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     'evaluations.apps.EvaluationsConfig',
     'login.apps.LoginConfig',
     'bug_tracker.apps.BugTrackerConfig',
-    'reservations.apps.ReservationsConfig',
     'shiftmanager.apps.ShiftmanagerConfig',
     'adminpage.apps.AdminpageConfig',
 ]
