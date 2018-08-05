@@ -1,6 +1,0 @@
-hour_manager
-evaluations
-lfp_scheduler
-shiftmanager
-bug_tracker
-adminpage
