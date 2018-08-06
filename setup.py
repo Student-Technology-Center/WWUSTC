@@ -16,6 +16,7 @@ def main():
     # True if no extra param was given
     if len(sys.argv) < 2:
         print("Usage: setup.py <prod | dev>")
+        exit()
 
     param = sys.argv[1]
     isProd = False
