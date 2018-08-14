@@ -1,0 +1,35 @@
+bleach==1.5.0
+certifi==2017.4.17
+chardet==3.0.4
+Django==1.10
+django-cas-ng==3.5.8
+django-ckeditor==5.3.0
+django-classy-tags==0.8.0
+django-js-asset==0.1.1
+django-mobile==0.7.0
+django-mptt==0.8.7
+django-nyt==1.0b5
+django-sekizai==0.10.0
+django-sslify==0.2.7
+html5lib==0.9999999
+idna==2.5
+Markdown==2.6.8
+numpy==1.14.3
+olefile==0.44
+pandas==0.23.0
+Pillow==4.2.1
+pycurl==7.43.0  # TODO: fix pycurl
+pygobject==3.20.0  # TODO: fix pygobject
+python-apt==0.7.8
+python-cas==1.2.0
+python-dateutil==2.7.3
+pytz==2017.2
+requests==2.18.1
+six==1.10.0
+sorl-thumbnail==12.3
+ufw==0.35
+unattended-upgrades==0.1
+urllib3==1.21.1
+virtualenv==15.1.0
+wiki==0.2.4
+xlrd==1.1.0
