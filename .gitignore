@@ -7,6 +7,8 @@ lfp_scheduler/
 evaluations/
 django-wiki/
 hour_manager/*
+hour_manager2/
+hour_manager2/*
 lfp_scheduler/*
 evaluations/*
 shiftmanager/
