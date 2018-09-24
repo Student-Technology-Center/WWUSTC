@@ -183,19 +183,23 @@ class EmailConfirmationForm(forms.Form):
         ]
 
 class PasswordResetRequest(forms.Form):
-    email = forms.EmailField()
+    username = forms.CharField()
 
     def __init__(self, *args, **kwargs):
         super(PasswordResetRequest, self).__init__(*args, **kwargs)
 
-        self.fields['email'].widget.attrs.update({
-            'placeholder': 'Your email'    
+        self.fields['username'].widget.attrs.update({
+            'placeholder': 'Your username'    
         })
 
     def is_valid(self):
         valid = super(PasswordResetRequest, self).is_valid()
+        user = None
+        try:
+            user = USER_MODEL.objects.get(username=self.cleaned_data.get('username'))
+        except User.DoesNotExist:
+            pass
 
-        user = USER_MODEL.objects.get(email=self.cleaned_data.get('email'))
         if not valid or not user:
             return False
         
@@ -203,7 +207,7 @@ class PasswordResetRequest(forms.Form):
 
     class Meta:
         fields = [
-            'email'
+            'username'
         ]
 
 class PasswordResetVerify(forms.Form):

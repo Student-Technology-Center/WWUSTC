@@ -107,7 +107,7 @@ def reset_request(request):
 
         reset_key = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(16))
 
-        user = USER_MODEL.objects.get(email=request.GET.get('email'))
+        user = USER_MODEL.objects.get(username=request.GET.get('username'))
         user_attributes = UserHiddenAttributes.objects.get(user=user)
         user_attributes.reset_key = reset_key
         user_attributes.reset_request_time = timezone.now()
@@ -116,11 +116,11 @@ def reset_request(request):
         send_password_reset_email(request, user)
 
         return JsonResponse({
-            "success" : "Sent to {}".format(request.GET.get("email"))
+            "success" : "Sent to {}".format(user.email)
         })
 
     return JsonResponse({
-        "failed" : "No account associated with {}".format(user.email)
+        "failed" : "No account exists with that name"
     })
 
 # Verify that the token is valid, either by the user clicking on the 
