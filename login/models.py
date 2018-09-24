@@ -25,7 +25,8 @@ class UserOptions(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class UserHiddenAttributes(models.Model):
-    reset_key = models.CharField(max_length=6)
+    reset_key = models.CharField(max_length=16, null=True)
+    reset_request_time = models.DateTimeField(blank=True, null=True)
     confirmation_key = models.UUIDField(default=uuid.uuid4, editable=False)
     confirmed_account = models.BooleanField(default=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

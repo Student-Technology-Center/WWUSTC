@@ -16,7 +16,7 @@
 
             function submitRequest() {
                 $.ajax({
-                    url: "/user/api/reset_password/",
+                    url: "/user/api/reset_request/",
                     method: "GET",
                     data: $("#password-form").serialize(),
                     success: function(data) {
@@ -30,12 +30,26 @@
                     }
                 })
 
-                function submitReset() {
-                    console.log("resetting")
-                }
-
                 return false;
             }
+
+            function submitReset() {
+                $.ajax({
+                    url: "/user/api/reset_verify",
+                    method: "GET",
+                    data: $("#reset-form").serialize(),
+                    success: function(data){
+                        if (data.failed) {
+                            writeError(data.failed, false);
+                        } else {
+                            writeError(data.success, true);
+                            location.assign(data.url);
+                        }
+                    }
+                })
+
+                return false;
+            }   
 
             function writeError(error, success) {
                 errs = $('#' + ERRORS_ID)
@@ -54,6 +68,7 @@
         </script>
 	</head>
 	<body>
+        {% csrf_token %}
 		<div class="ui middle aligned center aligned grid">
             <div class='twelve wide stretched column'>
                 <div class="ui attached message">

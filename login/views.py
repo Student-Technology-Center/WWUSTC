@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.models import  AnonymousUser
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 
 from .models import UserHiddenAttributes, UserOptions
-from .helpers import send_user_confirmation_email, check_user_confirmation_key
-from .forms import UserSignupForm, UserInformationForm, UserLoginForm, UserOptionsForm, EmailConfirmationForm, PasswordResetRequest, PasswordReset
+from .helpers import send_user_confirmation_email, check_user_confirmation_key, check_password_reset_token
+from .forms import *
 
 USER_MODEL = get_user_model()
 
@@ -27,17 +28,40 @@ def user_login(request):
         context
     )
 
-def reset_password(request):
-    context = { 
-        "request"   : PasswordResetRequest(),
-        "reset"     : PasswordReset()
-    }
+def reset_password(request, token=""):
 
-    return render(
-        request,
-        "reset.html",
-        context
-    )
+    if request.user.id != None:
+        return redirect('/')
+
+    if not token:
+        context = { 
+            "request"   : PasswordResetRequest(),
+            "reset"     : PasswordResetVerify()
+        }
+
+        return render(
+            request,
+            "reset.html",
+            context
+        )
+
+    else:
+
+        if not check_password_reset_token(token):
+            return redirect('/')
+
+        context = {
+            "password_reset"    : NewPasswordForm()
+        }
+
+        context['password_reset'].fields['token'].initial = token
+        
+        return render(
+            request,
+            "new_password.html",
+            context
+        )
+
 
 @login_required
 def confirm_email(request, uuid=""):

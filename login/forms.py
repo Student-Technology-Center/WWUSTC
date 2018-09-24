@@ -4,8 +4,10 @@ from django.contrib.auth import get_user_model
 from django import forms
 
 import re
+from datetime import timedelta
 
-from .models import UserOptions
+from .models import UserOptions, UserHiddenAttributes
+from .helpers import check_password_reset_token
 
 USER_MODEL = get_user_model()
 
@@ -193,30 +195,64 @@ class PasswordResetRequest(forms.Form):
     def is_valid(self):
         valid = super(PasswordResetRequest, self).is_valid()
 
-        if not valid:
-            return valid
-
-        return valid and USER_MODEL.objects.filter(email=self.cleaned_data.get('email')).exists()
+        user = USER_MODEL.objects.get(email=self.cleaned_data.get('email'))
+        if not valid or not user:
+            return False
+        
+        return True
 
     class Meta:
         fields = [
             'email'
         ]
 
-class PasswordReset(forms.Form):
-    key = forms.CharField(max_length=6)
+class PasswordResetVerify(forms.Form):
+    key = forms.CharField(max_length=16)
 
     def __init__(self, *args, **kwargs):
-        super(PasswordReset, self).__init__(*args, **kwargs)
-
+        super(PasswordResetVerify, self).__init__(*args, **kwargs)
+    
         self.fields['key'].widget.attrs.update({
             'placeholder': 'Key sent to email'    
         })
+
+    def is_valid(self):
+        valid = super(PasswordResetVerify, self).is_valid()
+
+        if not valid:
+            return False    
+
+        return check_password_reset_token(self.cleaned_data.get('key'))
 
     class Meta:
         fields = [
             'key'
         ]
+
+class NewPasswordForm(forms.Form):
+    new_pass = forms.CharField(min_length=8, widget=forms.PasswordInput, label="New password")
+    verify_pass = forms.CharField(min_length=8, widget=forms.PasswordInput, label="Confirm")
+    token = forms.CharField(max_length=16, widget=forms.HiddenInput, label="Token")
+
+    def __init__(self, *args, **kwargs):
+        super(NewPasswordForm, self).__init__(*args, **kwargs)
+
+    def is_valid(self):
+        valid = super(NewPasswordForm, self).is_valid()
+
+        if not valid:
+            return False
+
+        matching_passwords = self.cleaned_data.get('new_pass') == self.cleaned_data.get('verify_pass')
+
+        return check_password_reset_token(self.cleaned_data.get('token')) and matching_passwords
+    
+    class Meta:
+        fields = [
+            'new_pass',
+            'verify_pass',
+            'token'
+    ] 
         
 
 

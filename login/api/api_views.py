@@ -5,12 +5,13 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from django.utils import timezone
 
-from random import randint
+import random, string # Used to generate the password reset key
 
 from ..models import UserHiddenAttributes
-from ..helpers import send_user_confirmation_email
-from ..forms import UserLoginForm, UserSignupForm, UserInformationForm, PasswordResetRequest
+from ..helpers import send_user_confirmation_email, send_password_reset_email, check_password_reset_token
+from ..forms import UserLoginForm, UserSignupForm, UserInformationForm, PasswordResetRequest, PasswordResetVerify, NewPasswordForm
 
 USER_MODEL = get_user_model()
 
@@ -96,17 +97,73 @@ def send_email(request):
         "success" : {"Email":"Sent!"}    
     })
 
+
+# Generates a new request token and timeout for the account with the given email 
 @require_http_methods(['GET'])
-def reset_password(request):
+def reset_request(request):
     reset_request = PasswordResetRequest(request.GET)
     
     if reset_request.is_valid():
+
+        reset_key = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(16))
+
+        user = USER_MODEL.objects.get(email=request.GET.get('email'))
+        user_attributes = UserHiddenAttributes.objects.get(user=user)
+        user_attributes.reset_key = reset_key
+        user_attributes.reset_request_time = timezone.now()
+        user_attributes.save()
+        
+        send_password_reset_email(request, user)
+
         return JsonResponse({
             "success" : "Sent to {}".format(request.GET.get("email"))
         })
 
     return JsonResponse({
-        "failed" : "No account associated with {}".format(request.GET.get("email", ""))
+        "failed" : "No account associated with {}".format(user.email)
     })
+
+# Verify that the token is valid, either by the user clicking on the 
+# emailed link or by entering the token manually
+@require_http_methods(['GET'])
+def reset_verify(request):
+    reset_verify = PasswordResetVerify(request.GET)
+
+    if reset_verify.is_valid():
+        url = request.get_raw_uri().replace(request.get_full_path(), "") + "/user/reset/" + reset_verify.cleaned_data.get("key")
+        return JsonResponse({
+            "success" : "Password ready to be reset",
+            "url"     : url
+        })
+
+    return JsonResponse({
+        "failed" : "Invalid password reset token"
+    })
+
+@require_http_methods(['POST'])
+def set_password(request):
+    new_password = NewPasswordForm(request.POST)
+
+    if new_password.is_valid():
+
+        token = new_password.cleaned_data.get("token")
+        attributes = UserHiddenAttributes.objects.get(reset_key=token)
+
+        attributes.reset_key = None
+        attributes.reset_request_time = None
+        attributes.save()
+
+        user = attributes.user
+        user.set_password(new_password.cleaned_data.get("new_pass"))
+        user.save()
+        
+        return JsonResponse({
+            "success" : "Password reset, you may now login"    
+        })
+
+    return JsonResponse({
+        "failed" : "Passwords don't match or your token expired"
+    })
+
 
 
