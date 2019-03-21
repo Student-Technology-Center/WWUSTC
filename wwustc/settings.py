@@ -15,6 +15,8 @@ MEDIA_URL = '/media/'
 
 DEBUG = False
 
+REGISTRATION_SECRET = os.environ.get('REGISTRATION_SECRET', "")
+
 EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME', "")
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD', "")
 EMAIL_PORT = 587

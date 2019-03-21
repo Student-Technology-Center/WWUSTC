@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from django import forms
 
 import re
@@ -15,6 +16,8 @@ class UserSignupForm(UserCreationForm):
     first_name = forms.CharField(max_length=32)
     last_name = forms.CharField(max_length=32)
     email = forms.EmailField()
+
+    secret_key = forms.CharField(max_length=12, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
@@ -43,18 +46,29 @@ class UserSignupForm(UserCreationForm):
             'placeholder': 'Email (WWU)'    
         })
 
+        self.fields['secret_key'].widget.attrs.update({
+            'placeholder': 'Ask for the secret key'    
+        })
+
     def is_valid(self):
         valid = super(UserSignupForm, self).is_valid()
         
         if not valid:
             return valid
 
-        if self.cleaned_data['email'][-8:] == "@wwu.edu":
-            return True
-        else:
+        if not self.cleaned_data['email'][-8:] == "@wwu.edu":
             self.errors["Email"] = "Please enter a valid @wwu.edu email"
             return False
-        
+
+        print(settings.REGISTRATION_SECRET)
+        if not settings.REGISTRATION_SECRET:
+            self.errors["Secret"] = "Registration secret value not setup"
+
+        elif self.cleaned_data['secret_key'] == settings.REGISTRATION_SECRET:
+            return True
+        else:
+            self.errors["Secret"] = "Invalid secret key!"
+
         return False
 
     class Meta:
@@ -70,8 +84,7 @@ class UserSignupForm(UserCreationForm):
 
 class UserInformationForm(forms.Form):
     employee_types = {
-        ("STC", "STC"),
-        ("Classroom Services", "Classroom Services")
+        ("STC", "STC")
     }
 
     employee_type = forms.ChoiceField(choices=employee_types)
