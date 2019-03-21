@@ -1,7 +1,8 @@
-var LOGIN_ID 		= 'login_form';
+var LOGIN_ID 			= 'login_form';
 var REGISTER_ID 	= 'register_form';
-var ERRORS_ID		= 'errors';
-var FLIP_ID			= 'flip';
+var WARN_ID				= 'student_warn'
+var ERRORS_ID			= 'errors';
+var FLIP_ID				= 'flip';
 var BUTTON_TEXT		= 'Register';
 
 function handleLogin() {
@@ -58,11 +59,13 @@ function flipItem() {
 	flipText();
 
 	if (login) {
+		$('#' + WARN_ID).css({'display': 'none'});
 		$('#' + REGISTER_ID).css({'display': 'none'});
 		$('#' + LOGIN_ID).css({'display':'block'});
 	} else {
 		$('#' + LOGIN_ID).css({'display': 'none'});
 		$('#' + REGISTER_ID).css({'display':'block'});
+		$('#' + WARN_ID).css({'display': 'block'});
 	}
 }
 
