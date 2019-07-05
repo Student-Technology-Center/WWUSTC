@@ -60,6 +60,9 @@ class UserSignupForm(UserCreationForm):
             self.errors["Email"] = "Please enter a valid @wwu.edu email"
             return False
 
+        # REGISTRATION_SECRET is a envrionment var that is gathered by settings.py
+        # This is used to prevent random patrons from accidently registering for
+        # the website
         print(settings.REGISTRATION_SECRET)
         if not settings.REGISTRATION_SECRET:
             self.errors["Secret"] = "Registration secret value not setup"
@@ -269,7 +272,4 @@ class NewPasswordForm(forms.Form):
             'new_pass',
             'verify_pass',
             'token'
-    ] 
-        
-
-
+    ]

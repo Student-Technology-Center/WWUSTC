@@ -60,12 +60,13 @@ def install_pip_requirements(basePath):
             argList[-1] = req.rstrip()
             try:
                 check_call(argList)
-            except: pass
+            except: 
+                pass
 
 
 def handle_lfp_scheduler(basePath):
     """Configures lfp scheduler
-    
+
     lfp_scheduler won't work without a lfp_pw password file, generate it here
     if missing
     """

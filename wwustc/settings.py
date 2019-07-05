@@ -15,8 +15,12 @@ MEDIA_URL = '/media/'
 
 DEBUG = False
 
+# Set via 'export REGISTRATION_SECRET=[secret]' in .bashrc
 REGISTRATION_SECRET = os.environ.get('REGISTRATION_SECRET', "")
 
+# Configure the email client in production (see message.py)
+# exporting the two env vars is all that must be done
+# Perferrably should use the stc gmail account
 EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME', "")
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD', "")
 EMAIL_PORT = 587
