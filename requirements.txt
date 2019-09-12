@@ -1,7 +1,7 @@
 bleach==2.1
 certifi==2017.4.17
 chardet==3.0.4
-Django==1.11.22
+Django>=1.11.23
 django-cas-ng==3.5.8
 django-ckeditor==5.3.0
 django-classy-tags==0.8.0
@@ -29,3 +29,4 @@ sorl-thumbnail==12.3
 urllib3>=1.24.2
 wiki==0.4.4
 xlrd==1.1.0
+gitpython
