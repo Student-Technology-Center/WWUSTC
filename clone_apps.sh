@@ -8,7 +8,6 @@ if [[ -z "$1" ]]; then
 fi
 
 while read line; do
-    rm -r $line
     git clone "git@github.com:Student-Technology-Center/$line" \
         -b $branch
 done < apps.txt
