@@ -1,7 +1,7 @@
 bleach==3.1.4
 certifi==2017.4.17
 chardet==3.0.4
-Django==1.11.28
+Django==1.11.22
 django-cas-ng==3.5.8
 django-ckeditor==5.3.0
 django-classy-tags==0.8.0
