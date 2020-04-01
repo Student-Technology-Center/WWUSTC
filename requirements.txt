@@ -17,7 +17,7 @@ Markdown==2.6.8
 numpy==1.14.3
 olefile==0.44
 pandas==0.23.0
-Pillow==6.2.0
+Pillow==4.2.1
 pycurl==7.43.0
 pycairo==1.18.1
 pygobject==3.30.5
