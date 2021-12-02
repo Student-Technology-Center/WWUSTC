@@ -29,5 +29,5 @@ six==1.10.0
 sorl-thumbnail==12.3
 urllib3==1.24.2
 virtualenv==15.1.0
-wiki==0.4.4
+wiki==0.7.9
 xlrd==1.1.0
