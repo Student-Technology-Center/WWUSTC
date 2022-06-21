@@ -14,7 +14,7 @@ django-sslify==0.2.7
 html5lib==1.0.1
 idna==2.5
 Markdown==2.6.8
-numpy==1.18.2
+numpy==1.22.0
 olefile==0.44
 pandas==1.0.3
 Pillow==4.2.1
